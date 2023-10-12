@@ -1,31 +1,30 @@
-const express = require("express");
-const mongoose = require("mongoose");
-const bodyParser = require("body-parser");
-const  cors = require("cors");
-const dotenv = require("dotenv");
-require("dotenv").config();
+const express = require('express');
 const app = express();
+const  cors = require("cors");
+require("dotenv").config();
+const connectToDatabase = require('./config/database');
 
 const port = process.env.PORT || 8070;
 
+// Connect to the database
+connectToDatabase(process.env.MONGODB_URL);
+
+// Middleware
 app.use(cors());
-app.use(bodyParser.json());
-app.use(express.json())
+app.use(express.json());
 
-const URL = process.env.MONGODB_URL;
+// Routes
+const authRouter = require('./routes/authRoutes');
+app.use('/auth', authRouter);
 
-mongoose.connect(URL)
-    .then(() => {
-        app.listen(port, () => {
-            console.log(`Server is up and running on port number ${port}`)
-        })
-    })
-    .catch((error) => {
-        console.log(error)
-    })
+const employeesRouter = require('./routes/employeeRoutes');
+app.use('/employees', employeesRouter);
+
+const supplierRouter = require('./routes/supplierRoutes');
+app.use('/suppliers', supplierRouter);
 
 
-
-
-
-
+//Server Connection
+app.listen(port, () => {
+    console.log(`Server is up and running on port number ${port}`);
+});
