@@ -1,24 +1,36 @@
-//import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+
+import Login from './components/login';
+import ManagementHome from './pages/managementHome/managementHome';
+import StaffHome from './pages/staffHome/staffHome';
+
 
 function App() {
+  // user details pass
+  const [user, setUser] = useState(() => {
+    const storedUser = localStorage.getItem('user');
+    return storedUser ? JSON.parse(storedUser) : null;
+  });
+  useEffect(() => {
+    if (user) {
+      localStorage.setItem('user', JSON.stringify(user));
+    } else {
+      localStorage.removeItem('user');
+    }
+  }, [user]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload. ok
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className="App">
+        <Routes>
+          {/* user management */}
+          <Route path="/login" element={<Login />} />
+          <Route path="/staffHome" element={<StaffHome />} />
+          <Route path="/managementHome" element={<ManagementHome />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
