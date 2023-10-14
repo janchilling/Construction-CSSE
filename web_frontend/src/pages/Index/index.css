@@ -1,0 +1,143 @@
+.index_bg {
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
+  }
+  
+  #IndexHeading {
+    font-size: 25px;
+    position: relative;
+    top: -120px;
+    right: 50px;
+    padding: 20px;
+    font-weight: bold;
+  }
+  
+  #Login {
+    padding-right: 20px;
+    padding-top: 15px;
+  }
+  
+  #Signup {
+    padding-right: 20px;
+    padding-top: 15px;
+  }
+  
+  #LoginLink {
+    color: black;
+    font-weight: 900;
+    font-size: 30px;
+  }
+  
+  #LoginLink:hover {
+    border-bottom: 2px solid black;
+  }
+  
+  #SignupLink {
+    color: black;
+    font-weight: 900;
+    font-size: 30px;
+  }
+  
+  #SignupLink:hover {
+    border-bottom: 2px solid black;
+  }
+  
+  .name {
+    font-size: 70px;
+    font-weight: bold;
+    text-align: left;
+    margin-top: 5px;
+    color: #008080;
+    font-family: 'Secular One', sans-serif;
+  }
+  
+  .Mainhe {
+    font-size: 50px;
+    font-weight: 900;
+    text-align: left;
+    color:  white;
+    font-family: 'Jost', sans-serif;
+    text-align: center;
+  }
+  
+  .IndexSecondDiv {
+    background-color: #008080;
+    height: 470px;
+  }
+  
+  .indexpic {
+    margin-top: 35px;
+    height: 390px;
+    width: 500px;
+    margin-left: 50px;
+    transition: 1s;
+    border: 5px solid black;
+    border-radius: 15px;
+  }
+  
+  .indexpic:hover{
+    transform: scale(1.1);
+  }
+  
+  .IndexPicPara{
+    margin-left: 650px;
+    margin-top: -400px;
+  }
+  
+  
+  .he1 {
+    font-size: 50px;
+    font-weight: 900;
+    color: white;
+    text-align: center;
+    font-family: 'Secular One', sans-serif;
+  }
+  
+  .he2 {
+    font-size: 25px;
+    font-weight: 800;
+    color: white;
+    bottom: 20px;
+    padding-left: 20px;
+    text-align: center;
+    font-style: italic;
+    font-family: 'Jost', sans-serif;
+  }
+  
+  .he3{
+    font-size: 20px;
+    font-weight: 800;
+    color: white;
+    bottom: 20px;
+    padding-left: 20px;
+    text-align: center;
+    font-family: 'Jost', sans-serif;
+    cursor: pointer;
+  }
+  
+  .logoIndex{
+    height: 150px;
+    width: 300px;
+    margin-left: 250px;
+  }
+  
+  .IndexBtn{
+    background-color: #008080;
+    color: white;
+    border-radius: 10px;
+    width: 250px;
+    height: 40px;
+    transition: 1s;
+    margin-left: 1200px;
+    font-family: 'Secular One', sans-serif;
+  }
+  
+  .IndexBtn:hover{
+    background-color: black;
+    color: white;
+    font-weight: bold;
+  }
+  .FNFooterBottom{
+    text-align: center;
+  }
