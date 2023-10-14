@@ -11,12 +11,14 @@ import RequisitionHome from '../screens/RequisitionHome';
 import RequisitionRequests from '../screens/RequisitionRequests';
 import SiteManagerOrders from '../screens/SiteManagerOrders';
 import SiteManagerDeliveryInfo from '../screens/SiteManagerDeliveryInfo';
+import SupplierHome from '../screens/SupplierHome';
 
 const StackNavigator = () => {
     const Stack = createNativeStackNavigator();
     return (
         <NavigationContainer>
             <Stack.Navigator>
+                
                 <Stack.Screen name="Login" component={LoginScreen} options={{headerShown: false}}/>
                 <Stack.Screen name="Register" component={RegisterScreen} options={{headerShown: false}}/>
                 <Stack.Screen name="SiteManagerHome" component={SiteManagerHome} options={{headerShown: false}}/>
@@ -25,6 +27,7 @@ const StackNavigator = () => {
                 <Stack.Screen name="RequisitionRequests" component={RequisitionRequests} options={{headerShown: false}}/>
                 <Stack.Screen name="SiteManagerOrders" component={SiteManagerOrders} options={{headerShown: false}}/>
                 <Stack.Screen name="SiteManagerDeliveryInfo" component={SiteManagerDeliveryInfo} options={{headerShown: false}}/>
+                <Stack.Screen name="SupplierHome" component={SupplierHome} options={{headerShown: false}}/>
 
             </Stack.Navigator>
         </NavigationContainer>
