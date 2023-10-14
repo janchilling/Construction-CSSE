@@ -1,0 +1,110 @@
+@import url('https://fonts.googleapis.com/css2?family=Jost:ital@1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Secular+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Jost:wght@300&display=swap');
+
+.FNExactFooter{
+    background-color: #008080;
+    height: 270px;
+}
+
+.FNFooterPic{
+    width: 300px;
+    height: 250px;
+    cursor: pointer;
+}
+
+.FNFooterHeading{
+    color: white;
+    font-size: 50px;
+    margin-left: 270px;
+    margin-top: -170px;
+    font-family: 'Secular One', sans-serif;
+    text-align: left;
+    transition: 1s;
+}
+
+.FNFooterHeading:hover{
+    color: black;
+}
+
+.FNFooterHead1{
+    color: white;
+    font-size: 20px;
+    margin-left: 450px;
+    margin-top: -70px;
+    cursor: pointer;
+    font-family: 'Secular One', sans-serif;
+    transition: 1s;
+}
+
+.FNFooterHead1:hover{
+    color: black;
+}
+
+.FNFooterHead2{
+    color: white;
+    font-size: 20px;
+    margin-left: 570px;
+    margin-top: -46px;
+    cursor: pointer;
+    font-family: 'Secular One', sans-serif;
+    transition: 1s;
+}
+
+.FNFooterHead2:hover{
+    color: black;
+}
+
+
+.FNFooterHead3{
+    color: white;
+    font-size: 20px;
+    margin-left: 790px;
+    margin-top: -46px;
+    cursor: pointer;
+    font-family: 'Secular One', sans-serif;
+    transition: 1s;
+}
+
+.FNFooterHead3:hover{
+    color: black;
+}
+
+.FNFooterHead4{
+    color: white;
+    font-size: 20px;
+    margin-left: 1000px;
+    margin-top: -46px;
+    cursor: pointer;
+    font-family: 'Secular One', sans-serif;
+    transition: 1s;
+}
+
+.FNFooterHead4:hover{
+    color: black;
+}
+.FNFooterHead5{
+    color: white;
+    font-size: 20px;
+    margin-left: 1210px;
+    margin-top: -46px;
+    cursor: pointer;
+    font-family: 'Secular One', sans-serif;
+    transition: 1s;
+}
+
+.FNFooterHead5:hover{
+    color: black;
+}
+
+
+.FNHr{
+    margin-top: 90px;
+    border: 2px solid white;
+}
+
+.FNFooterBottom{
+    text-align: center;
+    font-family: 'Jost', sans-serif;
+    color: white;
+}
