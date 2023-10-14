@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const material = require('/models/material');
 
 const requisitionSchema = new mongoose.Schema({
-    RequisitionID: {
+    SiteManagerID: {
       type: String,
       required: true
     },

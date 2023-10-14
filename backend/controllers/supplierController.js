@@ -10,7 +10,7 @@ const allSuppliers = async (req, res) => {
     }).catch((err)=>{
         console.log(err)
     })
-  };
+}
 
 //Updating a Supplier
 const updateSupplier = async (req, res) => {
