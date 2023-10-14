@@ -33,7 +33,6 @@ const loginEmployee = async (req, res) => {
     try {
         const { Email, Password } = req.body;
         const employee = await Employee.findOne({ Email });
-
         if (!employee) {
             res.status(401).json({ error: 'Employee authentication failed' });
             return;
@@ -43,7 +42,7 @@ const loginEmployee = async (req, res) => {
 
         if (passwordMatch) {
             const token = jwt.sign({ email: employee.Email }, 'secret_key');
-            res.json({ token, user });
+            res.json({ token, employee });
         } else {
             res.status(401).json({ error: 'Employee authentication failed' });
         }
@@ -55,12 +54,11 @@ const loginEmployee = async (req, res) => {
 //Supplier Registration
 const registerSupplier = async (req, res) => {
     try {
-        const { SupplierName, SupplierID, SupplierEmail, SupplierAddress, SupplierPhone, Password } = req.body;
+        const { SupplierName, SupplierEmail, SupplierAddress, SupplierPhone, Password } = req.body;
         const hashedPassword = await bcrypt.hash(Password, 10);
 
         const supplier = new Supplier({
             SupplierName, 
-            SupplierID, 
             SupplierEmail, 
             SupplierAddress, 
             SupplierPhone,
