@@ -1,183 +1,103 @@
-import { StyleSheet, Text, View, SafeAreaView, Pressable, Image, KeyboardAvoidingView, TextInput, Alert, TouchableOpacity, ScrollView} from "react-native";
-import React, { useState } from "react";
-import { MaterialIcons } from "@expo/vector-icons";
-import { AntDesign } from "@expo/vector-icons";
-import { Ionicons } from "@expo/vector-icons";
-import { FontAwesome } from '@expo/vector-icons';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { useNavigation } from "@react-navigation/native";
-import axios from "axios";
+import React, { useState } from 'react';
+import { View, Text, TextInput, Button, ScrollView, TouchableOpacity } from 'react-native';
+import axios from 'axios';
 
-const CreateRequisition = () => {
-        const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [name, setName] = useState("");
-    const [address, setAddress] = useState("");
-    const [phoneNo, setPhoneNo] = useState("");
-    const [selectedType, setSelectedType] = useState("");
+export default function NewWorkoutPlan() {
+  const [workoutName, setWorkoutName] = useState('');
+  const [workoutDescription, setWorkoutDescription] = useState('');
+  const [workoutDuration, setWorkoutDuration] = useState('');
+  const [workoutPlan, setWorkoutPlan] = useState([]);
 
-    const navigation = useNavigation();
-    const handleRegister = () => {
-        const user = {
-            name: name,
-            address: address,
-            email: email,
-            phoneNo: phoneNo,
-            password: password,
-        };
+  const handleCreateWorkoutPlan = () => {
+    // Your logic for creating a workout plan  
+      const newWorkoutPlan = {
+        userID,
+        workoutName,
+        workoutDescription,
+        workoutDuration,
+        workoutPlan
+      }
+      axios.post("http://192.168.8.115:8070/auth//newRequisition", newWorkoutPlan).then(()=>{
+        alert("Workour Added")
+        navigate(`/MyWorkouts`);
+      }).catch((err)=>{
+        alert(err)
+      })
+  };
 
-        const handleTypeSelection = (type) => {
-            setSelectedType(type);
-        };
-        // send a POST  request to the backend API to register the user
-        axios
-            .post("http://localhost:8000/register", user)
-            .then((response) => {
-                console.log(response);
-                Alert.alert(
-                    "Registration successful",
-                    "You have been registered Successfully"
-                );
-                setName("");
-                setEmail("");
-                setPassword("");
-            })
-            .catch((error) => {
-                Alert.alert(
-                    "Registration Error",
-                    "An error occurred while registering"
-                );
-                console.log("registration failed", error);
-            });
-    };
+  const handleWorkoutNameChange = (text) => {
+    setWorkoutName(text);
+  };
+
+  const handleWorkoutDescriptionChange = (text) => {
+    setWorkoutDescription(text);
+  };
+
+  const handleWorkoutDurationChange = (text) => {
+    setWorkoutDuration(text);
+  };
+
+  const handleWorkoutPlanChange = (text, dayIndex, index) => {
+    // Your logic for handling workout plan change
+  };
+
+  const addDay = () => {
+    // Your logic for adding a day
+  };
+
+  const addExercise = (index) => {
+    // Your logic for adding an exercise
+  };
+
+  const removeDay = (index) => {
+    // Your logic for removing a day
+  };
+
+  const removeExercise = (dayIndex, exerciseIndex) => {
+    // Your logic for removing an exercise
+  };
+
   return (
-    <SafeAreaView
-    style={{ flex: 1, backgroundColor: "#550C9E", alignItems: "center" }}
->
-    <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+    <ScrollView>
+      <View style={{ padding: 20 }}>
+        <Text>Create a new Workout Plan</Text>
+        <TextInput
+          placeholder="Workout Name"
+          value={workoutName}
+          onChangeText={handleWorkoutNameChange}
+        />
+        <TextInput
+          placeholder="Workout Description"
+          value={workoutDescription}
+          onChangeText={handleWorkoutDescriptionChange}
+        />
+        <TextInput
+          placeholder="How many months are you hoping to continue the Workout Plan?"
+          value={workoutDuration}
+          onChangeText={handleWorkoutDurationChange}
+        />
 
-    <KeyboardAvoidingView>
-        <View style={{ alignItems: "center" }}>
-            <Text
-                style={{
-                    fontSize: 32, fontWeight: 'bold', marginTop: 2, color: "white"
-                }}
-            >
-                Requisition Request
-            </Text>
-        </View>
+        {/* Workout Plan UI */}
+        {workoutPlan.map((day, dayIndex) => (
+          <View key={dayIndex}>
+            <Text>{`Day ${dayIndex + 1}`}</Text>
+            {day.map((exercise, exerciseIndex) => (
+              <View key={exerciseIndex}>
+                <Text>{`Exercise ${exerciseIndex + 1}`}</Text>
+                {/* Render exercise details here */}
+              </View>
+            ))}
+          </View>
+        ))}
 
-        <View style={{ marginTop: 5 }}>
-            <View
-                style={{flexDirection: "row", alignItems: "center", gap: 5, backgroundColor: "#D0D0D0", paddingVertical: 5, borderRadius: 5, marginTop: 30}}>
-                <Ionicons
-                    name="ios-person"
-                    size={24}
-                    color="gray"
-                    style={{ marginLeft: 8 }}
-                />
-                <TextInput
-                    value={name}
-                    onChangeText={(text) => setName(text)}
-                    style={{ color: "gray", marginVertical: 10, width: 300, fontSize: name ? 16 : 16}}
-                    placeholder="Enter your name"
-                />
-            </View>
+        <TouchableOpacity onPress={addDay}>
+          <Text>Add Day</Text>
+        </TouchableOpacity>
 
-            <View style={{ flexDirection: "row", alignItems: "center", gap: 5, backgroundColor: "#D0D0D0", paddingVertical: 5, borderRadius: 5, marginTop: 30}}>
-                <Ionicons
-                    name="location"
-                    size={24}
-                    color="gray"
-                    style={{ marginLeft: 8 }} />
-
-                <TextInput
-                    value={address}
-                    onChangeText={(text) => setAddress(text)}
-                    style={{ color: "gray", marginVertical: 10, width: 300, fontSize: address ? 16 : 16,
-                    }}
-                    placeholder="Enter site name"/>
-            </View>
-
-            <View style={{ flexDirection: "row", alignItems: "center", gap: 5, backgroundColor: "#D0D0D0", paddingVertical: 5, borderRadius: 5, marginTop: 30}}>
-                
-                <MaterialIcons
-                    style={{ marginLeft: 8 }}
-                    name="date-range"
-                    size={24}
-                    color="gray"
-                />
-
-                <TextInput
-                    value={email}
-                    onChangeText={(text) => setEmail(text)}
-                    style={{ color: "gray", marginVertical: 10, width: 300, fontSize: email ? 16 : 16}}
-                    placeholder="Enter date"
-                />
-            </View>
-
-            <View style={{ flexDirection: "row", alignItems: "center", gap: 5, backgroundColor: "#D0D0D0", paddingVertical: 5, borderRadius: 5, marginTop: 30}}>
-            <FontAwesome 
-                    style={{ marginLeft: 8 }}
-                    name="sitemap"
-                    size={24}
-                    color="gray" />
-                <TextInput
-                    value={phoneNo}
-                    onChangeText={(text) => setPhoneNo(text)}
-                    style={{ color: "gray", marginVertical: 10, width: 300, fontSize: phoneNo ? 16 : 16}}
-                    placeholder="Enter Materials"
-                />
-            </View>
-        </View>
-
-        <View>
-        <View style={{ flexDirection: "row", alignItems: "center", gap: 5, backgroundColor: "#D0D0D0", paddingVertical: 5, borderRadius: 5, marginTop: 30}}>
-        <MaterialCommunityIcons name="list-status" size={24} color="gray" style={{marginLeft: 8}} />
-
-                <TextInput
-                    value={password}
-                    onChangeText={(text) => setPassword(text)}
-                    secureTextEntry={true}
-                    style={{ color: "gray", marginVertical: 10, width: 300, fontSize: password ? 16 : 16}}
-                    placeholder="Enter Status"
-                />
-            </View>
-        </View>
-
-        <View style={{ marginTop: 80 }} />
-
-        <Pressable
-            onPress={() => navigation.navigate("Login")}
-            style={{
-                width: 200,
-                backgroundColor: "#AA7AD0",
-                borderRadius: 6,
-                marginLeft: "auto",
-                marginRight: "auto",
-                padding: 15,
-            }}
-        >
-            <Text
-                style={{
-                    textAlign: "center",
-                    color: "white",
-                    fontSize: 16,
-                    fontWeight: "bold",
-                }}
-            >
-                Create Request
-            </Text>
-        </Pressable>
-
-    </KeyboardAvoidingView>
-
+        <TouchableOpacity onPress={handleCreateWorkoutPlan}>
+          <Text>Confirm Workout Plan</Text>
+        </TouchableOpacity>
+      </View>
     </ScrollView>
-    
-</SafeAreaView>
-  )
+  );
 }
-
-export default CreateRequisition
-
-const styles = StyleSheet.create({})

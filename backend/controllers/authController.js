@@ -76,19 +76,19 @@ const registerSupplier = async (req, res) => {
 //Supplier Login
 const loginSupplier = async (req, res) => {
     try {
-        const { Email, Password } = req.body;
-        const supplier = await Supplier.findOne({ Email });
+        const { SupplierEmail, Password } = req.body;
+        const supplier = await Supplier.findOne({ SupplierEmail });
 
         if (!supplier) {
             res.status(401).json({ error: 'Supplier authentication failed' });
             return;
         }
-
+        
         const passwordMatch = await bcrypt.compare(Password, supplier.Password);
 
         if (passwordMatch) {
-            const token = jwt.sign({ email: supplier.Email }, 'secret_key');
-            res.json({ token });
+            const token = jwt.sign({ email: supplier.SupplierEmail }, 'secret_key');
+            res.json({ token, supplier });
         } else {
             res.status(401).json({ error: 'Supplier authentication failed' });
         }

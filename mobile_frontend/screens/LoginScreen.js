@@ -1,9 +1,9 @@
 import { StyleSheet, Text, View, SafeAreaView, Image, KeyboardAvoidingView, TextInput, TouchableOpacity, Pressable, Alert } from 'react-native';
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { MaterialIcons } from '@expo/vector-icons';
 import { AntDesign } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
-import axios from 'axios';
+import UserContext from '../components/ContextComponent';
 
 
 const LoginScreen = () => {
@@ -12,6 +12,7 @@ const LoginScreen = () => {
     const [password, setPassword] = useState("");
     const [UserType, setUserType] = useState('');
     const navigation = useNavigation();
+    const { user, setUser } = useContext(UserContext)
 
     const handleTypeSelection = (type) => {
         setUserType(type);
@@ -29,13 +30,14 @@ const LoginScreen = () => {
                     body: JSON.stringify({ Email: email, Password: password }),
                 });
                 const data = await response.json();
-                console.log(data);
+
                 if (response.status === 200) {
-                    // console.log("Hi");
+                    const employee = data.employee
+                    setUser(employee);
                     navigation.navigate("SiteManagerHome");
 
                 } else {
-                    Alert.alert("Login Unsuccessful! " + data.message);
+                    Alert.alert("Invalid Details!");
                 }
             } catch (err) {
                 Alert.alert("Login not done! Please check your network connection.");
@@ -48,13 +50,16 @@ const LoginScreen = () => {
                     headers: {
                         'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify({ Email: email, Password: password }),
+                    body: JSON.stringify({ SupplierEmail: email, Password: password }),
                 });
                 const data = await response.json();
+
                 if (response.status === 200) {
+                    const supplier = data.supplier
+                    setUser(supplier);
                     navigation.navigate("SupplierHome");
                 } else {
-                    Alert.alert("Login Unsuccessful! " + data.message);
+                    Alert.alert("Invalid Details!");
                 }
             } catch (err) {
                 Alert.alert("Login not done! Please check your network connection.");
