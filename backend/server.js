@@ -23,6 +23,8 @@ app.use('/employees', employeesRouter);
 const supplierRouter = require('./routes/supplierRoutes');
 app.use('/suppliers', supplierRouter);
 
+const requistionsRouter = require('./routes/requisitionRoutes');
+app.use('/requisitions', requistionsRouter);
 
 //Server Connection
 app.listen(port, () => {
