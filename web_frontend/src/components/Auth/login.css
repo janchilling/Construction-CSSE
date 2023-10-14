@@ -5,7 +5,7 @@
     text-decoration: none;
 }
 #LoginLink{
-    color: #008080;
+    color: #550C9E;
     font-size: 20px;
     font-family: 'Secular One', sans-serif;
     text-decoration: none;
@@ -16,7 +16,8 @@
     font-size: 60px;
     font-weight: bold;
     text-align: left;
-    color: #008080;
+    margin-left: 10px;
+    color: #550C9E;
     font-family: 'Secular One', sans-serif;
 }
 .login{
@@ -26,13 +27,13 @@
     font-family: 'Secular One', sans-serif;
 }
 .login_form{
-    border: 9px solid #008080;
+    border: 9px solid #550C9E;
     text-align: center;
     width: 450px;
     height: 450px;
     border-radius: 25px;
     margin-left: 850px;
-    margin-top: -490px;
+    margin-top: -450px;
 }
 .loginheading{
     color: black;
@@ -60,7 +61,7 @@
    padding: 0;
 }
 .loginsubmit{
-    background-color: #008080;
+    background-color: #550C9E;
     color: white;
     border-radius: 10px;
     width: 150px;
@@ -71,15 +72,17 @@
 }
 .loginsubmit:hover{
     background-color: white;
-    color: #008080;
+    color: #550C9E;
 }
 .loginheading1{
     color: black;
     font-family: 'Secular One', sans-serif;
 }
 .loginImg{
-    margin-left: 100px;
+    margin-left: 50px;
     border: 3px solid black;
+    width: 45%;
+    height: 45%;
     border-radius: 0% 40% 0% 40%;
 }
 .loginImg:hover{

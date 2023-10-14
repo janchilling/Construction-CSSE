@@ -4,7 +4,7 @@
 }
 
 .TJViewHeading{
-    color: #008080;
+    color: #550C9E;
     font-size: 45px;
     font-weight: bold;
     text-align: center;
@@ -26,7 +26,7 @@
 }
 
 .TJViewTable thead tr{
-    background-color:#008080 ;
+    background-color:#550C9E;
     color: white;
     text-align: left;
 }

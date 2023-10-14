@@ -1,5 +1,5 @@
 .reg_form{
-    border: 9px solid #008080;
+    border: 9px solid #550C9E;
     text-align: center;
     width: 600px;
     height: 920px;
@@ -30,7 +30,7 @@
    padding: 0;
 }
 .signupsubmit{
-    background-color: #008080;
+    background-color: #550C9E;
     color: white;
     border-radius: 10px;
     width: 450px;
@@ -41,7 +41,7 @@
 }
 .signupsubmit:hover{
     background-color: white;
-    color: #008080;
+    color: #550C9E;
 }
 .signupcheckbox{
     width: 15px;

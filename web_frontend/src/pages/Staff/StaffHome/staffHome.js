@@ -1,14 +1,14 @@
 import React from "react";
 import { useLocation, useParams } from "react-router-dom";
-import '../ManagementHome/ManagementHome.css';
+import '../StaffHome/staffHome.css';
 import dashboardpic from '../../../images/ManagementHome_img/DashboardPic.png';
-import cataract from '../../../images/ManagementHome_img/cataract.png';
-import appointment from '../../../images/ManagementHome_img/appointment.png';
-import glaucoma from '../../../images/ManagementHome_img/glaucoma.png';
-import recovery from '../../../images/ManagementHome_img/recovery.png';
-import patientpic from '../../../images/ManagementHome_img/patient.jpg';
+import cataract from '../../../images/StaffHome_img/cataract.png';
+import appointment from '../../../images/StaffHome_img/appointment.png';
+import glaucoma from '../../../images/StaffHome_img/glaucoma.png';
+import recovery from '../../../images/StaffHome_img/recovery.png';
+import patientpic from '../../../images/StaffHome_img/patient1.jpg';
 
-export default function ManagementHome() {
+export default function StaffHome() {
 
     const location = useLocation()
     const params = useParams();
@@ -21,7 +21,7 @@ export default function ManagementHome() {
     return (
         <div className="PatientHomePage">
             <br />
-            <h1 className="PatientHomeHeading">Welcome to Management <br/>of MBKT construction</h1>
+            <h1 className="PatientHomeHeading">Welcome to Staff Services <br/> of MBKT construction</h1>
 
             <p className="PHPara1">Our motivation is to separate ourseleves as a medical procedure that give far-reaching ophthalmology.</p>
 
@@ -34,45 +34,45 @@ export default function ManagementHome() {
                 <br />
                 <div className="PatientDiv1">
                     <img src={cataract} className="PatientDivIcon" />
-                    <h2 className="PatientDivHeading">Add Employees</h2>
+                    <h2 className="PatientDivHeading">Requested Orders</h2>
                     <p className="PatientDivPara">All Patient can upload their details in this button. Also they can upload their eye picture in this form.</p>
                     <button className="PatientHomeButton" onClick={(e) => {
                         e.preventDefault();
-                        window.location.href = `/addEmployees`;
-                    }}>Add Employee</button>
+                        window.location.href = `/requestedOrders`;
+                    }}>Requested Orders</button>
 
                 </div>
 
                 <div className="PatientDiv2">
                     <img src={appointment} className="PatientDivIcon" />
-                    <h2 className="PatientDivHeading">Employee Details</h2>
+                    <h2 className="PatientDivHeading">Approved Orders</h2>
                     <p className="PatientDivPara">All Patient can upload their details in this button. Also they can upload their eye picture in this form.</p>
                     <button className="PatientHomeButton" onClick={(e) => {
                         e.preventDefault();
-                        window.location.href = `/allEmployees`;
-                    }}>Employee Details</button>
+                        window.location.href = `/approvedOrders`;
+                    }}>Approved Orders</button>
 
                 </div>
 
                 <div className="PatientDiv3">
                     <img src={glaucoma} className="PatientDivIcon" />
-                    <h2 className="PatientDivHeading">Orders</h2>
+                    <h2 className="PatientDivHeading">Pending Orders</h2>
                     <p className="PatientDivPara">All Patient can upload their details in this button. Also they can upload their eye picture in this form.</p>
                     <button className="PatientHomeButton" onClick={(e) => {
                         e.preventDefault();
-                        window.location.href = `/orders`;
-                    }}>Orders</button>
+                        window.location.href = `/pendingOrders`;
+                    }}>Pending Orders</button>
 
                 </div>
 
                 <div className="PatientDiv4">
                     <img src={recovery} className="PatientDivIcon" />
-                    <h2 className="PatientDivHeading">Allocated Budgets</h2>
+                    <h2 className="PatientDivHeading">Rejected Orders</h2>
                     <p className="PatientDivPara">All Patient can upload their details in this button. Also they can upload their eye picture in this form.</p>
                     <button className="PatientHomeButton" onClick={(e) => {
                         e.preventDefault();
-                        window.location.href = `/allocatedBudgets`;
-                    }}>Allocated Budgets</button>
+                        window.location.href = `/rejectedOrders`;
+                    }}>Rejected Orders</button>
 
                 </div>
                 <br />
@@ -81,7 +81,7 @@ export default function ManagementHome() {
             <div className="PatientHomePageThirdPart">
                 <img src={patientpic} className="PHDashBoardPic2" />
                 <div className="ph3div">
-                    <h2 className="PatientHomeHeading2"> Find Construction at;</h2>
+                    <h2 className="PatientHomeHeading2"> Find OptiVision at;</h2>
                     <p className="PH3Para"> 🚩123/A, <br /> Sir Manula Gunatilleke Av, <br /> Manugama. <br /></p>
                     <p className="PH3Para"> ☎ Telephone: </p>
                     <p className="PH3Para2">+9411-2375843 / +9411-57584543</p>

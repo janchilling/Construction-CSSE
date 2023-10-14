@@ -7,7 +7,7 @@ export default function Index() {
     return (
         <div className="index_bg">
             <div>
-                <h1 className="name">OptiVision</h1>
+                <h1 className="name">MBKT Construction</h1>
             </div>
             <br/>
             <div className="IndexSecondDiv">
@@ -17,16 +17,16 @@ export default function Index() {
                 <div className="IndexPicPara">
                     <img src={logo} className="logoIndex" />
                     <div className="he1">
-                        <p>Eye Care Services For You</p>
+                        <p>Core Construction Services</p>
                     </div>
                     <div className="he2">
-                        <p>"Give Your Vision The Treatment It Deserves"</p>
+                        <p>"High Quality Construction Work to the Max"</p>
                     </div>
                     <div className="he3">
                         <p onClick={(e) => {
                             e.preventDefault();
                             window.location.href = `/`;
-                        }}>www.OptiVision.lk</p>
+                        }}>www.MBKT--Construction.lk</p>
                     </div>
                 </div>
             </div>
@@ -37,7 +37,7 @@ export default function Index() {
             }}>LOGIN</button> 
             <br /><br/>
             <p className='FNFooterBottom' style={{ color: "black" }}>
-                © 2023 OptiVision All Rights Reserved.
+                © 2023 MBKT Construction All Rights Reserved.
             </p>
 
         </div>
