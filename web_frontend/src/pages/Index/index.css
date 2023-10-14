@@ -47,8 +47,9 @@
     font-size: 70px;
     font-weight: bold;
     text-align: left;
+    margin-left: 10px;
     margin-top: 5px;
-    color: #008080;
+    color: #550C9E;
     font-family: 'Secular One', sans-serif;
   }
   
@@ -62,7 +63,7 @@
   }
   
   .IndexSecondDiv {
-    background-color: #008080;
+    background-color: #550C9E;
     height: 470px;
   }
   
@@ -117,13 +118,13 @@
   }
   
   .logoIndex{
-    height: 150px;
-    width: 300px;
-    margin-left: 250px;
+    height: 200px;
+    width: 200px;
+    margin-left: 320px;
   }
   
   .IndexBtn{
-    background-color: #008080;
+    background-color: #550C9E;
     color: white;
     border-radius: 10px;
     width: 250px;

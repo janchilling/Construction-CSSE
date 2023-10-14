@@ -3,9 +3,9 @@ import './addEmployees.css';
 import axios from "axios";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import signup_logo from "../../../images/AddEmployee_img/signuppic2.jpg";
-import signup_logo_1 from "../../../images/AddEmployee_img/signuppic3.jpg";
-import signup_logo_2 from "../../../images/AddEmployee_img/signuppic4.jpg";
+import signup_logo from "../../../images/AddEmployee_img/emplogo.jpg";
+import signup_logo_1 from "../../../images/AddEmployee_img/emplogo1.jpg";
+import signup_logo_2 from "../../../images/AddEmployee_img/emplogo2.jpg";
 
 
 export default function AddEmployee() {
@@ -51,7 +51,7 @@ export default function AddEmployee() {
 
         axios.post("http://localhost:8070/auth/registerEmployee", newUser).then(() => {
             alert("New Employee Added")
-            window.location.href = `/adminHome`;
+            window.location.href = `/managerHome`;
         }).catch((err) => {
             alert(err)
         })
