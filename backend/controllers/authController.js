@@ -43,7 +43,7 @@ const loginEmployee = async (req, res) => {
 
         if (passwordMatch) {
             const token = jwt.sign({ email: employee.Email }, 'secret_key');
-            res.json({ token, user });
+            res.json({ token, employee });
         } else {
             res.status(401).json({ error: 'Employee authentication failed' });
         }

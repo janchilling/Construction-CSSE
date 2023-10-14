@@ -21,18 +21,16 @@ import AddEmployee from './pages/Management/AddEmployees/addEmployees';
 function App() {
   // user details pass
   const [user, setUser] = useState(() => {
-    const storedUser = localStorage.getItem('user');
+    const storedUser = localStorage.getItem('User');
     return storedUser ? JSON.parse(storedUser) : null;
   });
   useEffect(() => {
     if (user) {
-      localStorage.setItem('user', JSON.stringify(user));
+      localStorage.setItem('User', JSON.stringify(user));
     } else {
-      localStorage.removeItem('user');
+      localStorage.removeItem('User');
     }
   }, [user]);
-
-  console.log(user);
 
   return (
     <Router>
