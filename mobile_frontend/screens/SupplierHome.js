@@ -1,11 +1,13 @@
 import { StyleSheet, Text, View, SafeAreaView, ScrollView, Image, KeyboardAvoidingView, Pressable } from 'react-native';
-import React from 'react';
+import React, { useContext } from 'react';
 import { useNavigation } from "@react-navigation/native";
 import { FontAwesome } from '@expo/vector-icons';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
+import UserContext from '../components/ContextComponent.js';
 
 const SupplierHome = () => {
     const navigation = useNavigation();
+    const { user, setUser } = useContext(UserContext);
+    console.log(user);
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#550C9E", alignItems: "center" }}>
     <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
