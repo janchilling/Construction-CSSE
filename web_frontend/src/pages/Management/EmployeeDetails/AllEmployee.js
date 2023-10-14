@@ -16,6 +16,7 @@ function ViewAllEmployee() {
 
         if (response.status === 200) {
             setData(response.data);
+            console.log(data);
         }
     }
 
@@ -30,7 +31,6 @@ function ViewAllEmployee() {
         }
     }
 
-    console.log(data);
     return (
 
         <div className="TJViewAppointmentPage">
@@ -52,9 +52,9 @@ function ViewAllEmployee() {
                 </thead>
                 <tbody>
                     {data && data.map((item, index) => {
-
+                        
                         return (
-
+                            
                             <tr key={index}>
                                 <th scope="row">{index + 1}</th>
                                 <td>{item.Fullname}</td>

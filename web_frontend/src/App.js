@@ -9,30 +9,35 @@ import Footer from './components/Common/ManagementFooter/adminFooter';
 // User management
 import Index from './pages/Index/index';
 import Login from './components/Auth/login';
-import StaffHome from './pages/StaffHome/staffHome';
-import ViewAllEmployee from './pages/Management/EmployeeDetails/AllEmployee';
-import UpdateEmployee from './pages/Management/UpdateEmployees/updateEmployee';
+
+// Staff
+import StaffHome from './pages/Staff/StaffHome/staffHome';
+import RequestedOrders from './pages/Staff/RequestedOrders/requestedOrders';
+import ApprovedOrders from './pages/Staff/ApprovedOrders/approvedOrders';
+import PendingOrders from './pages/Staff/PendingOrders/pendingOrders';
+import RejectedOrders from './pages/Staff/RejectedOrders/rejectedOrders';
 
 // Management
 import ManagementHome from './pages/Management/ManagementHome/ManagementHome';
 import AddEmployee from './pages/Management/AddEmployees/addEmployees';
-
+import ViewAllEmployee from './pages/Management/EmployeeDetails/AllEmployee';
+import UpdateEmployee from './pages/Management/UpdateEmployees/updateEmployee';
+import Orders from './pages/Management/Orders/order';
+import AllocatedBudgets from './pages/Management/AllocatedBudgets/allocatedBudgets';
 
 function App() {
   // user details pass
   const [user, setUser] = useState(() => {
-    const storedUser = localStorage.getItem('user');
+    const storedUser = localStorage.getItem('User');
     return storedUser ? JSON.parse(storedUser) : null;
   });
   useEffect(() => {
     if (user) {
-      localStorage.setItem('user', JSON.stringify(user));
+      localStorage.setItem('User', JSON.stringify(user));
     } else {
-      localStorage.removeItem('user');
+      localStorage.removeItem('User');
     }
   }, [user]);
-
-  console.log(user);
 
   return (
     <Router>
@@ -41,14 +46,24 @@ function App() {
           <Header/>
           <Routes>
             {/* user management */}
-
             <Route path="" element={<Index />} />
             <Route path="/login" element={<Login />} />
+
+            {/* Staff */}
             <Route path="/staffHome" element={<StaffHome />} />
+            <Route path="/requestedOrders" element={<RequestedOrders/>} />
+            <Route path="/approvedOrders" element={<ApprovedOrders/>} />
+            <Route path="/pendingOrders" element={<PendingOrders/>} />
+            <Route path="/rejectedOrders" element={<RejectedOrders/>} />
+
+            {/* Management */}
             <Route path='/managerHome' element={<ManagementHome />} />
             <Route path='/addEmployees' element={<AddEmployee />} />
             <Route path='/allEmployees' element={<ViewAllEmployee/>} />
             <Route path='/updateEmployee/:id' element={<UpdateEmployee/>} />
+            <Route path='/orders' element={<Orders/>} />
+            <Route path='/allocatedBudgets' element={<AllocatedBudgets/>} />
+
           </Routes>
         </div>
         <Footer/>

@@ -1,15 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../Auth/login.css';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import login_logo from "../../images/Login_img/loginpic2.jpg";
+import UserContext from '../ContextComponents/ContextComponents';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
   const [UserType, setUserType] = useState('');
+  const { user, setUser } = useContext(UserContext)
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -28,8 +30,13 @@ const Login = () => {
 
         const data = await response.json();
         const token = data.token;
+        const employee = data.employee
 
-        localStorage.setItem('token', token);
+        setUser(employee)
+
+        localStorage.setItem('user', JSON.stringify(employee))
+        localStorage.setItem('token', token)
+    
         if (UserType === "Staff") {
           navigate('/staffHome');
         }else if (UserType === "Manager"){
@@ -65,7 +72,7 @@ const Login = () => {
 
   return (
     <div className="login_page">
-      <div className="heading"><a href="/" className="loginCompanyName"><h1 className="log_sign_heading_name">OptiVision</h1></a>
+      <div className="heading"><a href="/" className="loginCompanyName"><h1 className="log_sign_heading_name">MBKT Construction</h1></a>
         <ul class="nav justify-content-end nav-underline" id="IndexHeading">
           <li class="nav-item1" id="Login">
             <a class="nav-link" href="/login" id="LoginLink">LOGIN</a>
@@ -107,7 +114,7 @@ const Login = () => {
       </div>
       <br /><br /><br /><br />
       <p className='FNFooterBottom' style={{ color: "black" }}>
-        © 2023 OptiVision All Rights Reserved.
+        © 2023 MBKT Construction All Rights Reserved.
       </p>
       <ToastContainer />
     </div>

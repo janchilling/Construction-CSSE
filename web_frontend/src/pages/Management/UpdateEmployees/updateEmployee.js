@@ -31,8 +31,6 @@ export default function UpdateEmployee() {
         setUserType(result.employee.UserType)
         setGender(result.employee.Gender)
         setPassword(result.employee.Password)
-
-        console.log(result.employee);
     }
 
     const updateEmployee = async () => {
