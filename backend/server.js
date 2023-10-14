@@ -26,6 +26,12 @@ app.use('/suppliers', supplierRouter);
 const requistionsRouter = require('./routes/requisitionRoutes');
 app.use('/requisitions', requistionsRouter);
 
+const ordersRouter = require('./routes/orderRoutes');
+app.use('/orders', ordersRouter);
+
+const InvoicesRouter = require('./routes/invoiceRoutes');
+app.use('/Invoices', InvoicesRouter);
+
 //Server Connection
 app.listen(port, () => {
     console.log(`Server is up and running on port number ${port}`);

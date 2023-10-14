@@ -3,15 +3,11 @@ const mongoose = require('mongoose');
 const material = require('/models/material');
 
 const orderSchema = new mongoose.Schema({
-    OrderID: {
+    SupplierName: {
       type: String,
       required: true
     },
     RequisitionID: {
-        type: String,
-        required: true
-    },
-    SupplierName: {
         type: String,
         required: true
     },
@@ -31,8 +27,8 @@ const orderSchema = new mongoose.Schema({
       type: String,
       required: true
     },
-    SiteName: {
-      type: Number,
+    TotalAmount:{
+        type: Number,
       required: true
     },
     Materials: {

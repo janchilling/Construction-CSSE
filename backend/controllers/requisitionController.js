@@ -26,17 +26,6 @@ const allRequistions = async (req, res) => {
     })
 }
 
-//Getting the requistions according to the site
-const SiteRequisitions = async (req, res) => {
-    const SiteID = req.params.userID;
-  
-    Requisition.find({userID : userID}).then((requisitions) => {
-        res.json(requisitions)
-    }).catch((err) => {
-        console.log(err)
-    })
-}
-
 //Getting a single Requistions
 const singleRequisition = (req, res) => {
     const RequisitionId = req.params.id;
@@ -77,7 +66,6 @@ const deleteRequisition = (req, res) => {
 module.exports = { 
     createRequisition,
     allRequistions,
-    SiteRequisitions,
     singleRequisition,
     updateRequisition,
     deleteRequisition
