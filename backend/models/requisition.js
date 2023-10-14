@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const material = require('/models/material');
+const material = require('./material');
 
 const requisitionSchema = new mongoose.Schema({
     SiteManagerID: {
@@ -20,7 +20,7 @@ const requisitionSchema = new mongoose.Schema({
       required: true
     },
     Materials: {
-        type: [material],
+        type: [material.schema],
         required: true
       }
   });

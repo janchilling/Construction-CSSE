@@ -10,8 +10,7 @@ export default function Header(props) {
     const params = useParams();
     const id = props.id
 
-    const { user } = useContext(UserContext);
-    console.log(user);
+    const { user, setUser } = useContext(UserContext)
 
     const hideHeader = location.pathname === '/' || location.pathname === '/login';
 
@@ -21,7 +20,9 @@ export default function Header(props) {
 
     //Log out function
     function logOut() {
-        localStorage.clear();
+        localStorage.clear(); // Clear all local storage data
+        setUser(null); // Clear user context data
+        Navigate('/login'); // Redirect to the login page
     }
 
     //Home pages Control
@@ -34,6 +35,8 @@ export default function Header(props) {
             Navigate('/staffHome');
         }
     }
+
+    console.log(user)
 
     return (
         <>

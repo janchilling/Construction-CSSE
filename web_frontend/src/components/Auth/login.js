@@ -1,15 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../Auth/login.css';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import login_logo from "../../images/Login_img/loginpic2.jpg";
+import UserContext from '../ContextComponents/ContextComponents';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
   const [UserType, setUserType] = useState('');
+  const { user, setUser } = useContext(UserContext)
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -28,8 +30,13 @@ const Login = () => {
 
         const data = await response.json();
         const token = data.token;
+        const employee = data.employee
 
-        localStorage.setItem('token', token);
+        setUser(employee)
+
+        localStorage.setItem('user', JSON.stringify(employee))
+        localStorage.setItem('token', token)
+    
         if (UserType === "Staff") {
           navigate('/staffHome');
         }else if (UserType === "Manager"){
