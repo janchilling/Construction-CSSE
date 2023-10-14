@@ -1,6 +1,6 @@
 import React from "react";
 import "./adminFooter.css";
-import FNfootericon from "../../../images/AdminFooter_img/footerpic.png";
+import FNfootericon from "../../../images/ManagementFooter_img/footerpic.png";
 import { useLocation } from "react-router-dom";
 
 function Footer() {

@@ -52,31 +52,31 @@ export default function Header(props) {
                                 <li className="NavigationBarB nav-item" id="PatientNavitem">
                                     <a className="NavigationBarB nav-link" id="PatientHeaderHd" style={{ color: "#ffffff" }} onClick={(e) => {
                                         e.preventDefault();
-                                        window.location.href = `/addEmployees`
+                                        window.location.href = `/requestedOrders`
                                     }}>REQUESTED ORDERS</a>
                                 </li>
                                 <li className="NavigationBarB nav-item" id='PatientNavitem'>
                                     <a className="NavigationBarB nav-link" id="PatientHeaderHd" style={{ color: "#ffffff" }} onClick={(e) => {
                                         e.preventDefault();
-                                        window.location.href = `/AppointmentMgmt`
+                                        window.location.href = `/approvedOrders`
                                     }}>APPROVED ORDERS</a>
                                 </li>
                                 <li className="NavigationBarB nav-item" id='PatientNavitem'>
                                     <a className="NavigationBarB nav-link" id="PatientHeaderHd" style={{ color: "#ffffff" }} onClick={(e) => {
                                         e.preventDefault();
-                                        window.location.href = `/Quiz`
+                                        window.location.href = `/pendingOrders`
                                     }}>PENDING ORDERS</a>
                                 </li>
                                 <li className="NavigationBarB nav-item" id='PatientNavitem'>
                                     <a className="NavigationBarB nav-link" id="PatientHeaderHd" style={{ color: "#ffffff" }} onClick={(e) => {
                                         e.preventDefault();
-                                        window.location.href = `/GlaucomaForm`
+                                        window.location.href = `/rejectedOrders`
                                     }}>REJECTED ORDERS</a>
                                 </li>
                                 <li className="NavigationBarB nav-item" id='PatientNavitem'>
                                     <a className="NavigationBarB nav-link" id="PatientHeaderHd" style={{ color: "#ffffff" }} onClick={(e) => {
                                         e.preventDefault();
-                                        window.location.href = `/PRecoveryView`
+                                        window.location.href = ``
                                     }}>HELP DETAILS</a>
                                 </li>
 
