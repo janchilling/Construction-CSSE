@@ -12,7 +12,7 @@ const requisitionSchema = new mongoose.Schema({
       required: true
     },
     SiteName: {
-      type: Number,
+      type: String,
       required: true
     },
     Status: {
@@ -22,9 +22,13 @@ const requisitionSchema = new mongoose.Schema({
     Materials: {
         type: [material.schema],
         required: true
-      }
+    },
+    TotalAmount: {
+      type: Number,
+      required: true
+    }
   });
   
   const Requisition = mongoose.model('requisitions', requisitionSchema);
-  
+
   module.exports = Requisition;

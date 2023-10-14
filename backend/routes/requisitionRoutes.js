@@ -4,7 +4,6 @@ const router = require("express").Router();
 const {
     createRequisition,
     allRequistions,
-    SiteRequisitions,
     singleRequisition,
     updateRequisition,
     deleteRequisition
@@ -16,16 +15,13 @@ router.post("/newRequisition", createRequisition)
 //Get all requisitions in the database
 router.get("/allRequistions", allRequistions)
 
-//Get requisitions according to the site in the database
-router.get("/siteRequistions/:id", SiteRequisitions)
-
 //Get a single requisition in the database
 router.get("/singleRequistions/:id", singleRequisition)
 
-//updating a single Employee
+//updating a single Requisition
 router.put("/updateRequisition/:id", updateRequisition)
 
-//delete a single Employee
+//delete a single Requisition
 router.delete("/deleteRequisitions/:id", deleteRequisition)
 
 
