@@ -16,12 +16,14 @@ import RequestedOrders from './pages/Staff/RequestedOrders/requestedOrders';
 import ApprovedOrders from './pages/Staff/ApprovedOrders/approvedOrders';
 import PendingOrders from './pages/Staff/PendingOrders/pendingOrders';
 import RejectedOrders from './pages/Staff/RejectedOrders/rejectedOrders';
+import UpdateStatus from './pages/Staff/StatusUpdate/statusUpdate';
 
 // Management
 import ManagementHome from './pages/Management/ManagementHome/ManagementHome';
 import AddEmployee from './pages/Management/AddEmployees/addEmployees';
 import ViewAllEmployee from './pages/Management/EmployeeDetails/AllEmployee';
 import UpdateEmployee from './pages/Management/UpdateEmployees/updateEmployee';
+import ManagementPendingOrders from './pages/Management/MgtPendingOrder/mgtPendingOrders';
 import Orders from './pages/Management/Orders/order';
 import AllocatedBudgets from './pages/Management/AllocatedBudgets/allocatedBudgets';
 
@@ -55,11 +57,13 @@ function App() {
             <Route path="/approvedOrders" element={<ApprovedOrders/>} />
             <Route path="/pendingOrders" element={<PendingOrders/>} />
             <Route path="/rejectedOrders" element={<RejectedOrders/>} />
+            <Route path='/updateStatus/:id' element={<UpdateStatus/>} />
 
             {/* Management */}
             <Route path='/managerHome' element={<ManagementHome />} />
             <Route path='/addEmployees' element={<AddEmployee />} />
             <Route path='/allEmployees' element={<ViewAllEmployee/>} />
+            <Route path="/ManagementpendingOrders" element={<ManagementPendingOrders/>} />
             <Route path='/updateEmployee/:id' element={<UpdateEmployee/>} />
             <Route path='/orders' element={<Orders/>} />
             <Route path='/allocatedBudgets' element={<AllocatedBudgets/>} />

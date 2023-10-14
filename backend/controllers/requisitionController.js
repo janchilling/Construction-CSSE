@@ -45,8 +45,9 @@ const singleRequisition = (req, res) => {
 
 //Update a single requistion
 const updateRequisition = (req, res) => {
+  const RequisitionId = req.params.id;
     try {
-        const updatedRequisition = Requisition.findByIdAndUpdate(req.params.id, req.body, { new: true });
+        const updatedRequisition = Requisition.findByIdAndUpdate(RequisitionId, req.body, { new: true });
         res.json(updatedRequisition);
     } catch (error) {
         res.status(500).json({ error: 'Failed to update requisition' });
