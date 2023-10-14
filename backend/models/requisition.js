@@ -30,5 +30,5 @@ const requisitionSchema = new mongoose.Schema({
   });
   
   const Requisition = mongoose.model('requisitions', requisitionSchema);
-  
+
   module.exports = Requisition;
