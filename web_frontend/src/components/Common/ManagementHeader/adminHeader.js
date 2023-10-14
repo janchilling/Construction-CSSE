@@ -35,6 +35,16 @@ export default function Header(props) {
             Navigate('/staffHome');
         }
     }
+    //Pending Orders Control
+    const PendingOrdersHandle = async () => {
+
+        if (user.UserType === "Manager") {
+            Navigate('/ManagementpendingOrders');
+        }
+        else if (user.UserType === "Staff") {
+            Navigate('/pendingOrders');
+        }
+    }
 
     console.log(user)
 
@@ -62,10 +72,7 @@ export default function Header(props) {
                                     }}>APPROVED ORDERS</a>
                                 </li>
                                 <li className="NavigationBarB nav-item" id='PatientNavitem'>
-                                    <a className="NavigationBarB nav-link" id="PatientHeaderHd" style={{ color: "#ffffff" }} onClick={(e) => {
-                                        e.preventDefault();
-                                        window.location.href = `/pendingOrders`
-                                    }}>PENDING ORDERS</a>
+                                    <a className="NavigationBarB nav-link" id="PatientHeaderHd" style={{ color: "#ffffff" }} onClick={PendingOrdersHandle}>PENDING ORDERS</a>
                                 </li>
                                 <li className="NavigationBarB nav-item" id='PatientNavitem'>
                                     <a className="NavigationBarB nav-link" id="PatientHeaderHd" style={{ color: "#ffffff" }} onClick={(e) => {
