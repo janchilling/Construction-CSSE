@@ -9,10 +9,6 @@ const supplierSchema = new Schema({
     type : String,
     required : true
    },
-   SupplierID : {
-    type : String,
-    required : true
-   },
    SupplierEmail : {
       type : String,
       required : true

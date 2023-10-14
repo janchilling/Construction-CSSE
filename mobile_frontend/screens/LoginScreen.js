@@ -1,19 +1,67 @@
-import { StyleSheet, Text, View, SafeAreaView, Image, KeyboardAvoidingView, TextInput, TouchableOpacity, Pressable } from 'react-native';
+import { StyleSheet, Text, View, SafeAreaView, Image, KeyboardAvoidingView, TextInput, TouchableOpacity, Pressable, Alert } from 'react-native';
 import React, { useState } from 'react';
 import { MaterialIcons } from '@expo/vector-icons';
 import { AntDesign } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
+import axios from 'axios';
 
 
 const LoginScreen = () => {
-    const [selectedType, setSelectedType] = useState("site manager");
+
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [UserType, setUserType] = useState('');
     const navigation = useNavigation();
 
     const handleTypeSelection = (type) => {
-        setSelectedType(type);
+        setUserType(type);
     };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        if (UserType === "site manager") {
+            try {
+                const response = await fetch('http://192.168.8.115:8070/auth/loginEmployee', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ Email: email, Password: password }),
+                });
+                const data = await response.json();
+                console.log(data);
+                if (response.status === 200) {
+                    // console.log("Hi");
+                    navigation.navigate("SiteManagerHome");
+
+                } else {
+                    Alert.alert("Login Unsuccessful! " + data.message);
+                }
+            } catch (err) {
+                Alert.alert("Login not done! Please check your network connection.");
+            }
+        }
+        else if(UserType === "supplier"){
+            try {
+                const response = await fetch('http://192.168.8.115:8070/auth/loginSupplier', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ Email: email, Password: password }),
+                });
+                const data = await response.json();
+                if (response.status === 200) {
+                    navigation.navigate("SupplierHome");
+                } else {
+                    Alert.alert("Login Unsuccessful! " + data.message);
+                }
+            } catch (err) {
+                Alert.alert("Login not done! Please check your network connection.");
+            }
+        }
+    };
+
 
     return (
         <SafeAreaView
@@ -37,14 +85,14 @@ const LoginScreen = () => {
                         style={{ flexDirection: "row", alignItems: "center", marginRight: 20 }}
                         onPress={() => handleTypeSelection("site manager")}
                     >
-                        <MaterialIcons name={selectedType === "site manager" ? "radio-button-checked" : "radio-button-unchecked"} size={24} color="white" />
+                        <MaterialIcons name={UserType === "site manager" ? "radio-button-checked" : "radio-button-unchecked"} size={24} color="white" />
                         <Text style={{ color: "white", marginLeft: 8 }}>Site Manager</Text>
                     </TouchableOpacity>
                     <TouchableOpacity
                         style={{ flexDirection: "row", alignItems: "center" }}
                         onPress={() => handleTypeSelection("supplier")}
                     >
-                        <MaterialIcons name={selectedType === "supplier" ? "radio-button-checked" : "radio-button-unchecked"} size={24} color="white" />
+                        <MaterialIcons name={UserType === "supplier" ? "radio-button-checked" : "radio-button-unchecked"} size={24} color="white" />
                         <Text style={{ color: "white", marginLeft: 8 }}>Supplier</Text>
                     </TouchableOpacity>
                 </View>
@@ -126,7 +174,7 @@ const LoginScreen = () => {
                 <View style={{ marginTop: 80 }} />
 
                 <Pressable
-                     onPress={() => navigation.navigate("SiteManagerHome")}
+                    onPress={handleSubmit}
                     style={{
                         width: 200,
                         backgroundColor: "#AA7AD0",

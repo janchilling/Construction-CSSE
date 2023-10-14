@@ -16,7 +16,7 @@ const requisitionSchema = new mongoose.Schema({
       required: true
     },
     Status: {
-      type: Number,
+      type: String,
       required: true
     },
     Materials: {
