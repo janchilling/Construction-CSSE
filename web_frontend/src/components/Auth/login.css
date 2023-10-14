@@ -1,0 +1,91 @@
+.heading{
+    margin-bottom: -120px;
+}
+.loginCompanyName{
+    text-decoration: none;
+}
+#LoginLink{
+    color: #008080;
+    font-size: 20px;
+    font-family: 'Secular One', sans-serif;
+    text-decoration: none;
+    margin-left: 1400px;
+    margin-top: 10px;
+}
+.log_sign_heading_name{
+    font-size: 60px;
+    font-weight: bold;
+    text-align: left;
+    color: #008080;
+    font-family: 'Secular One', sans-serif;
+}
+.login{
+    font-weight: bold;
+    padding: 4px;
+    color: black;
+    font-family: 'Secular One', sans-serif;
+}
+.login_form{
+    border: 9px solid #008080;
+    text-align: center;
+    width: 450px;
+    height: 450px;
+    border-radius: 25px;
+    margin-left: 850px;
+    margin-top: -490px;
+}
+.loginheading{
+    color: black;
+    padding-top: 15px;
+    font-size: 15px;
+    font-family: 'Secular One', sans-serif;
+}
+.loginforminput{
+    width: 300px;
+    border-radius: 10px;
+    text-align: center;
+    height: 40px;
+    font-size: 20px;
+}
+.loginform-select{
+    width: 300px;
+    border-radius: 10px;
+    text-align: center;
+    height: 45px;
+    font-size: 20px;
+    margin-left: 4px;
+}
+.login_page{
+   margin: 0;
+   padding: 0;
+}
+.loginsubmit{
+    background-color: #008080;
+    color: white;
+    border-radius: 10px;
+    width: 150px;
+    height: 50px;
+    transition: 1s;
+    font-weight: bold;
+    font-size: 20px;
+}
+.loginsubmit:hover{
+    background-color: white;
+    color: #008080;
+}
+.loginheading1{
+    color: black;
+    font-family: 'Secular One', sans-serif;
+}
+.loginImg{
+    margin-left: 100px;
+    border: 3px solid black;
+    border-radius: 0% 40% 0% 40%;
+}
+.loginImg:hover{
+    transform: scale(1.1);
+    transition: 2s;
+ }
+
+
+

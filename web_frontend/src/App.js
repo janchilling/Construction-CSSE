@@ -1,9 +1,21 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
+import UserContext from "./components/ContextComponents/ContextComponents";
 
-import Login from './components/login';
-import ManagementHome from './pages/managementHome/managementHome';
-import StaffHome from './pages/staffHome/staffHome';
+// headers
+import Header from './components/Common/ManagementHeader/adminHeader';
+import Footer from './components/Common/ManagementFooter/adminFooter';
+
+// User management
+import Index from './pages/Index/index';
+import Login from './components/Auth/login';
+import StaffHome from './pages/StaffHome/staffHome';
+import ViewAllEmployee from './pages/Management/EmployeeDetails/AllEmployee';
+import UpdateEmployee from './pages/Management/UpdateEmployees/updateEmployee';
+
+// Management
+import ManagementHome from './pages/Management/ManagementHome/ManagementHome';
+import AddEmployee from './pages/Management/AddEmployees/addEmployees';
 
 
 function App() {
@@ -20,16 +32,27 @@ function App() {
     }
   }, [user]);
 
+  console.log(user);
+
   return (
     <Router>
-      <div className="App">
-        <Routes>
-          {/* user management */}
-          <Route path="/login" element={<Login />} />
-          <Route path="/staffHome" element={<StaffHome />} />
-          <Route path="/managementHome" element={<ManagementHome />} />
-        </Routes>
-      </div>
+      <UserContext.Provider value={{ user, setUser }}>
+        <div className="App">
+          <Header/>
+          <Routes>
+            {/* user management */}
+
+            <Route path="" element={<Index />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/staffHome" element={<StaffHome />} />
+            <Route path='/managerHome' element={<ManagementHome />} />
+            <Route path='/addEmployees' element={<AddEmployee />} />
+            <Route path='/allEmployees' element={<ViewAllEmployee/>} />
+            <Route path='/updateEmployee/:id' element={<UpdateEmployee/>} />
+          </Routes>
+        </div>
+        <Footer/>
+      </UserContext.Provider>
     </Router>
   );
 }

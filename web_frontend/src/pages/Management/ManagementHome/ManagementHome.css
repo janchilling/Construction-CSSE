@@ -1,0 +1,173 @@
+@import url('https://fonts.googleapis.com/css2?family=Jost:ital@1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Secular+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Jost:wght@300&display=swap');
+
+.PatientHomePage{
+   background-color: white;
+   height: auto;
+   width: 100%;
+}
+.PatientHomeHeading{
+   font-size: 80px;
+   color: #008080;
+   font-family: 'Secular One', sans-serif;
+   font-weight: 0;
+   text-align: center;
+}
+
+.PHPara1{
+   font-family: 'Jost', sans-serif;
+   font-size: 30px;
+  text-align: center;
+}
+
+.PHDashBoardPic{
+   height: 450px;
+   width: 1000px;
+   margin-top: 30px;
+   transition: 1s;
+   border: 5px solid black;
+   border-radius: 15px;
+   margin-left: 250px;
+}
+
+.PHDashBoardPic:hover{
+   transform: scale(1.1);
+}
+
+.PHPara2{
+   font-family: 'Jost', sans-serif;
+   font-size: 30px;
+   font-weight: bold;
+   text-align: center;
+}
+
+.PHPara3{
+   font-family: 'Jost', sans-serif;
+   font-size: 30px;
+   color: #008080;
+   font-weight: bold;
+   text-align: center;
+}
+
+.PatientHomePageSecondPart{
+   background-color: #008080;
+   height: auto;
+   margin-left: 20px;
+   margin-right: 20px;
+}
+
+.PatientDivHeading{
+   font-weight: bold;
+   color: #008080;
+   font-size: 25px;
+   text-align: center;
+   font-family: 'Secular One', sans-serif;
+}
+.PatientDivPara{
+   text-align: center;
+   color: #008080;
+   font-size: 20px;
+   padding: 10px;
+   font-family: 'Jost', sans-serif;
+   font-weight: bold;
+}
+.PatientDivIcon{
+   height: 50px;
+   width: 70px;
+   margin-left: 42%;
+   margin-top: 3%;
+}
+.PatientHomeButton{
+   background-color: #008080;
+   color: white;
+   border-radius: 10px;
+   width: 180px;
+   height: 40px;
+   margin-left: 33%;
+   transition: 1s;
+}
+.PatientHomeButton:hover{
+   background-color: white;
+   color: #008080;
+   font-weight: bold;
+   transform: scale(1.6);
+}
+.PatientDiv1{
+   background-color: white;
+   height: 300px;
+   width: 600px;
+   margin-left: 5%;
+   border-radius: 15px;
+   border: 5px solid black;
+}
+.PatientDiv2{
+   background-color: white;
+   height: 300px;
+   width: 600px;
+   margin-left: 53%;
+   border-radius: 15px;
+   border: 5px solid black;
+   margin-top: -20.8%;
+}
+
+.PHDashBoardPic2{
+   height: 480px;
+   width: 600px;
+   margin-top: 40px;
+   transition: 1s;
+   border: 5px solid black;
+   border-radius: 15px;
+   margin-left: 50px;
+}
+
+.ph3div{
+   margin-left: 250px;
+   margin-top: -450px;
+}
+
+.PatientHomeHeading2{
+   font-family: 'Secular One', sans-serif;
+   color: #008080;
+   font-size: 50px;
+   margin-left: 460px;
+}
+
+.PH3Para{
+   text-align: left;
+   margin-left: 490px;
+   font-family: 'Jost', sans-serif;
+   font-size: 30px;
+}
+
+.PH3Para2{
+   text-align: left;
+   margin-left: 490px;
+   font-family: 'Jost', sans-serif;
+   font-size: 20px;
+   font-weight: bold;
+}
+
+.PatientDivPara2{
+
+   text-align: center;
+   color: #008080;
+   font-size: 10px;
+   padding: 0px;
+   font-family: 'Jost', sans-serif;
+   font-weight: bold;
+}
+/* margin-left: 25rem; */
+
+#patientimg:hover{
+   transform: scale(1.1);
+ }
+
+ #patientimg{
+   border-radius: 100% 0% 0% 100%;
+   border: 2px solid black;
+   width: 350px;
+   height: 250px;
+   transition: 1s;
+   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.4);
+ }

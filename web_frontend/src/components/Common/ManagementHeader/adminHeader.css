@@ -1,0 +1,31 @@
+#PatientNavHeading{
+    color: #ffffff;
+    font-size: 50px ;
+    font-weight: 500;
+    transition: 1s;
+    cursor: pointer !important;
+    font-family: 'Secular One', sans-serif;
+ }
+#PatientNavHeading:hover{
+    color: black;
+ }
+ .NavigationBarBarDropdown{
+    margin-left: 50%;
+    margin-top: 5%;
+ } 
+ #PatientNavbar{
+   background-color: #008080;
+   height: 80px;
+   font-family: 'Secular One', sans-serif;
+ }
+ #PatientNav{
+   margin-left: 20px;
+   cursor:  pointer !important;
+ }
+ #PatientNav :hover{
+  color: black !important;
+ }
+ #PatientNavitem{
+   padding: 5px;
+   margin-left: 50px !important;
+ }
