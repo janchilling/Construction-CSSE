@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import '../StatusUpdate/statusUpdate.css';
 import { useParams } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function UpdateStatus() {
 
@@ -41,9 +43,19 @@ export default function UpdateStatus() {
         result = await result.json()
 
         if (result) {
-            alert("Status Updated Successfully!")
-
-            window.location.href = `/requestedOrders`;
+            setTimeout(() => {
+                window.location.href = `/requestedOrders`;
+            }, 2000);
+            toast.success('Status Updated Successfully..!', {
+                position: "top-right",
+                autoClose: 2000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+            });
         }
     }
 
@@ -122,6 +134,7 @@ export default function UpdateStatus() {
             </div>
 
             <br /><br />
+            <ToastContainer />
         </div>
     )
 }

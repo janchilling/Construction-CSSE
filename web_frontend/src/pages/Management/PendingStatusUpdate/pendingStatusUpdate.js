@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import '../PendingStatusUpdate/pendingStatusUpdate.css';
 import { useParams } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function UpdatePendingStatus() {
 
@@ -42,9 +44,19 @@ export default function UpdatePendingStatus() {
         result = await result.json()
 
         if (result) {
-            alert("Status Updated Successfully!")
-
-            window.location.href = `/ManagementpendingOrders`;
+            setTimeout(() => {
+                window.location.href = `/ManagementpendingOrders`;
+            }, 2000);
+            toast.success('Status Updated Successfully..!', {
+                position: "top-right",
+                autoClose: 2000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+            });
         }
     }
 
@@ -123,6 +135,7 @@ export default function UpdatePendingStatus() {
             </div>
 
             <br /><br />
+            <ToastContainer />
         </div>
     )
 }
