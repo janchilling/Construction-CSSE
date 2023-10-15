@@ -12,6 +12,7 @@ import RequisitionRequests from '../screens/RequisitionRequests';
 import SiteManagerOrders from '../screens/SiteManagerOrders';
 import SiteManagerDeliveryInfo from '../screens/SiteManagerDeliveryInfo';
 import SupplierHome from '../screens/SupplierHome';
+import UpdateRequisition from '../screens/UpdateRequisition';
 
 const StackNavigator = () => {
     const Stack = createNativeStackNavigator();
@@ -28,6 +29,7 @@ const StackNavigator = () => {
                 <Stack.Screen name="SiteManagerOrders" component={SiteManagerOrders} options={{headerShown: false}}/>
                 <Stack.Screen name="SiteManagerDeliveryInfo" component={SiteManagerDeliveryInfo} options={{headerShown: false}}/>
                 <Stack.Screen name="SupplierHome" component={SupplierHome} options={{headerShown: false}}/>
+                <Stack.Screen name="UpdateRequisition" component={UpdateRequisition} options={{headerShown: false}}/>
 
             </Stack.Navigator>
         </NavigationContainer>

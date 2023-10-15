@@ -5,10 +5,11 @@ const router = require("express").Router();
 //Creating a new Requisition
 const createRequisition = async (req, res) => {
     const newRequisition = new Requisition(req.body);
-  
+
     newRequisition
       .save()
       .then(() => {
+
         res.json("Requisition Added");
       })
       .catch((err) => {
