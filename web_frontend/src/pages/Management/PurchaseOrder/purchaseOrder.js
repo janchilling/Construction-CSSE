@@ -15,6 +15,7 @@ export default function PurchaseOrder() {
     const [SiteName, setSiteName] = useState("");
     const [Date, setDate] = useState("");
     const [TotalAmount, setTotalAmount] = useState(0);
+    const [ReduceAmount, setReduceAmount] = useState(0);
     const [Materials, setMaterials] = useState([]);
     const [CardType, setCardType] = useState("");
     const [CardNumber, setCardNumber] = useState("");
@@ -65,6 +66,8 @@ export default function PurchaseOrder() {
     function sendOrderData(e) {
         e.preventDefault();
 
+        const newTotalAmount = requisitionData.TotalAmount - ReduceAmount;
+
         const newOrder = {
             SupplierName,
             RequisitionID: id,
@@ -72,7 +75,7 @@ export default function PurchaseOrder() {
             SiteManagerName,
             SiteName,
             Date,
-            TotalAmount,
+            TotalAmount: newTotalAmount, // Use the new TotalAmount
             Materials,
             CardType,
             CardNumber
@@ -95,6 +98,8 @@ export default function PurchaseOrder() {
                         }
                         return material;
                     });
+
+                    updatedRequisition.TotalAmount = newTotalAmount;
 
                     // Send a request to update the requisition with the reduced material count
                     axios.put(`http://localhost:8070/requisitions/updateRequisition/${id}`, updatedRequisition)
@@ -244,6 +249,17 @@ export default function PurchaseOrder() {
                             required
                         />
                     </div>
+
+                    <div className="form-group">
+                        <label htmlFor="ReduceAmount">Reduce Amount:</label>
+                        <input
+                            type="number"
+                            id="ReduceAmount"
+                            name="ReduceAmount"
+                            onChange={(e) => setReduceAmount(e.target.value)}
+                        />
+                    </div>
+
                     <div className="form-group">
                         <label htmlFor="cardType">Card Type:</label>
                         <select
