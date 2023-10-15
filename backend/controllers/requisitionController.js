@@ -45,11 +45,11 @@ const singleRequisition = (req, res) => {
 }
 
 //Update a single requistion
-const updateRequisition = (req, res) => {
+const updateRequisition = async(req, res) => {
   const RequisitionId = req.params.id;
     try {
-        Requisition.findByIdAndUpdate(RequisitionId, req.body, { new: true });
-        res.json({status: "Updated"});
+        const updateRequisition = await Requisition.findByIdAndUpdate(RequisitionId, req.body, { new: true });
+        res.json(updateRequisition);
     } catch (error) {
         res.status(500).json({ error: 'Failed to update requisition' });
     }
