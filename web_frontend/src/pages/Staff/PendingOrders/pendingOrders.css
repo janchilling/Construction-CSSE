@@ -1,0 +1,87 @@
+.TJViewAppointmentPage{
+    background-color: white;
+    height: auto;
+}
+
+.TJViewHeading{
+    color: #550C9E;
+    font-size: 45px;
+    font-weight: bold;
+    text-align: center;
+    font-family: 'Secular One', sans-serif;
+}
+
+
+.TJViewTableReq{
+    border-collapse: collapse;
+    font-size: 20px;
+    width: 950px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    border: 5px solid black;
+    border-radius: 10px;
+    margin-top: 10px;
+    margin-left: 250px;
+    font-family: 'Jost', sans-serif;
+}
+
+.TJViewTableReq thead tr{
+    background-color:#550C9E;
+    color: white;
+    text-align: left;
+}
+
+.TJViewTableReq th, .FNViewTable td{
+    padding: 12px 15px;
+}
+
+.TJViewTableReq tbody tr{
+    border-bottom: 5px solid black;
+}
+.TJViewTableReq tbody td{
+    text-align: center;
+}
+
+.TJViewTableReq tbody tr:nth-of-type(odd){
+    background-color: white;
+    color: black;
+    font-weight: bold;
+}
+
+.TJViewTableReq tbody tr:nth-of-type(even){
+    background-color: white;
+    color: black;
+    font-weight: bold;
+}
+
+.TJViewTableReq tbody tr:last-of-type{
+    border-bottom: 2px solid black;
+}
+
+.TJButton{
+    border: none;
+    color: white;
+    padding: 5px 8px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 5px;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+.TJButton-update{
+    background-color: #56c411;
+    color: white;
+    border: 3px solid black;
+    width: 80px;
+    font-weight: bold;
+}
+
+.TJButton-delete{
+    background-color: #F44336;
+    color: white;
+    border: 3px solid black;
+    width: 80px;
+    font-weight: bold;
+}

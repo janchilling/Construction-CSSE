@@ -24,7 +24,7 @@ export default function RequestedOrders() {
 
         <div className="TJViewAppointmentPage">
             <br />
-            <h1 className="TJViewHeading">All RequestedOrders</h1>
+            <h1 className="TJViewHeading">All Requested Orders</h1>
             <br/>
             <table className="TJViewTableReq">
                 <thead>
@@ -53,7 +53,7 @@ export default function RequestedOrders() {
                                     <td>
                                         <button className="TJButton TJButton-update" variant="primary" onClick={(e) => {
                                             e.preventDefault();
-                                            window.location.href = `/updateEmployee/${item._id}`;
+                                            window.location.href = `/updateStatus/${item._id}`;
                                         }}>Update</button><br />
 
                                     </td>
