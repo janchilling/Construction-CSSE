@@ -28,6 +28,7 @@ import UpdatePendingStatus from './pages/Management/PendingStatusUpdate/pendingS
 import Orders from './pages/Management/Orders/order';
 import AllocatedBudgets from './pages/Management/AllocatedBudgets/allocatedBudgets';
 import PurchaseOrder from './pages/Management/PurchaseOrder/purchaseOrder';
+import AllocateBudget from './pages/Management/AllocateBudget/AllocateBudget';
 
 
 function App() {
@@ -72,6 +73,7 @@ function App() {
             <Route path='/orders' element={<Orders/>} />
             <Route path='/allocatedBudgets' element={<AllocatedBudgets/>} />
             <Route path='/purchaseOrder/:id' element={<PurchaseOrder/>} />
+            <Route path='/allocateBudget/:id' element={<AllocateBudget/>} />
             
 
           </Routes>
