@@ -22,7 +22,7 @@ const RequisitionRequests = () => {
 
     const handleUpdate = (id) => {
         // Navigate to the update screen with the ID
-        navigation.navigate('UpdateRequisition', { _id: id });
+        navigation.navigate('UpdateRequisition', { id: id });
     };
 
     const navigation = useNavigation();
