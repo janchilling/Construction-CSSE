@@ -53,7 +53,7 @@ export default function ManagementPendingOrders() {
                                     <td>
                                         <button className="TJButton TJButton-update" variant="primary" onClick={(e) => {
                                             e.preventDefault();
-                                            window.location.href = `/updateEmployee/${item._id}`;
+                                            window.location.href = `/updatePendingStatus/${item._id}`;
                                         }}>Update</button><br />
 
                                     </td>

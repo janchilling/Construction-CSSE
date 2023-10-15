@@ -25,7 +25,7 @@ export default function RequestedOrders() {
         <div className="TJViewAppointmentPage">
             <br />
             <h1 className="TJViewHeading">All Requested Orders</h1>
-            <br/>
+            <br />
             <table className="TJViewTableReq">
                 <thead>
                     <tr>

@@ -141,7 +141,7 @@ export default function AddEmployee() {
             </div>
             <br /><br /><br />
             <p className='FNFooterBottom' style={{ color: "black" }}>
-                © 2023 OptiVision All Rights Reserved.
+                © 2023 MBKT Construction All Rights Reserved.
             </p>
             <ToastContainer />
         </div>
