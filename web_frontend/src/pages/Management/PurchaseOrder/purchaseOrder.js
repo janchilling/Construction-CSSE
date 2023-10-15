@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import '../PurchaseOrder/purchaseOrder.css'
 
 export default function PurchaseOrder() {
 
@@ -104,11 +105,11 @@ export default function PurchaseOrder() {
     }
 
     return (
-        <div>
+        <div className="purchase-order-container">
             <h1>Purchase Order Form</h1>
             {dataLoaded ? (
                 <form onSubmit={sendOrderData}>
-                    <div>
+                    <div className="form-group">
                         <label htmlFor="SupplierName">Supplier Name:</label>
                         <input
                             type="text"
@@ -119,7 +120,7 @@ export default function PurchaseOrder() {
                         />
                     </div>
 
-                    <div>
+                    <div className="form-group">
                         <label htmlFor="SiteManagerID">Site Manager ID:</label>
                         <input
                             type="text"
@@ -131,7 +132,7 @@ export default function PurchaseOrder() {
                         />
                     </div>
 
-                    <div>
+                    <div className="form-group">
                         <label htmlFor="SiteManagerName">Site Manager Name:</label>
                         <input
                             type="text"
@@ -142,7 +143,7 @@ export default function PurchaseOrder() {
                         />
                     </div>
 
-                    <div>
+                    <div className="form-group">
                         <label htmlFor="SiteName">Site Name:</label>
                         <input
                             type="text"
@@ -154,7 +155,7 @@ export default function PurchaseOrder() {
                         />
                     </div>
 
-                    <div>
+                    <div className="form-group">
                         <label htmlFor="Date">Date:</label>
                         <input
                             type="text"
@@ -166,22 +167,21 @@ export default function PurchaseOrder() {
                         />
                     </div>
 
-                    <div>
+                    <div className="form-group">
                         <label htmlFor="Materials">Materials:</label>
                         <textarea
                             id="Materials"
                             name="Materials"
-                            value={Materials.map(material =>
-                                `${material.MaterialName}, ${material.MaterialQuantity}, ${material.MaterialPrice}`
-                            ).join('\n')}
+                            value={Materials.map((material) =>
+                                `${material.MaterialName}, ${material.MaterialQuantity}`
+                            ).join("\n")}
                             onChange={(e) => {
-                                const materialLines = e.target.value.split('\n');
-                                const updatedMaterials = materialLines.map(line => {
-                                    const [name, quantity, price] = line.split(', ');
+                                const materialLines = e.target.value.split("\n");
+                                const updatedMaterials = materialLines.map((line) => {
+                                    const [name, quantity, price] = line.split(", ");
                                     return {
                                         MaterialName: name,
                                         MaterialQuantity: quantity,
-                                        MaterialPrice: price
                                     };
                                 });
                                 setMaterials(updatedMaterials);
@@ -190,8 +190,7 @@ export default function PurchaseOrder() {
                         />
                     </div>
 
-
-                    <div>
+                    <div className="form-group">
                         <label htmlFor="TotalAmount">Total Amount:</label>
                         <input
                             type="text"
@@ -202,7 +201,7 @@ export default function PurchaseOrder() {
                             required
                         />
                     </div>
-                    <div>
+                    <div className="form-group">
                         <label htmlFor="cardType">Card Type:</label>
                         <select
                             id="cardType"
@@ -210,7 +209,7 @@ export default function PurchaseOrder() {
                             onChange={(e) => {
                                 console.log("Card Type changed:", e.target.value);
                                 setCardType(e.target.value);
-                            }} // Update the selected value
+                            }}
                             required
                         >
                             <option value="credit">Credit</option>
@@ -218,8 +217,7 @@ export default function PurchaseOrder() {
                         </select>
                     </div>
 
-
-                    <div>
+                    <div className="form-group">
                         <label htmlFor="cardNumber">Card Number:</label>
                         <input
                             type="number"
@@ -228,17 +226,13 @@ export default function PurchaseOrder() {
                             onChange={(e) => {
                                 console.log("Card Number changed:", e.target.value);
                                 setCardNumber(e.target.value);
-                            }} // Update the value
+                            }}
                         />
                     </div>
-                    {/* Display CardType and CardNumber values */}
-                    <div>
-                        <p>Card Type: {CardType}</p>
-                        <p>Card Number: {CardNumber}</p>
-                    </div>
 
-                    <div>
-                        <button type="submit">Submit Order</button>
+
+                    <div class="button-container">
+                        <button class="submit-button" type="submit">Submit Order</button>
                     </div>
                 </form>
             ) : (
@@ -246,6 +240,5 @@ export default function PurchaseOrder() {
             )}
             <ToastContainer />
         </div>
-
     );
 }
