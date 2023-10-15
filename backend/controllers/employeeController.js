@@ -5,7 +5,7 @@ const router = require("express").Router();
 //Get all employees
 const allEmployees = async (req, res) => {
 
-    Employee.find().then((employees)=>{
+    await Employee.find().then((employees)=>{
         res.json(employees)
     }).catch((err)=>{
         console.log(err)
@@ -36,10 +36,10 @@ const updateEmployee = async (req, res) => {
 }
 
 //Deleting a single Employee
-const deleteEmployee = (req, res) => {
+const deleteEmployee = async(req, res) => {
     let employeeId = req.params.id;
 
-    Employee.findByIdAndDelete(employeeId).then(()=>{
+    await Employee.findByIdAndDelete(employeeId).then(()=>{
         res.status(200).send({status: "Employee deleted"})
     }).catch((err)=>{
         console.log(err.message);
@@ -48,10 +48,10 @@ const deleteEmployee = (req, res) => {
 }
 
 //Get the details of a single Employee
-const singleEmployee = (req, res) => {
+const singleEmployee = async(req, res) => {
     let employeeId = req.params.id;
 
-    Employee.findById(employeeId).then((employee)=>{
+    await Employee.findById(employeeId).then((employee)=>{
         res.status(200).send({status: "Employee fetched",employee})
     }).catch((err)=>{
         console.log(err.message);
