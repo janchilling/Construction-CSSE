@@ -7,10 +7,6 @@ const invoiceSchema = new mongoose.Schema({
       type: String,
       required: true
     },
-    RequisitionID: {
-        type: String,
-        required: true
-    },
     OrderID: {
         type: String,
         required: true
