@@ -9,7 +9,6 @@ import UserContext from '../ContextComponents/ContextComponents';
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [message, setMessage] = useState('');
   const [UserType, setUserType] = useState('');
   const { user, setUser } = useContext(UserContext)
   const navigate = useNavigate();
@@ -43,7 +42,6 @@ const Login = () => {
           navigate('/managerHome');
         }
       } else {
-        // setMessage('Authentication failed');
         toast.warn('Please enter correct details..!', {
           position: "top-center",
           autoClose: 5000,
@@ -56,7 +54,6 @@ const Login = () => {
         });
       }
     } catch (error) {
-      // setMessage('Authentication failed');
       toast.warn('Please enter correct details..!', {
         position: "top-center",
         autoClose: 5000,
