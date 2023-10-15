@@ -20,7 +20,7 @@ const UpdateRequisition = () => {
     const navigation = useNavigation();
 
     const route = useRoute();
-    const requisitionId = route.params?._id; // Getting requisitionId from route params
+    const requisitionId = route.params?.id; // Getting requisitionId from route params
 
     useEffect(() => {
         getRequisitionDetails();
@@ -31,7 +31,6 @@ const UpdateRequisition = () => {
         let result = await fetch(`http://192.168.8.115:8070/requisitions//singleRequistions/${requisitionId}`);
         result = await result.json();
 
-        console.warn(result);
         setSiteManagerID(result.SiteManagerID);
         setDate(result.Date);
         setSiteName(result.SiteName);
@@ -54,6 +53,7 @@ const UpdateRequisition = () => {
             const response = await axios.put(`http://192.168.8.115:8070/requisitions/updateRequisition/${requisitionId}`, updatedRequisition);
 
             if (response.status === 200) {
+                console.log(updatedRequisition);
                 Alert.alert('Success', 'Requisition updated successfully');
             } else {
                 Alert.alert('Error', 'Failed to update requisition');
@@ -81,7 +81,7 @@ const UpdateRequisition = () => {
                 <KeyboardAvoidingView>
                     <View style={{ alignItems: "center" }}>
                         <Text style={{ fontSize: 32, fontWeight: 'bold', marginTop: 2, color: "white" }}>
-                            Create Requisition
+                            Update Requisition
                         </Text>
                     </View>
 
@@ -157,10 +157,11 @@ const UpdateRequisition = () => {
                             <MaterialIcons name="attach-money" size={24} color="gray" style={{ marginLeft: 8 }} />
 
                             <TextInput
-                                value={TotalAmount}
+                                value={TotalAmount.toString()}
                                 onChangeText={(text) => setTotalAmount(text)}
                                 style={{ color: "gray", marginVertical: 10, width: 300, fontSize: 16 }}
                                 placeholder="Enter Total Amount"
+                                keyboardType="numeric"
                             />
                         </View>
 
