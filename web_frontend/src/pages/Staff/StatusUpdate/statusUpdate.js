@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import '../StatusUpdate/statusUpdate.css';
 import { useParams } from "react-router-dom";
-import Index from "../../Index";
 
 export default function UpdateStatus() {
 
@@ -15,10 +14,10 @@ export default function UpdateStatus() {
     const params = useParams();
 
     useEffect(() => {
-        getRequuisitionDetails();
+        getRequisitionDetails();
     }, [])
 
-    const getRequuisitionDetails = async () => {
+    const getRequisitionDetails = async () => {
         let result = await fetch(`http://localhost:8070/requisitions/singleRequistions/${params.id}`);
         result = await result.json();
 
@@ -33,10 +32,10 @@ export default function UpdateStatus() {
 
     }
 
-    const updateEmployee = async () => {
-        let result = await fetch(`http://localhost:8070/employees/updateEmployee/${params.id}`, {
+    const UpdateStatus = async () => {
+        let result = await fetch(`http://localhost:8070/requisitions/updateRequisition/${params.id}`, {
             method: 'Put',
-            body: JSON.stringify({ Status }),
+            body: JSON.stringify({ SiteManagerID, SiteName, Date, Materials, TotalAmount, Status }),
             headers: {
                 'Content-Type': 'Application/json'
             }
@@ -45,9 +44,9 @@ export default function UpdateStatus() {
         result = await result.json()
 
         if (result) {
-            alert("Employee Updated Successfully!")
+            alert("Status Updated Successfully!")
 
-            window.location.href = `/allEmployees`;
+            window.location.href = `/requestedOrders`;
         }
     }
 
@@ -102,20 +101,26 @@ export default function UpdateStatus() {
                 ))}
                 <br />
                 <label for="subject" className="TJUpdateFormHeading">Status: </label><br />
-                <select className="TJUpdateFormInput" required={true} id="UserType" name="UserType" onChange={(e) => {
-                    setStatus(e.target.value)
-                }} value={Status} style={{ backgroundColor: "aliceblue", fontWeight: "500" }}>
-                    <option defaultValue >New</option>
+                <select
+                    className="TJUpdateFormInput"
+                    id="UserType"
+                    name="UserType"
+                    onChange={(e) => {
+                        setStatus(e.target.value);
+                    }}
+                    style={{ backgroundColor: "aliceblue", fontWeight: "500" }}
+                >
+                    <option value="New">{Status}</option>
                     <option value="Approved">Approved</option>
                     <option value="Pending">Pending</option>
                 </select>
                 <br /><br /><br /><br /><br />
 
-                <button className="TJUpdateSubmit" onClick={updateEmployee}>Update</button>&nbsp;&nbsp;&nbsp;
+                <button className="TJUpdateSubmit" onClick={UpdateStatus}>Update</button>&nbsp;&nbsp;&nbsp;
                 <button className="TJButtonCancel" onClick={(e) => {
                     e.preventDefault();
                     window.location.href = `/requestedOrders`;
-                }}>Cancel</button> <br /><br/>
+                }}>Cancel</button> <br /><br />
 
             </div>
 
