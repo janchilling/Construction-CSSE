@@ -24,6 +24,7 @@ import AddEmployee from './pages/Management/AddEmployees/addEmployees';
 import ViewAllEmployee from './pages/Management/EmployeeDetails/AllEmployee';
 import UpdateEmployee from './pages/Management/UpdateEmployees/updateEmployee';
 import ManagementPendingOrders from './pages/Management/MgtPendingOrder/mgtPendingOrders';
+import UpdatePendingStatus from './pages/Management/PendingStatusUpdate/pendingStatusUpdate';
 import Orders from './pages/Management/Orders/order';
 import AllocatedBudgets from './pages/Management/AllocatedBudgets/allocatedBudgets';
 
@@ -64,6 +65,7 @@ function App() {
             <Route path='/addEmployees' element={<AddEmployee />} />
             <Route path='/allEmployees' element={<ViewAllEmployee/>} />
             <Route path="/ManagementpendingOrders" element={<ManagementPendingOrders/>} />
+            <Route path='/updatePendingStatus/:id' element={<UpdatePendingStatus/>} />
             <Route path='/updateEmployee/:id' element={<UpdateEmployee/>} />
             <Route path='/orders' element={<Orders/>} />
             <Route path='/allocatedBudgets' element={<AllocatedBudgets/>} />
