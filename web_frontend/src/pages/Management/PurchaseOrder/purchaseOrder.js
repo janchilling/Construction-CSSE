@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { ToastContainer, toast } from 'react-toastify';
+import { useNavigate } from "react-router-dom";
 import 'react-toastify/dist/ReactToastify.css';
 import '../PurchaseOrder/purchaseOrder.css'
 
@@ -18,6 +19,9 @@ export default function PurchaseOrder() {
     const [CardType, setCardType] = useState("");
     const [CardNumber, setCardNumber] = useState("");
     const [dataLoaded, setDataLoaded] = useState(false);
+    const [requisitionData, setRequisitionData] = useState(null); // Store requisition data
+    const navigate = useNavigate();
+
 
     useEffect(() => {
         if (id) {
@@ -30,6 +34,7 @@ export default function PurchaseOrder() {
             const response = await axios.get(`http://localhost:8070/requisitions/singleRequistions/${id}`);
             if (response.status === 200) {
                 const requisitionData = response.data;
+                setRequisitionData(requisitionData); // Update the requisition data
                 setSupplierName(requisitionData.SupplierName);
                 setSiteManagerID(requisitionData.SiteManagerID);
                 setSiteManagerName(requisitionData.SiteManagerName);
@@ -76,16 +81,54 @@ export default function PurchaseOrder() {
         axios.post("http://localhost:8070/orders/newOrder", newOrder)
             .then((response) => {
                 if (response.status === 200) {
-                    toast.success('Order created successfully!', {
-                        position: "top-right",
-                        autoClose: 5000,
-                        hideProgressBar: false,
-                        closeOnClick: true,
-                        pauseOnHover: true,
-                        draggable: true,
-                        progress: undefined,
-                        theme: "light",
+                    // Update the material count in the requisition
+                    const updatedRequisition = { ...requisitionData }; // Make sure to get the current requisition data
+                    updatedRequisition.Materials = updatedRequisition.Materials.map(material => {
+                        // Find the corresponding material in the requisition and reduce the count
+                        const purchasedMaterial = Materials.find(p => p.MaterialName === material.MaterialName);
+                        if (purchasedMaterial) {
+                            const remainingCount = material.MaterialQuantity - purchasedMaterial.MaterialQuantity;
+                            return {
+                                ...material,
+                                MaterialQuantity: remainingCount,
+                            };
+                        }
+                        return material;
                     });
+
+                    // Send a request to update the requisition with the reduced material count
+                    axios.put(`http://localhost:8070/requisitions/updateRequisition/${id}`, updatedRequisition)
+                        .then(requisitionResponse => {
+                            if (requisitionResponse.status === 200) {
+                                toast.success('Order created successfully!', {
+                                    position: "top-right",
+                                    autoClose: 5000,
+                                    hideProgressBar: false,
+                                    closeOnClick: true,
+                                    pauseOnHover: true,
+                                    draggable: true,
+                                    progress: undefined,
+                                    theme: "light",
+                                });
+                                setTimeout(() => {
+                                    navigate("/orders");
+                                }, 6000);
+                            } else {
+                                toast.error('Failed to update the requisition.', {
+                                    position: "top-right",
+                                    autoClose: 5000,
+                                    hideProgressBar: false,
+                                    closeOnClick: true,
+                                    pauseOnHover: true,
+                                    draggable: true,
+                                    progress: undefined,
+                                    theme: "light",
+                                });
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error updating the requisition:', error);
+                        });
                 } else {
                     toast.error('Failed to create the order.', {
                         position: "top-right",
