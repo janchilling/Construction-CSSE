@@ -26,6 +26,8 @@ import UpdateEmployee from './pages/Management/UpdateEmployees/updateEmployee';
 import ManagementPendingOrders from './pages/Management/MgtPendingOrder/mgtPendingOrders';
 import Orders from './pages/Management/Orders/order';
 import AllocatedBudgets from './pages/Management/AllocatedBudgets/allocatedBudgets';
+import PurchaseOrder from './pages/Management/PurchaseOrder/purchaseOrder';
+
 
 function App() {
   // user details pass
@@ -67,6 +69,8 @@ function App() {
             <Route path='/updateEmployee/:id' element={<UpdateEmployee/>} />
             <Route path='/orders' element={<Orders/>} />
             <Route path='/allocatedBudgets' element={<AllocatedBudgets/>} />
+            <Route path='/purchaseOrder/:id' element={<PurchaseOrder/>} />
+            
 
           </Routes>
         </div>
