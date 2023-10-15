@@ -90,6 +90,7 @@ const UpdateRequisition = () => {
                             <Ionicons name="ios-person" size={24} color="gray" style={{ marginLeft: 8 }} />
                             <TextInput
                                 value={SiteManagerID}
+                                editable={false} 
                                 onChangeText={(text) => setSiteManagerID(text)}
                                 style={{ color: "gray", marginVertical: 10, width: 300, fontSize: 16 }}
                                 placeholder="Enter Site Manager Id"
@@ -121,6 +122,7 @@ const UpdateRequisition = () => {
 
                             <TextInput
                                 value={Status}
+                                editable={false} 
                                 onChangeText={(text) => setStatus(text)}
                                 style={{ color: "gray", marginVertical: 10, width: 300, fontSize: 16 }}
                                 placeholder="Enter Status"
@@ -166,7 +168,10 @@ const UpdateRequisition = () => {
                         </View>
 
                         <Pressable
-                            onPress={updateRequisition}
+                                onPress={() => {
+                                    updateRequisition();
+                                    navigation.navigate('SiteManagerHome'); 
+                                }}
                             style={{
                                 width: 200,
                                 backgroundColor: "#56c411",
@@ -185,7 +190,7 @@ const UpdateRequisition = () => {
                                     fontWeight: "bold",
                                 }}
                             >
-                                Create Request
+                                Update Requisition
                             </Text>
                         </Pressable>
 
