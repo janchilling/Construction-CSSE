@@ -1,6 +1,10 @@
 const mongoose = require('mongoose');
 
 const allocateBudgetSchema = new mongoose.Schema({
+    RequisitionID: {
+        type: String,
+        required: true
+    },
     SiteName: {
         type: String,
         required: true

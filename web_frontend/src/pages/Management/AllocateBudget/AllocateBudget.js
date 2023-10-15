@@ -51,6 +51,7 @@ export default function PurchaseOrder() {
         }
 
         const newAllocateBudget = {
+            RequisitionID: id,
             SiteName: requisitionData.SiteName,
             TotalAmountRequired: requisitionData.TotalAmount,
             AllocateBudget: allocateBudget, 
