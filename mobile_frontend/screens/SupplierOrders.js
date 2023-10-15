@@ -1,11 +1,17 @@
 import { StyleSheet, Text, View, SafeAreaView, ScrollView, Image, KeyboardAvoidingView, Pressable } from 'react-native';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useNavigation } from "@react-navigation/native";
-import { Ionicons } from '@expo/vector-icons';
 import axios from "axios";
+import UserContext from '../components/ContextComponent.js';
+import { Ionicons } from '@expo/vector-icons';
 
-const SiteManagerOrders = () => {
+const SupplierOrders = () => {
+
     const [data, setData] = useState([]);
+    const { user, setUser } = useContext(UserContext);
+    const navigation = useNavigation();
+
+    const SupplierName = user.SupplierName;
 
     useEffect(() => {
         getOrders();
@@ -20,7 +26,11 @@ const SiteManagerOrders = () => {
         console.log(data);
     }
 
-    const navigation = useNavigation();
+    const handleCreateInvoice = (id) => {
+        // Navigate to the create invoice screen with the ID
+        navigation.navigate('CreateInvoice', { id: id });
+    };
+
     return (
         <SafeAreaView style={{ flex: 1, backgroundColor: "#550C9E", alignItems: "center" }}>
             <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
@@ -34,29 +44,40 @@ const SiteManagerOrders = () => {
 
                 <KeyboardAvoidingView>
                     <View style={{ alignItems: "center" }}>
-                        <Text style={{ fontSize: 32, fontWeight: 'bold', marginTop: 10, color: "white", textAlign: "center" }}>Confirmed Orders</Text>
-                        <Text style={{ fontSize: 22, marginTop: 10, color: "white", textAlign: "center" }}>All confirmed orders are listed here</Text>
+                        <Text style={{ fontSize: 32, fontWeight: 'bold', marginTop: 10, color: "white", textAlign: "center" }}>Received Orders</Text>
+                        <Text style={{ fontSize: 22, marginTop: 10, color: "white", textAlign: "center" }}>All received orders are listed here</Text>
                     </View>
                     <View style={styles.table}>
                         <View style={styles.row}>
-                            <Text style={styles.header}>S.Mgr Id</Text>
                             <Text style={styles.header}>Supplier</Text>
                             <Text style={styles.header}>Site</Text>
                             <Text style={styles.header}>Amount</Text>
+                            <Text style={styles.header}>Create</Text>
                         </View>
-                        {data && data.map((item, index) => (
-                            <View style={styles.row} key={index}>
-                                <Text>{item.SiteManagerID}</Text>
-                                <Text>{item.SupplierName}</Text>
-                                <Text>{item.SiteName}</Text>
-                                <Text>{item.TotalAmount}</Text>
-                            </View>
-                        ))}
+                        {data && data.map((item, index) => {
+                            if (item.SupplierName === SupplierName) {
+                                return (
+                                    <View style={styles.row} key={index}>
+                                        <Text style={{ marginTop: 15 }}>{item.SupplierName}</Text>
+                                        <Text style={{ marginTop: 15 }}>{item.SiteName}</Text>
+                                        <Text style={{ marginTop: 15 }}>{item.TotalAmount}</Text>
+                                        <View style={styles.buttonContainer}>
+                                            <Pressable
+                                                style={styles.button}
+                                                onPress={() => handleCreateInvoice(item._id)}
+                                            >
+                                                <Text style={styles.buttonText}>Invoice</Text>
+                                            </Pressable>
+                                        </View>
+                                    </View>
+                                );
+                            }
+                        })}
                     </View>
                 </KeyboardAvoidingView>
                 <Pressable
-                    onPress={() => navigation.navigate("SiteManagerHome")}
-                    style={{width: 60, height: 60, backgroundColor: "#AA7AD0", marginTop: 60, marginLeft: 165, borderRadius: 100}}
+                    onPress={() => navigation.navigate("SupplierHome")}
+                    style={{ width: 60, height: 60, backgroundColor: "#AA7AD0", marginTop: 60, marginLeft: 165, borderRadius: 100 }}
                 >
                     <Ionicons name="home" size={24} color="white" style={{ marginLeft: 17, marginTop: 16 }} />
                 </Pressable>
@@ -67,7 +88,7 @@ const SiteManagerOrders = () => {
     )
 }
 
-export default SiteManagerOrders
+export default SupplierOrders
 
 const styles = StyleSheet.create({
     container: {
@@ -97,7 +118,6 @@ const styles = StyleSheet.create({
     buttonContainer: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        marginTop: 5,
     },
     button: {
         backgroundColor: '#56c411',

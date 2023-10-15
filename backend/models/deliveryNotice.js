@@ -1,13 +1,12 @@
 const mongoose = require('mongoose');
-
 const material = require('./material');
 
-const invoiceSchema = new mongoose.Schema({
-    SupplierName: {
-      type: String,
-      required: true
+const deliverNoticeSchema = new mongoose.Schema({
+    InvoiceID: {
+        type: String,
+        required: true
     },
-    OrderID: {
+    SupplierName: {
         type: String,
         required: true
     },
@@ -23,20 +22,24 @@ const invoiceSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    IssuedDate: {
-      type: String,
-      required: true
+    Date: {
+        type: String,
+        required: true
     },
-    TotalAmount:{
+    TotalAmount: {
         type: Number,
-      required: true
+        required: true
+    },
+    Status: {
+        type: String,
+        required: true
     },
     Materials: {
         type: [material.schema],
         required: true
-      }
-  });
-  
-  const Invoice = mongoose.model('invoices', invoiceSchema);
-  
-  module.exports = Invoice;
+    }
+});
+
+const DeliveryNotice = mongoose.model('deliverNotice', deliverNoticeSchema);
+
+module.exports = DeliveryNotice;

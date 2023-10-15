@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import '../StatusUpdate/statusUpdate.css';
+import '../PendingStatusUpdate/pendingStatusUpdate.css';
 import { useParams } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-export default function UpdateStatus() {
+export default function UpdatePendingStatus() {
 
     const [SiteManagerID, setSiteManagerID] = useState("");
     const [SiteName, setSiteName] = useState("");
@@ -29,9 +29,10 @@ export default function UpdateStatus() {
         setMaterials(result.Materials)
         setTotalAmount(result.TotalAmount)
         setStatus(result.Status)
+
     }
 
-    const UpdateStatus = async () => {
+    const UpdatePendingStatus = async () => {
         let result = await fetch(`http://localhost:8070/requisitions/updateRequisition/${params.id}`, {
             method: 'Put',
             body: JSON.stringify({ SiteManagerID, SiteName, Date, Materials, TotalAmount, Status }),
@@ -44,7 +45,7 @@ export default function UpdateStatus() {
 
         if (result) {
             setTimeout(() => {
-                window.location.href = `/requestedOrders`;
+                window.location.href = `/ManagementpendingOrders`;
             }, 2000);
             toast.success('Status Updated Successfully..!', {
                 position: "top-right",
@@ -62,7 +63,7 @@ export default function UpdateStatus() {
     return (
         <div className="TJUpdatePage">
             <br />
-            <h1 className="TJUpdateHeading">Status - UPDATE</h1>
+            <h1 className="TJUpdateHeading">Pending Status - UPDATE</h1>
             <div className="TJUpdateFormStatus">
                 <br />
                 <label for="subject" className="TJUpdateFormHeading">SiteManager ID: </label><br />
@@ -121,14 +122,14 @@ export default function UpdateStatus() {
                 >
                     <option value="New">{Status}</option>
                     <option value="Approved">Approved</option>
-                    <option value="Pending">Pending</option>
+                    <option value="Rejected">Rejected</option>
                 </select>
                 <br /><br /><br /><br /><br />
 
-                <button className="TJUpdateSubmit" onClick={UpdateStatus}>Update</button>&nbsp;&nbsp;&nbsp;
+                <button className="TJUpdateSubmit" onClick={UpdatePendingStatus}>Update</button>&nbsp;&nbsp;&nbsp;
                 <button className="TJButtonCancel" onClick={(e) => {
                     e.preventDefault();
-                    window.location.href = `/requestedOrders`;
+                    window.location.href = `/ManagementpendingOrders`;
                 }}>Cancel</button> <br /><br />
 
             </div>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "../RequestedOrders/requestedOrders.css";
 import axios from "axios";
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 export default function RequestedOrders() {
@@ -25,7 +25,7 @@ export default function RequestedOrders() {
         <div className="TJViewAppointmentPage">
             <br />
             <h1 className="TJViewHeading">All Requested Orders</h1>
-            <br/>
+            <br />
             <table className="TJViewTableReq">
                 <thead>
                     <tr>

@@ -9,7 +9,7 @@
 }
 .PatientHomeHeading{
    font-size: 80px;
-   color: #008080;
+   color: #550C9E;
    font-family: 'Secular One', sans-serif;
    font-weight: 0;
    text-align: center;
@@ -45,13 +45,13 @@
 .PHPara3{
    font-family: 'Jost', sans-serif;
    font-size: 30px;
-   color: #008080;
+   color: #550C9E;
    font-weight: bold;
    text-align: center;
 }
 
 .PatientHomePageSecondPart{
-   background-color: #008080;
+   background-color: #550C9E;
    height: auto;
    margin-left: 20px;
    margin-right: 20px;
@@ -59,27 +59,28 @@
 
 .PatientDivHeading{
    font-weight: bold;
-   color: #008080;
+   color: #550C9E;
    font-size: 25px;
    text-align: center;
    font-family: 'Secular One', sans-serif;
 }
-.PatientDivPara{
+.PatientDivParaS{
    text-align: center;
-   color: #008080;
+   color: #550C9E;
    font-size: 20px;
    padding: 10px;
    font-family: 'Jost', sans-serif;
    font-weight: bold;
 }
-.PatientDivIcon{
+.PatientDivIconS{
    height: 50px;
-   width: 70px;
+   width: 50px;
    margin-left: 42%;
    margin-top: 3%;
+   padding-bottom: 7px;
 }
 .PatientHomeButton{
-   background-color: #008080;
+   background-color: #550C9E;
    color: white;
    border-radius: 10px;
    width: 180px;
@@ -89,7 +90,7 @@
 }
 .PatientHomeButton:hover{
    background-color: white;
-   color: #008080;
+   color: #550C9E;
    font-weight: bold;
    transform: scale(1.6);
 }
@@ -146,7 +147,7 @@
 
 .PatientHomeHeading2{
    font-family: 'Secular One', sans-serif;
-   color: #008080;
+   color: #550C9E;
    font-size: 50px;
    margin-left: 460px;
 }
@@ -169,13 +170,12 @@
 .PatientDivPara2{
 
    text-align: center;
-   color: #008080;
+   color: #550C9E;
    font-size: 10px;
    padding: 0px;
    font-family: 'Jost', sans-serif;
    font-weight: bold;
 }
-/* margin-left: 25rem; */
 
 #patientimg:hover{
    transform: scale(1.1);
