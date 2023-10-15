@@ -132,6 +132,7 @@ export default function NewWorkoutPlan() {
                                 onChangeText={(text) => setTotalAmount(text)}
                                 style={{ color: "gray", marginVertical: 10, width: 300, fontSize: 16 }}
                                 placeholder="Enter Total Amount"
+                                keyboardType="numeric"
                             />
                         </View>
 

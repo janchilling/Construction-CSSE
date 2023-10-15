@@ -22,7 +22,7 @@ const RequisitionRequests = () => {
 
     const handleUpdate = (id) => {
         // Navigate to the update screen with the ID
-        navigation.navigate('UpdateRequisition', { _id: id });
+        navigation.navigate('UpdateRequisition', { id: id });
     };
 
     const navigation = useNavigation();
@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
         width: 400,
         flex: 1,
         backgroundColor: "#AA7AD0",
-        marginTop: 30
+        marginTop: 30,
     },
     row: {
         flexDirection: 'row',
@@ -91,6 +91,7 @@ const styles = StyleSheet.create({
         padding: 10,
         borderBottomWidth: 1,
         borderBottomColor: '#ccc',
+        fontWeight: 'bold',
     },
     header: {
         textAlign: 'justify',

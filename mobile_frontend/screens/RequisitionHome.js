@@ -13,7 +13,7 @@ const RequisitionHome = () => {
 
                 <View>
                     <Image
-                        style={{ width: 250, height: 200, marginLeft: 25 }}
+                        style={{ width: 250, height: 200, marginLeft: 5 }}
                         source={require('../assets/images/mbktLogo.png')}
                     />
                 </View>

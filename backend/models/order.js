@@ -34,7 +34,15 @@ const orderSchema = new mongoose.Schema({
     Materials: {
         type: [material.schema],
         required: true
-      }
+    },
+    CardType: {
+        type: String,
+        
+    },
+    CardNumber: {
+      type: Number,
+      
+  }
   });
   
   const Order = mongoose.model('orders', orderSchema);
