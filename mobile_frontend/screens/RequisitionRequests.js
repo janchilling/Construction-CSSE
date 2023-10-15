@@ -1,8 +1,8 @@
 import { StyleSheet, Text, View, SafeAreaView, ScrollView, Image, KeyboardAvoidingView, Pressable } from 'react-native';
 import React, { useState, useEffect } from 'react';
 import { useNavigation } from "@react-navigation/native";
-import { FontAwesome } from '@expo/vector-icons';
 import axios from "axios";
+import { Ionicons } from '@expo/vector-icons';
 
 const RequisitionRequests = () => {
     const [data, setData] = useState([]);
@@ -66,6 +66,13 @@ const RequisitionRequests = () => {
                         ))}
                     </View>
                 </KeyboardAvoidingView>
+                <Pressable
+                    onPress={() => navigation.navigate("SiteManagerHome")}
+                    style={{ width: 60, height: 60, backgroundColor: "#AA7AD0", marginTop: 60, marginLeft: 165, borderRadius: 100 }}
+                >
+                    <Ionicons name="home" size={24} color="white" style={{ marginLeft: 17, marginTop: 16 }} />
+                </Pressable>
+
 
             </ScrollView>
 

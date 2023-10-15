@@ -13,6 +13,10 @@ import SiteManagerOrders from '../screens/SiteManagerOrders';
 import SiteManagerDeliveryInfo from '../screens/SiteManagerDeliveryInfo';
 import SupplierHome from '../screens/SupplierHome';
 import UpdateRequisition from '../screens/UpdateRequisition';
+import InvoicesHome from '../screens/InvoicesHome';
+import CreateInvoice from '../screens/CreateInvoice';
+import SupplierOrders from '../screens/SupplierOrders';
+import DeliveryHome from '../screens/DeliveryHome';
 
 const StackNavigator = () => {
     const Stack = createNativeStackNavigator();
@@ -30,6 +34,10 @@ const StackNavigator = () => {
                 <Stack.Screen name="SiteManagerDeliveryInfo" component={SiteManagerDeliveryInfo} options={{headerShown: false}}/>
                 <Stack.Screen name="SupplierHome" component={SupplierHome} options={{headerShown: false}}/>
                 <Stack.Screen name="UpdateRequisition" component={UpdateRequisition} options={{headerShown: false}}/>
+                <Stack.Screen name="InvoicesHome" component={InvoicesHome} options={{headerShown: false}}/>
+                <Stack.Screen name="CreateInvoice" component={CreateInvoice} options={{headerShown: false}}/>
+                <Stack.Screen name="SupplierOrders" component={SupplierOrders} options={{headerShown: false}}/>
+                <Stack.Screen name="DeliveryHome" component={DeliveryHome} options={{headerShown: false}}/>
 
             </Stack.Navigator>
         </NavigationContainer>
