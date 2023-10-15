@@ -47,7 +47,7 @@ const singleNotice = (req, res) => {
 const updateNotice = async (req, res) => {
     try {
         const updatedNotice = await DeliveryNotice.findByIdAndUpdate(req.params.id, req.body, { new: true });
-        res.json(updatedOrder);
+        res.json(updatedNotice);
     } catch (error) {
         res.status(500).json({ error: 'Failed to update Order' });
     }

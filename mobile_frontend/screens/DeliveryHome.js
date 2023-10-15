@@ -2,6 +2,7 @@ import { StyleSheet, Text, View, SafeAreaView, ScrollView, Image, KeyboardAvoidi
 import React from 'react';
 import { useNavigation } from "@react-navigation/native";
 import { FontAwesome } from '@expo/vector-icons';
+import { Ionicons } from "@expo/vector-icons";
 
 const DeliveryHome = () => {
 
@@ -24,7 +25,7 @@ const DeliveryHome = () => {
                 </KeyboardAvoidingView>
 
                 <Pressable
-                    onPress={() => navigation.navigate("RequisitionRequests")}
+                    onPress={() => navigation.navigate("SupplierDeliveryNotes")}
                     style={{
                         width: 250,
                         backgroundColor: "#AA7AD0",
@@ -54,7 +55,7 @@ const DeliveryHome = () => {
                 </Pressable>
 
                 <Pressable
-                    onPress={() => navigation.navigate("CreateRequisition")}
+                    onPress={() => navigation.navigate("InvoicesHome")}
                     style={{
                         width: 250,
                         backgroundColor: "#AA7AD0",
@@ -78,6 +79,13 @@ const DeliveryHome = () => {
                     >
                         Create a delivery advice note
                     </Text>
+                </Pressable>
+
+                <Pressable
+                    onPress={() => navigation.navigate("SupplierHome")}
+                    style={{ width: 60, height: 60, backgroundColor: "#AA7AD0", marginTop: 60, marginLeft: 100, borderRadius: 100 }}
+                >
+                    <Ionicons name="home" size={24} color="white" style={{ marginLeft: 17, marginTop: 16 }} />
                 </Pressable>
 
             </ScrollView>
