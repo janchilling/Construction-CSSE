@@ -13,6 +13,14 @@ import SiteManagerOrders from '../screens/SiteManagerOrders';
 import SiteManagerDeliveryInfo from '../screens/SiteManagerDeliveryInfo';
 import SupplierHome from '../screens/SupplierHome';
 import UpdateRequisition from '../screens/UpdateRequisition';
+import InvoicesHome from '../screens/InvoicesHome';
+import CreateInvoice from '../screens/CreateInvoice';
+import SupplierOrders from '../screens/SupplierOrders';
+import DeliveryHome from '../screens/DeliveryHome';
+import CreateDeliveryNotice from '../screens/CreateDeliveryNotice';
+import SupplierDeliveryNotes from '../screens/SupplierDeliveryNotes';
+import UpdateDeliveryNotice from '../screens/UpdateDeliveryNotice';
+import ViewDeliveryNotice from '../screens/ViewDeliveryNotice';
 
 const StackNavigator = () => {
     const Stack = createNativeStackNavigator();
@@ -30,6 +38,14 @@ const StackNavigator = () => {
                 <Stack.Screen name="SiteManagerDeliveryInfo" component={SiteManagerDeliveryInfo} options={{headerShown: false}}/>
                 <Stack.Screen name="SupplierHome" component={SupplierHome} options={{headerShown: false}}/>
                 <Stack.Screen name="UpdateRequisition" component={UpdateRequisition} options={{headerShown: false}}/>
+                <Stack.Screen name="InvoicesHome" component={InvoicesHome} options={{headerShown: false}}/>
+                <Stack.Screen name="CreateInvoice" component={CreateInvoice} options={{headerShown: false}}/>
+                <Stack.Screen name="SupplierOrders" component={SupplierOrders} options={{headerShown: false}}/>
+                <Stack.Screen name="DeliveryHome" component={DeliveryHome} options={{headerShown: false}}/>
+                <Stack.Screen name="CreateDeliveryNotice" component={CreateDeliveryNotice} options={{headerShown: false}}/>
+                <Stack.Screen name="SupplierDeliveryNotes" component={SupplierDeliveryNotes} options={{headerShown: false}}/>
+                <Stack.Screen name="UpdateDeliveryNotice" component={UpdateDeliveryNotice} options={{headerShown: false}}/>
+                <Stack.Screen name="ViewDeliveryNotice" component={ViewDeliveryNotice} options={{headerShown: false}}/>
 
             </Stack.Navigator>
         </NavigationContainer>

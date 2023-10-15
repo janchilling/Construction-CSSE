@@ -1,18 +1,23 @@
 import { StyleSheet, Text, View, SafeAreaView, ScrollView, Image, KeyboardAvoidingView, Pressable } from 'react-native';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useNavigation } from "@react-navigation/native";
 import axios from "axios";
 import { Ionicons } from '@expo/vector-icons';
+import UserContext from '../components/ContextComponent.js';
 
-const RequisitionRequests = () => {
+const SupplierDeliveryNotes = () => {
     const [data, setData] = useState([]);
+    const { user, setUser } = useContext(UserContext);
+    const navigation = useNavigation();
+
+    const SupplierName = user.SupplierName;
 
     useEffect(() => {
-        getRequisitions();
+        getDeliveryNotes();
     }, [])
 
-    const getRequisitions = async () => {
-        const response = await axios.get("http://192.168.8.115:8070/requisitions/allRequistions");
+    const getDeliveryNotes = async () => {
+        const response = await axios.get("http://192.168.8.115:8070/Notices/allNotices");
 
         if (response.status === 200) {
             setData(response.data);
@@ -22,10 +27,9 @@ const RequisitionRequests = () => {
 
     const handleUpdate = (id) => {
         // Navigate to the update screen with the ID
-        navigation.navigate('UpdateRequisition', { id: id });
+        navigation.navigate('UpdateDeliveryNotice', { id: id });
     };
 
-    const navigation = useNavigation();
     return (
         <SafeAreaView style={{ flex: 1, backgroundColor: "#550C9E", alignItems: "center" }}>
             <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
@@ -39,35 +43,39 @@ const RequisitionRequests = () => {
 
                 <KeyboardAvoidingView>
                     <View style={{ alignItems: "center" }}>
-                        <Text style={{ fontSize: 32, fontWeight: 'bold', marginTop: 2, color: "white", textAlign: "center" }}>Requisition Requests</Text>
-                        <Text style={{ fontSize: 22, marginTop: 10, color: "white", textAlign: "center" }}>All submitted requests are listed here</Text>
+                        <Text style={{ fontSize: 32, fontWeight: 'bold', marginTop: 2, color: "white", textAlign: "center" }}>Delivery Notices</Text>
+                        <Text style={{ fontSize: 22, marginTop: 10, color: "white", textAlign: "center" }}>All submitted delivery notes are listed here</Text>
                     </View>
                     <View style={styles.table}>
                         <View style={styles.row}>
-                            <Text style={styles.header}>SMgr Id</Text>
-                            <Text style={styles.header}>Site</Text>
+                            <Text style={styles.header}>Supplier</Text>
+                            <Text style={styles.header}>S.Mgr Id</Text>
                             <Text style={styles.header}>Status</Text>
                             <Text style={styles.header}>Actions</Text>
                         </View>
-                        {data && data.map((item, index) => (
-                            <View style={styles.row} key={index}>
-                                <Text>{item.SiteManagerID}</Text>
-                                <Text>{item.SiteName}</Text>
-                                <Text>{item.Status}</Text>
-                                <View style={styles.buttonContainer}>
-                                    <Pressable
-                                        style={styles.button}
-                                        onPress={() => handleUpdate(item._id)}
-                                    >
-                                        <Text style={styles.buttonText}>Update</Text>
-                                    </Pressable>
-                                </View>
-                            </View>
-                        ))}
+                        {data && data.map((item, index) => {
+                            if (item.SupplierName === SupplierName) {
+                                return (
+                                    <View style={styles.row} key={index}>
+                                        <Text style={{ marginTop: 15 }}>{item.SupplierName}</Text>
+                                        <Text style={{ marginTop: 15 }}>{item.SiteName}</Text>
+                                        <Text style={{ marginTop: 15 }}>{item.Status}</Text>
+                                        <View style={styles.buttonContainer}>
+                                            <Pressable
+                                                style={styles.button}
+                                                onPress={() => handleUpdate(item._id)}
+                                            >
+                                                <Text style={styles.buttonText}>Update</Text>
+                                            </Pressable>
+                                        </View>
+                                    </View>
+                                );
+                            }
+                        })}
                     </View>
                 </KeyboardAvoidingView>
                 <Pressable
-                    onPress={() => navigation.navigate("SiteManagerHome")}
+                    onPress={() => navigation.navigate("SupplierHome")}
                     style={{ width: 60, height: 60, backgroundColor: "#AA7AD0", marginTop: 60, marginLeft: 165, borderRadius: 100 }}
                 >
                     <Ionicons name="home" size={24} color="white" style={{ marginLeft: 17, marginTop: 16 }} />
@@ -80,7 +88,7 @@ const RequisitionRequests = () => {
     )
 }
 
-export default RequisitionRequests
+export default SupplierDeliveryNotes
 
 const styles = StyleSheet.create({
     container: {

@@ -83,14 +83,14 @@ export default function Header(props) {
                                 <li className="NavigationBarB nav-item" id='PatientNavitem'>
                                     <a className="NavigationBarB nav-link" id="PatientHeaderHd" style={{ color: "#ffffff" }} onClick={(e) => {
                                         e.preventDefault();
-                                        window.location.href = ``
+                                        window.location.href = `#`
                                     }}>HELP DETAILS</a>
                                 </li>
 
                                 <li className='Patientdropdown' >
                                     <div className="NavigationBarBarDropdown dropdown">
                                         <button className="NavigationBarB btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" >
-                                            {/* {user.Username} */}COMPANY STAFF
+                                            COMPANY STAFF
                                         </button>
 
                                         <ul className="NavigationBarB dropdown-menu dropdown-menu-dark">

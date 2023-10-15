@@ -68,14 +68,15 @@
    text-align: center;
    color: #550C9E;
    font-size: 20px;
-   padding: 10px;
+   padding: 0px 10px 10px 10px;
    font-family: 'Jost', sans-serif;
    font-weight: bold;
 }
 .PatientDivIcon{
    height: 50px;
-   width: 70px;
-   margin-left: 42%;
+   width: 60px;
+   padding-bottom: 10px;
+   margin-left: 40%;
    margin-top: 3%;
 }
 .PatientHomeButton{
@@ -175,7 +176,6 @@
    font-family: 'Jost', sans-serif;
    font-weight: bold;
 }
-/* margin-left: 25rem; */
 
 #patientimg:hover{
    transform: scale(1.1);

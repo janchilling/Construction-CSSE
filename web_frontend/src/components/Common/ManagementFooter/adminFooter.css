@@ -21,6 +21,7 @@
     font-family: 'Secular One', sans-serif;
     text-align: left;
     transition: 1s;
+    cursor: pointer;
 }
 
 .FNFooterHeading:hover{
