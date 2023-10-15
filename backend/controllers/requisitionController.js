@@ -5,10 +5,11 @@ const router = require("express").Router();
 //Creating a new Requisition
 const createRequisition = async (req, res) => {
     const newRequisition = new Requisition(req.body);
-  
+
     newRequisition
       .save()
       .then(() => {
+
         res.json("Requisition Added");
       })
       .catch((err) => {
@@ -44,11 +45,11 @@ const singleRequisition = (req, res) => {
 }
 
 //Update a single requistion
-const updateRequisition = (req, res) => {
+const updateRequisition = async(req, res) => {
   const RequisitionId = req.params.id;
     try {
-        const updatedRequisition = Requisition.findByIdAndUpdate(RequisitionId, req.body, { new: true });
-        res.json(updatedRequisition);
+        const updateRequisition = await Requisition.findByIdAndUpdate(RequisitionId, req.body, { new: true });
+        res.json(updateRequisition);
     } catch (error) {
         res.status(500).json({ error: 'Failed to update requisition' });
     }

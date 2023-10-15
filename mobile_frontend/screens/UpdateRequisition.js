@@ -1,12 +1,13 @@
-import React, { useState } from 'react';
-import { View, Text, TextInput, Pressable, ScrollView, TouchableOpacity, Alert, SafeAreaView, KeyboardAvoidingView } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, Text, TextInput, Pressable, ScrollView, TouchableOpacity, Alert, SafeAreaView, KeyboardAvoidingView, StyleSheet } from 'react-native';
 import axios from 'axios';
 import { MaterialIcons } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { Ionicons } from "@expo/vector-icons";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useRoute } from "@react-navigation/native";
 
-export default function NewWorkoutPlan() {
+const UpdateRequisition = () => {
+
     const [SiteManagerID, setSiteManagerID] = useState('');
     const [Date, setDate] = useState('');
     const [SiteName, setSiteName] = useState('');
@@ -18,6 +19,51 @@ export default function NewWorkoutPlan() {
 
     const navigation = useNavigation();
 
+    const route = useRoute();
+    const requisitionId = route.params?.id; // Getting requisitionId from route params
+
+    useEffect(() => {
+        getRequisitionDetails();
+    }, [])
+
+    const getRequisitionDetails = async () => {
+
+        let result = await fetch(`http://192.168.8.115:8070/requisitions//singleRequistions/${requisitionId}`);
+        result = await result.json();
+
+        setSiteManagerID(result.SiteManagerID);
+        setDate(result.Date);
+        setSiteName(result.SiteName);
+        setStatus(result.Status);
+        setTotalAmount(result.TotalAmount);
+        setMaterials(result.Materials);
+    }
+
+    const updateRequisition = async () => {
+        try {
+            const updatedRequisition = {
+                SiteManagerID: SiteManagerID,
+                Date: Date,
+                SiteName: SiteName,
+                Status: Status,
+                TotalAmount: TotalAmount,
+                Materials: Materials,
+            };
+
+            const response = await axios.put(`http://192.168.8.115:8070/requisitions/updateRequisition/${requisitionId}`, updatedRequisition);
+
+            if (response.status === 200) {
+                console.log(updatedRequisition);
+                Alert.alert('Success', 'Requisition updated successfully');
+            } else {
+                Alert.alert('Error', 'Failed to update requisition');
+            }
+        } catch (error) {
+            console.error('Error updating requisition: ', error);
+            Alert.alert('Error', 'Failed to update requisition');
+        }
+    };
+
     const addMaterial = () => {
         const newMaterial = {
             MaterialName: MaterialName,
@@ -28,23 +74,6 @@ export default function NewWorkoutPlan() {
         setMaterialQuantity('');
     };
 
-    const handleCreateRequisition = () => {
-        const newRequisition = {
-            SiteManagerID,
-            Date,
-            SiteName,
-            Status,
-            Materials: Materials,
-            TotalAmount
-        }
-        console.log(newRequisition);
-        axios.post("http://192.168.8.115:8070/requisitions/newRequisition", newRequisition).then(() => {
-            Alert.alert("Requisition Submitted Successfully!")
-            navigation.navigate("SiteManagerHome");
-        }).catch((err) => {
-            Alert.alert("Error creating requistions");
-        })
-    };
 
     return (
         <SafeAreaView style={{ flex: 1, backgroundColor: "#550C9E", alignItems: "center" }}>
@@ -52,7 +81,7 @@ export default function NewWorkoutPlan() {
                 <KeyboardAvoidingView>
                     <View style={{ alignItems: "center" }}>
                         <Text style={{ fontSize: 32, fontWeight: 'bold', marginTop: 2, color: "white" }}>
-                            Create Requisition
+                            Update Requisition
                         </Text>
                     </View>
 
@@ -128,7 +157,7 @@ export default function NewWorkoutPlan() {
                             <MaterialIcons name="attach-money" size={24} color="gray" style={{ marginLeft: 8 }} />
 
                             <TextInput
-                                value={TotalAmount}
+                                value={TotalAmount.toString()}
                                 onChangeText={(text) => setTotalAmount(text)}
                                 style={{ color: "gray", marginVertical: 10, width: 300, fontSize: 16 }}
                                 placeholder="Enter Total Amount"
@@ -137,7 +166,7 @@ export default function NewWorkoutPlan() {
                         </View>
 
                         <Pressable
-                            onPress={handleCreateRequisition}
+                            onPress={updateRequisition}
                             style={{
                                 width: 200,
                                 backgroundColor: "#56c411",
@@ -164,5 +193,9 @@ export default function NewWorkoutPlan() {
                 </KeyboardAvoidingView>
             </ScrollView>
         </SafeAreaView>
-    );
+    )
 }
+
+export default UpdateRequisition
+
+const styles = StyleSheet.create({})
