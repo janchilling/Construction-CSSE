@@ -13,11 +13,6 @@ export default function StaffHome() {
     const location = useLocation()
     const params = useParams();
 
-    //Log out function
-    function logOut() {
-        localStorage.clear();
-    }
-
     return (
         <div className="PatientHomePage">
             <br />
@@ -26,7 +21,7 @@ export default function StaffHome() {
             <p className="PHPara1">Our motivation is to be the top organization in the construction industry providing excellent service to the people.</p>
 
             <img src={dashboardpic} className="PHDashBoardPic" />
-            <br /><br />
+            <br /><br /><br/>
             <p className="PHPara2">We are always committed to providing you with the best services for all your construction needs!</p>
             <p className="PHPara3">Our services are mentioned below</p>
 
