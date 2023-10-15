@@ -1,22 +1,34 @@
-import React, { useState } from 'react';
-import { View, Text, TextInput, Pressable, ScrollView, TouchableOpacity, Alert, SafeAreaView, KeyboardAvoidingView} from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, Text, TextInput, Pressable, ScrollView, TouchableOpacity, Alert, SafeAreaView, KeyboardAvoidingView, StyleSheet } from 'react-native';
 import axios from 'axios';
 import { MaterialIcons } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { FontAwesome } from '@expo/vector-icons';
 import { Ionicons } from "@expo/vector-icons";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useRoute } from "@react-navigation/native";
 
-export default function NewWorkoutPlan() {
+const CreateDeliveryNotice = () => {
+
+    const [InvoiceID, setInvoiceID] = useState('');
+    const [SupplierName, setSupplierName] = useState('');
     const [SiteManagerID, setSiteManagerID] = useState('');
-    const [Date, setDate] = useState('');
+    const [SiteManagerName, setSiteManagerName] = useState('');
     const [SiteName, setSiteName] = useState('');
-    const [Status, setStatus] = useState('');
+    const [Date, setDate] = useState('');
     const [TotalAmount, setTotalAmount] = useState('');
+    const [Status, setStatus] = useState('');
     const [Materials, setMaterials] = useState([]);
     const [MaterialName, setMaterialName] = useState('');
     const [MaterialQuantity, setMaterialQuantity] = useState('');
 
     const navigation = useNavigation();
+
+    const route = useRoute();
+    useEffect(() => {
+        if (route.params?.id) {
+            setInvoiceID(route.params.id);
+        }
+    }, []);
 
     const addMaterial = () => {
         const newMaterial = {
@@ -28,21 +40,23 @@ export default function NewWorkoutPlan() {
         setMaterialQuantity('');
     };
 
-    const handleCreateRequisition = () => {
-        const newRequisition = {
-            SiteManagerID,
-            Date,
-            SiteName,
-            Status,
+    const handleCreateDeliveryNotice = () => {
+        const newDeliveryNotice = {
+            InvoiceID: InvoiceID,
+            SupplierName: SupplierName,
+            SiteManagerID: SiteManagerID,
+            SiteManagerName: SiteManagerName,
+            SiteName: SiteName,
+            Date: Date,
+            TotalAmount: TotalAmount,
+            Status: Status,
             Materials: Materials,
-            TotalAmount
         }
-        console.log(newRequisition);
-        axios.post("http://192.168.8.115:8070/requisitions/newRequisition", newRequisition).then(() => {
-            Alert.alert("Requisition Submitted Successfully!")
-            navigation.navigate("SiteManagerHome");
+        axios.post("http://192.168.8.115:8070/Notices/newNotice", newDeliveryNotice).then(() => {
+            Alert.alert("Delivery Notice Submitted Successfully!")
+            navigation.navigate("DeliveryHome");
         }).catch((err) => {
-            Alert.alert("Error creating requistions");
+            Alert.alert("Error creating Delivery Advice Notice!");
         })
     };
 
@@ -51,14 +65,23 @@ export default function NewWorkoutPlan() {
             <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
                 <KeyboardAvoidingView>
                     <View style={{ alignItems: "center" }}>
-                        <Text style={{ fontSize: 32, fontWeight: 'bold', marginTop: 2, color: "white" }}>
-                            Create Requisition
+                        <Text style={{ fontSize: 28, fontWeight: 'bold', marginTop: 10, color: "white" }}>
+                            Create Delivery Advice Note
                         </Text>
                     </View>
-
                     <View style={{ marginTop: 5 }}>
                         <View style={{ flexDirection: "row", alignItems: "center", gap: 5, backgroundColor: "#D0D0D0", paddingVertical: 5, borderRadius: 5, marginTop: 30 }}>
                             <Ionicons name="ios-person" size={24} color="gray" style={{ marginLeft: 8 }} />
+                            <TextInput
+                                value={SupplierName}
+                                onChangeText={(text) => setSupplierName(text)}
+                                style={{ color: "gray", marginVertical: 10, width: 300, fontSize: 16 }}
+                                placeholder="Enter Supplier Name"
+                            />
+                        </View>
+
+                        <View style={{ flexDirection: "row", alignItems: "center", gap: 5, backgroundColor: "#D0D0D0", paddingVertical: 5, borderRadius: 5, marginTop: 30 }}>
+                            <FontAwesome name="user-md" size={24} color="gray" style={{ marginLeft: 8 }} />
                             <TextInput
                                 value={SiteManagerID}
                                 onChangeText={(text) => setSiteManagerID(text)}
@@ -68,12 +91,12 @@ export default function NewWorkoutPlan() {
                         </View>
 
                         <View style={{ flexDirection: "row", alignItems: "center", gap: 5, backgroundColor: "#D0D0D0", paddingVertical: 5, borderRadius: 5, marginTop: 30 }}>
-                            <MaterialIcons name="date-range" size={24} color="gray" style={{ marginLeft: 8 }} />
+                            <FontAwesome name="user-md" size={24} color="gray" style={{ marginLeft: 8 }} />
                             <TextInput
-                                value={Date}
-                                onChangeText={(text) => setDate(text)}
+                                value={SiteManagerName}
+                                onChangeText={(text) => setSiteManagerName(text)}
                                 style={{ color: "gray", marginVertical: 10, width: 300, fontSize: 16 }}
-                                placeholder="Enter date"
+                                placeholder="Enter Site Manager Name"
                             />
                         </View>
 
@@ -84,6 +107,16 @@ export default function NewWorkoutPlan() {
                                 onChangeText={(text) => setSiteName(text)}
                                 style={{ color: "gray", marginVertical: 10, width: 300, fontSize: 16 }}
                                 placeholder="Enter site name"
+                            />
+                        </View>
+
+                        <View style={{ flexDirection: "row", alignItems: "center", gap: 5, backgroundColor: "#D0D0D0", paddingVertical: 5, borderRadius: 5, marginTop: 30 }}>
+                            <MaterialIcons name="date-range" size={24} color="gray" style={{ marginLeft: 8 }} />
+                            <TextInput
+                                value={Date}
+                                onChangeText={(text) => setDate(text)}
+                                style={{ color: "gray", marginVertical: 10, width: 300, fontSize: 16 }}
+                                placeholder="Enter date"
                             />
                         </View>
 
@@ -109,21 +142,21 @@ export default function NewWorkoutPlan() {
                                 placeholder="Material Name"
                                 value={MaterialName}
                                 onChangeText={(text) => setMaterialName(text)}
-                                style={{ color: "gray", marginVertical: 10, width: 300, fontSize: 16, flexDirection: "row", alignItems: "center", gap: 5, backgroundColor: "#D0D0D0", paddingVertical: 5, borderRadius: 5, marginTop: 30, marginLeft: 20 }}
+                                style={{ color: "gray", marginVertical: 10, width: 300, fontSize: 16, flexDirection: "row", alignItems: "center", gap: 5, backgroundColor: "#D0D0D0", paddingVertical: 5, borderRadius: 5, marginTop: 30, marginLeft: 30 }}
                             />
                             <TextInput
                                 placeholder="Material Quantity"
                                 value={MaterialQuantity}
                                 onChangeText={(text) => setMaterialQuantity(text)}
-                                style={{ color: "gray", marginVertical: 10, width: 300, fontSize: 16, flexDirection: "row", alignItems: "center", gap: 5, backgroundColor: "#D0D0D0", paddingVertical: 5, borderRadius: 5, marginTop: 5, marginLeft: 20 }}
+                                style={{ color: "gray", marginVertical: 10, width: 300, fontSize: 16, flexDirection: "row", alignItems: "center", gap: 5, backgroundColor: "#D0D0D0", paddingVertical: 5, borderRadius: 5, marginTop: 5, marginLeft: 30 }}
                             />
                             <TouchableOpacity onPress={addMaterial}>
-                                <View style={{ backgroundColor: '#AA7AD0', padding: 10, marginLeft: 70, borderRadius: 10, width: 200, marginTop: 10 }}>
+                                <View style={{ backgroundColor: '#AA7AD0', padding: 10, marginLeft: 80, borderRadius: 10, width: 200, marginTop: 10 }}>
                                     <Text style={{ color: 'white', textAlign: 'center' }}>Add Material</Text>
                                 </View>
                             </TouchableOpacity>
                         </View>
-
+                        
                         <View style={{ flexDirection: "row", alignItems: "center", gap: 5, backgroundColor: "#D0D0D0", paddingVertical: 5, borderRadius: 5, marginTop: 30 }}>
                             <MaterialIcons name="attach-money" size={24} color="gray" style={{ marginLeft: 8 }} />
 
@@ -135,9 +168,9 @@ export default function NewWorkoutPlan() {
                                 keyboardType="numeric"
                             />
                         </View>
-
+                        
                         <Pressable
-                            onPress={handleCreateRequisition}
+                            onPress={handleCreateDeliveryNotice}
                             style={{
                                 width: 200,
                                 backgroundColor: "#56c411",
@@ -156,13 +189,19 @@ export default function NewWorkoutPlan() {
                                     fontWeight: "bold",
                                 }}
                             >
-                                Create Request
+                                Create Invoice
                             </Text>
                         </Pressable>
 
                     </View>
+
+
                 </KeyboardAvoidingView>
             </ScrollView>
         </SafeAreaView>
-    );
+    )
 }
+
+export default CreateDeliveryNotice
+
+const styles = StyleSheet.create({})

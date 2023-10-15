@@ -1,49 +1,73 @@
-import React, { useState } from 'react';
-import { View, Text, TextInput, Pressable, ScrollView, TouchableOpacity, Alert, SafeAreaView, KeyboardAvoidingView} from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, Text, TextInput, Pressable, ScrollView, TouchableOpacity, Alert, SafeAreaView, KeyboardAvoidingView, StyleSheet } from 'react-native';
 import axios from 'axios';
 import { MaterialIcons } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { Ionicons } from "@expo/vector-icons";
-import { useNavigation } from "@react-navigation/native";
+import { FontAwesome } from '@expo/vector-icons';
+import { useNavigation, useRoute } from "@react-navigation/native";
 
-export default function NewWorkoutPlan() {
+const UpdateDeliveryNotice = () => {
+    const [InvoiceID, setInvoiceID] = useState('');
+    const [SupplierName, setSupplierName] = useState('');
     const [SiteManagerID, setSiteManagerID] = useState('');
-    const [Date, setDate] = useState('');
+    const [SiteManagerName, setSiteManagerName] = useState('');
     const [SiteName, setSiteName] = useState('');
-    const [Status, setStatus] = useState('');
+    const [Date, setDate] = useState('');
     const [TotalAmount, setTotalAmount] = useState('');
+    const [Status, setStatus] = useState('');
     const [Materials, setMaterials] = useState([]);
-    const [MaterialName, setMaterialName] = useState('');
-    const [MaterialQuantity, setMaterialQuantity] = useState('');
 
     const navigation = useNavigation();
 
-    const addMaterial = () => {
-        const newMaterial = {
-            MaterialName: MaterialName,
-            MaterialQuantity: MaterialQuantity
-        };
-        setMaterials([...Materials, newMaterial]);
-        setMaterialName('');
-        setMaterialQuantity('');
-    };
+    const route = useRoute();
+    const noticeId = route.params?.id; // Getting requisitionId from route params
 
-    const handleCreateRequisition = () => {
-        const newRequisition = {
-            SiteManagerID,
-            Date,
-            SiteName,
-            Status,
-            Materials: Materials,
-            TotalAmount
+    useEffect(() => {
+        getNoticeDetails();
+    }, [])
+
+    const getNoticeDetails = async () => {
+
+        let result = await fetch(`http://192.168.8.115:8070/Notices/singleNotice/${noticeId}`);
+        result = await result.json();
+
+        setInvoiceID(result.InvoiceID);
+        setSupplierName(result.SupplierName);
+        setSiteManagerID(result.SiteManagerID);
+        setSiteManagerName(result.SiteManagerName);
+        setSiteName(result.SiteName);
+        setDate(result.Date);
+        setStatus(result.Status);
+        setTotalAmount(result.TotalAmount);
+        setMaterials(result.Materials);
+    }
+
+    const UpdateDeliveryNotice = async () => {
+        try {
+            const updatedNotice = {
+                InvoiceID: InvoiceID,
+                SupplierName: SupplierName,
+                SiteManagerID: SiteManagerID,
+                SiteManagerName: SiteManagerName,
+                SiteName: SiteName,
+                Date: Date,
+                TotalAmount: TotalAmount,
+                Status: Status,
+                Materials: Materials,
+            };
+
+            const response = await axios.put(`http://192.168.8.115:8070/Notices/updateNotice/${noticeId}`, updatedNotice);
+
+            if (response.status === 200) {
+                Alert.alert('Success', 'Notice updated successfully');
+            } else {
+                Alert.alert('Error', 'Failed to update notice');
+            }
+        } catch (error) {
+            console.error('Error updating notice: ', error);
+            Alert.alert('Error', 'Failed to update notice');
         }
-        console.log(newRequisition);
-        axios.post("http://192.168.8.115:8070/requisitions/newRequisition", newRequisition).then(() => {
-            Alert.alert("Requisition Submitted Successfully!")
-            navigation.navigate("SiteManagerHome");
-        }).catch((err) => {
-            Alert.alert("Error creating requistions");
-        })
     };
 
     return (
@@ -51,15 +75,26 @@ export default function NewWorkoutPlan() {
             <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
                 <KeyboardAvoidingView>
                     <View style={{ alignItems: "center" }}>
-                        <Text style={{ fontSize: 32, fontWeight: 'bold', marginTop: 2, color: "white" }}>
-                            Create Requisition
+                        <Text style={{ fontSize: 28, fontWeight: 'bold', marginTop: 10, color: "white" }}>
+                            Update Delivery Advice Note
                         </Text>
                     </View>
-
                     <View style={{ marginTop: 5 }}>
                         <View style={{ flexDirection: "row", alignItems: "center", gap: 5, backgroundColor: "#D0D0D0", paddingVertical: 5, borderRadius: 5, marginTop: 30 }}>
                             <Ionicons name="ios-person" size={24} color="gray" style={{ marginLeft: 8 }} />
                             <TextInput
+                                editable={false}
+                                value={SupplierName}
+                                onChangeText={(text) => setSupplierName(text)}
+                                style={{ color: "gray", marginVertical: 10, width: 300, fontSize: 16 }}
+                                placeholder="Enter Supplier Name"
+                            />
+                        </View>
+
+                        <View style={{ flexDirection: "row", alignItems: "center", gap: 5, backgroundColor: "#D0D0D0", paddingVertical: 5, borderRadius: 5, marginTop: 30 }}>
+                            <FontAwesome name="user-md" size={24} color="gray" style={{ marginLeft: 8 }} />
+                            <TextInput
+                                editable={false}
                                 value={SiteManagerID}
                                 onChangeText={(text) => setSiteManagerID(text)}
                                 style={{ color: "gray", marginVertical: 10, width: 300, fontSize: 16 }}
@@ -68,22 +103,35 @@ export default function NewWorkoutPlan() {
                         </View>
 
                         <View style={{ flexDirection: "row", alignItems: "center", gap: 5, backgroundColor: "#D0D0D0", paddingVertical: 5, borderRadius: 5, marginTop: 30 }}>
-                            <MaterialIcons name="date-range" size={24} color="gray" style={{ marginLeft: 8 }} />
+                            <FontAwesome name="user-md" size={24} color="gray" style={{ marginLeft: 8 }} />
                             <TextInput
-                                value={Date}
-                                onChangeText={(text) => setDate(text)}
+                                editable={false}
+                                value={SiteManagerName}
+                                onChangeText={(text) => setSiteManagerName(text)}
                                 style={{ color: "gray", marginVertical: 10, width: 300, fontSize: 16 }}
-                                placeholder="Enter date"
+                                placeholder="Enter Site Manager Name"
                             />
                         </View>
 
                         <View style={{ flexDirection: "row", alignItems: "center", gap: 5, backgroundColor: "#D0D0D0", paddingVertical: 5, borderRadius: 5, marginTop: 30 }}>
                             <Ionicons name="location" size={24} color="gray" style={{ marginLeft: 8 }} />
                             <TextInput
+                                editable={false}
                                 value={SiteName}
                                 onChangeText={(text) => setSiteName(text)}
                                 style={{ color: "gray", marginVertical: 10, width: 300, fontSize: 16 }}
                                 placeholder="Enter site name"
+                            />
+                        </View>
+
+                        <View style={{ flexDirection: "row", alignItems: "center", gap: 5, backgroundColor: "#D0D0D0", paddingVertical: 5, borderRadius: 5, marginTop: 30 }}>
+                            <MaterialIcons name="date-range" size={24} color="gray" style={{ marginLeft: 8 }} />
+                            <TextInput
+                                editable={false}
+                                value={Date}
+                                onChangeText={(text) => setDate(text)}
+                                style={{ color: "gray", marginVertical: 10, width: 300, fontSize: 16 }}
+                                placeholder="Enter date"
                             />
                         </View>
 
@@ -105,30 +153,14 @@ export default function NewWorkoutPlan() {
                                     <Text style={{ color: "white", marginVertical: 10, width: 300, fontSize: 16, textAlign: "center" }}>{material.MaterialQuantity}</Text>
                                 </View>
                             ))}
-                            <TextInput
-                                placeholder="Material Name"
-                                value={MaterialName}
-                                onChangeText={(text) => setMaterialName(text)}
-                                style={{ color: "gray", marginVertical: 10, width: 300, fontSize: 16, flexDirection: "row", alignItems: "center", gap: 5, backgroundColor: "#D0D0D0", paddingVertical: 5, borderRadius: 5, marginTop: 30, marginLeft: 20 }}
-                            />
-                            <TextInput
-                                placeholder="Material Quantity"
-                                value={MaterialQuantity}
-                                onChangeText={(text) => setMaterialQuantity(text)}
-                                style={{ color: "gray", marginVertical: 10, width: 300, fontSize: 16, flexDirection: "row", alignItems: "center", gap: 5, backgroundColor: "#D0D0D0", paddingVertical: 5, borderRadius: 5, marginTop: 5, marginLeft: 20 }}
-                            />
-                            <TouchableOpacity onPress={addMaterial}>
-                                <View style={{ backgroundColor: '#AA7AD0', padding: 10, marginLeft: 70, borderRadius: 10, width: 200, marginTop: 10 }}>
-                                    <Text style={{ color: 'white', textAlign: 'center' }}>Add Material</Text>
-                                </View>
-                            </TouchableOpacity>
                         </View>
 
                         <View style={{ flexDirection: "row", alignItems: "center", gap: 5, backgroundColor: "#D0D0D0", paddingVertical: 5, borderRadius: 5, marginTop: 30 }}>
                             <MaterialIcons name="attach-money" size={24} color="gray" style={{ marginLeft: 8 }} />
 
                             <TextInput
-                                value={TotalAmount}
+                                editable={false}
+                                value={TotalAmount.toString()}
                                 onChangeText={(text) => setTotalAmount(text)}
                                 style={{ color: "gray", marginVertical: 10, width: 300, fontSize: 16 }}
                                 placeholder="Enter Total Amount"
@@ -137,7 +169,10 @@ export default function NewWorkoutPlan() {
                         </View>
 
                         <Pressable
-                            onPress={handleCreateRequisition}
+                            onPress={() => {
+                                UpdateDeliveryNotice();
+                                navigation.navigate('DeliveryHome');
+                            }}
                             style={{
                                 width: 200,
                                 backgroundColor: "#56c411",
@@ -156,13 +191,19 @@ export default function NewWorkoutPlan() {
                                     fontWeight: "bold",
                                 }}
                             >
-                                Create Request
+                                Create Invoice
                             </Text>
                         </Pressable>
 
                     </View>
+
+
                 </KeyboardAvoidingView>
             </ScrollView>
         </SafeAreaView>
-    );
+    )
 }
+
+export default UpdateDeliveryNotice
+
+const styles = StyleSheet.create({})
