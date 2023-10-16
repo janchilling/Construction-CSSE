@@ -54,7 +54,11 @@ export default function ApprovedOrders() {
                                         <button className="MGButton MGButton-update" variant="primary" onClick={(e) => {
                                             e.preventDefault();
                                             window.location.href = `/purchaseOrder/${requisitions._id}`;
-                                        }}>Purchase</button><br />
+                                        }}>Purchase</button>
+                                        <button className="MGButton MGButton-update" variant="primary" onClick={(e) => {
+                                            e.preventDefault();
+                                            window.location.href = `/allocateBudget/${requisitions._id}`;
+                                        }}>Allocate</button><br />
 
                                     </td>
                                 </tr>
