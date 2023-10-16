@@ -63,93 +63,186 @@ export default function PurchaseOrder() {
     }
 
     function sendOrderData(e) {
-        e.preventDefault();
+        return new Promise((resolve, reject) => {
+            e.preventDefault();
 
-        const newTotalAmount = requisitionData.TotalAmount - ReduceAmount;
+            if (!SupplierName || !SiteManagerName || !Date || ReduceAmount <= 0 || isNaN(ReduceAmount) || isNaN(CardNumber)) {
+                // Display an error message for invalid inputs.
+                toast.error('Invalid or missing input data.', {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                });
+                return;
+            }
 
-        const newOrder = {
-            SupplierName,
-            RequisitionID: id,
-            SiteManagerID,
-            SiteManagerName,
-            SiteName,
-            Date,
-            TotalAmount: newTotalAmount, // Use the new TotalAmount
-            Materials,
-            CardType,
-            CardNumber
-        };
+            const newTotalAmount = requisitionData.TotalAmount - ReduceAmount;
 
-        axios.post("http://localhost:8070/orders/newOrder", newOrder)
-            .then((response) => {
-                if (response.status === 200) {
-                    // Update the material count in the requisition
-                    const updatedRequisition = { ...requisitionData }; // Make sure to get the current requisition data
-                    updatedRequisition.Materials = updatedRequisition.Materials.map(material => {
-                        // Find the corresponding material in the requisition and reduce the count
-                        const purchasedMaterial = Materials.find(p => p.MaterialName === material.MaterialName);
-                        if (purchasedMaterial) {
-                            const remainingCount = material.MaterialQuantity - purchasedMaterial.MaterialQuantity;
-                            return {
-                                ...material,
-                                MaterialQuantity: remainingCount,
-                            };
-                        }
-                        return material;
-                    });
+            const newOrder = {
+                SupplierName,
+                RequisitionID: id,
+                SiteManagerID,
+                SiteManagerName,
+                SiteName,
+                Date,
+                TotalAmount: newTotalAmount, // Use the new TotalAmount
+                Materials,
+                CardType,
+                CardNumber
+            };
 
-                    updatedRequisition.TotalAmount = newTotalAmount;
-
-                    // Send a request to update the requisition with the reduced material count
-                    axios.put(`http://localhost:8070/requisitions/updateRequisition/${id}`, updatedRequisition)
-                        .then(requisitionResponse => {
-                            if (requisitionResponse.status === 200) {
-                                toast.success('Order created successfully!', {
-                                    position: "top-right",
-                                    autoClose: 5000,
-                                    hideProgressBar: false,
-                                    closeOnClick: true,
-                                    pauseOnHover: true,
-                                    draggable: true,
-                                    progress: undefined,
-                                    theme: "light",
-                                });
-                                setTimeout(() => {
-                                    navigate("/orders");
-                                }, 6000);
-                            } else {
-                                toast.error('Failed to update the requisition.', {
-                                    position: "top-right",
-                                    autoClose: 5000,
-                                    hideProgressBar: false,
-                                    closeOnClick: true,
-                                    pauseOnHover: true,
-                                    draggable: true,
-                                    progress: undefined,
-                                    theme: "light",
-                                });
+            const createOrderRequest = axios.post("http://localhost:8070/orders/newOrder", newOrder)
+                .then((response) => {
+                    if (response.status === 200) {
+                        // Update the material count in the requisition
+                        const updatedRequisition = { ...requisitionData }; // Make sure to get the current requisition data
+                        updatedRequisition.Materials = updatedRequisition.Materials.map(material => {
+                            // Find the corresponding material in the requisition and reduce the count
+                            const purchasedMaterial = Materials.find(p => p.MaterialName === material.MaterialName);
+                            if (purchasedMaterial) {
+                                const remainingCount = material.MaterialQuantity - purchasedMaterial.MaterialQuantity;
+                                return {
+                                    ...material,
+                                    MaterialQuantity: remainingCount,
+                                };
                             }
-                        })
-                        .catch(error => {
-                            console.error('Error updating the requisition:', error);
+                            return material;
                         });
-                } else {
-                    toast.error('Failed to create the order.', {
-                        position: "top-right",
-                        autoClose: 5000,
-                        hideProgressBar: false,
-                        closeOnClick: true,
-                        pauseOnHover: true,
-                        draggable: true,
-                        progress: undefined,
-                        theme: "light",
-                    });
-                }
-            })
-            .catch((error) => {
-                console.error('Error creating order:', error);
-            });
+
+                        updatedRequisition.TotalAmount = newTotalAmount;
+
+                        // Send a request to update the requisition with the reduced material count
+                        axios.put(`http://localhost:8070/requisitions/updateRequisition/${id}`, updatedRequisition)
+                            .then(requisitionResponse => {
+                                if (requisitionResponse.status === 200) {
+                                    toast.success('Order created successfully!', {
+                                        position: "top-right",
+                                        autoClose: 5000,
+                                        hideProgressBar: false,
+                                        closeOnClick: true,
+                                        pauseOnHover: true,
+                                        draggable: true,
+                                        progress: undefined,
+                                        theme: "light",
+                                    });
+                                    setTimeout(() => {
+                                        navigate("/orders");
+                                        resolve(); // Resolve the promise here
+                                    }, 6000);
+                                } else {
+                                    toast.error('Failed to update the requisition.', {
+                                        position: "top-right",
+                                        autoClose: 5000,
+                                        hideProgressBar: false,
+                                        closeOnClick: true,
+                                        pauseOnHover: true,
+                                        draggable: true,
+                                        progress: undefined,
+                                        theme: "light",
+                                    });
+                                    reject('Failed to update the requisition.');
+                                }
+                            })
+                            .catch(error => {
+                                console.error('Error updating the requisition:', error);
+                                reject(error);
+                            });
+
+
+                    } else {
+                        toast.error('Failed to fetch AllocateBudget data.', {
+                            position: "top-right",
+                            autoClose: 5000,
+                            hideProgressBar: false,
+                            closeOnClick: true,
+                            pauseOnHover: true,
+                            draggable: true,
+                            progress: undefined,
+                            theme: "light",
+                        });
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching AllocateBudget data:', error);
+                });
+
+            const updateBudget = axios.put(`http://localhost:8070/allocate/FetchAllocateBudget/${id}`)
+                .then(response => {
+                    if (response.status === 200) {
+                        const allocateBudgetData = response.data;
+
+                        // Now you have the AllocateBudget data, and you can calculate the new budget.
+                        const newAllocateBudget = allocateBudgetData.AllocateBudget - ReduceAmount;
+
+                        // Create an object with the updated AllocateBudget data.
+                        const updatedAllocateBudget = {
+                            RequisitionID: id,
+                            TotalAmountRequired: newTotalAmount,
+                            AllocateBudget: newAllocateBudget
+                        };
+
+                        // Now you can use another Axios request to update the AllocateBudget.
+                        axios.put(`http://localhost:8070/allocate/UpdateAllocateBudget/${id}`, updatedAllocateBudget)
+                            .then(allocateBudgetResponse => {
+                                if (allocateBudgetResponse.status === 200) {
+                                    toast.success('Update Budget successfully!', {
+                                        position: "top-right",
+                                        autoClose: 5000,
+                                        hideProgressBar: false,
+                                        closeOnClick: true,
+                                        pauseOnHover: true,
+                                        draggable: true,
+                                        progress: undefined,
+                                        theme: "light",
+                                    });
+                                    setTimeout(() => {
+                                        navigate("/orders");
+                                        resolve();
+                                    }, 6000);
+                                } else {
+                                    toast.error('Failed to update the AllocateBudget.', {
+                                        position: "top-right",
+                                        autoClose: 5000,
+                                        hideProgressBar: false,
+                                        closeOnClick: true,
+                                        pauseOnHover: true,
+                                        draggable: true,
+                                        progress: undefined,
+                                        theme: "light",
+                                    });
+                                    reject('Failed to update the AllocateBudget.');
+                                }
+                            })
+                            .catch(error => {
+                                console.error('Error updating the AllocateBudget:', error);
+                                reject(error);
+                            });
+                    } else {
+                        toast.error('Failed to create the order.', {
+                            position: "top-right",
+                            autoClose: 5000,
+                            hideProgressBar: false,
+                            closeOnClick: true,
+                            pauseOnHover: true,
+                            draggable: true,
+                            progress: undefined,
+                            theme: "light",
+                        });
+                        reject('Failed to create the order.');
+                    }
+                })
+                .catch((error) => {
+                    console.error('Error creating order:', error);
+                    reject(error);
+                });
+        });
     }
+
 
     return (
         <div className="purchase-order-container">

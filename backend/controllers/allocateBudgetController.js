@@ -35,7 +35,7 @@ const singleAllocate = (req, res) => {
         if (!allocate) {
           return res.status(404).json({ error: "No such Allocated Budget" });
         }
-        res.status(200).json(allocate); // Change from 'allocates' to 'allocate'
+        res.status(200).json(allocate); 
       })
       .catch((err) => {
         console.log(err.message);
@@ -63,11 +63,45 @@ const deleteAllocate = (req, res) => {
     }
 }
 
+const updateAllocateBudget = async (req, res) => {
+    try {
+        const updatedAllocate = await AllocateBudget.findOneAndUpdate({ RequisitionID: req.params.id }, req.body, { new: true });
+
+        if (updatedAllocate) {
+            res.json(updatedAllocate);
+        } else {
+            res.status(404).json({ error: 'Requisition not found' });
+        }
+    } catch (error) {
+        res.status(500).json({ error: 'Failed to update AllocateBudget' });
+    }
+}
+
+const singleAllocateBudget = (req, res) => {
+    const AllocateId = req.params.id;
+  
+    AllocateBudget.findOne({ RequisitionID: req.params.id })
+      .then((allocate) => {
+        if (!allocate) {
+          return res.status(404).json({ error: "No such Allocated Budget" });
+        }
+        res.status(200).json(allocate);
+      })
+      .catch((err) => {
+        console.log(err.message);
+        res.status(500).json({ error: "Error with getting Allocated Budget", message: err.message });
+      });
+}
+
+
+
 
 module.exports = {
     AllocateABudget,
     allAllocates,
     singleAllocate,
     updateAllocate,
-    deleteAllocate
+    deleteAllocate,
+    updateAllocateBudget,
+    singleAllocateBudget
 };

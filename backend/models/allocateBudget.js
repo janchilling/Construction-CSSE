@@ -7,11 +7,11 @@ const allocateBudgetSchema = new mongoose.Schema({
     },
     SiteName: {
         type: String,
-        required: true
+        
     },
     TotalAmountRequired: {
         type: Number,
-        required: true
+        
     },
     AllocateBudget: {
         type: Number,
@@ -19,11 +19,11 @@ const allocateBudgetSchema = new mongoose.Schema({
     },
     StartDate: {
         type: String,
-        required: true
+        
     },
     EndDate: {
         type: String,
-        required: true
+        
     },
 });
 

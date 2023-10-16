@@ -6,22 +6,30 @@ const {
     allAllocates,
     singleAllocate,
     updateAllocate,
-    deleteAllocate
+    deleteAllocate,
+    updateAllocateBudget,
+    singleAllocateBudget
 } = require('../controllers/allocateBudgetController')
 
-//Creating a new Order
+//Creating a new Allocate
 router.post("/newAllocate", AllocateABudget)
 
-//Get all Orders in the database
+//Get all Allocates in the database
 router.get("/allAllocates", allAllocates)
 
-//Get a single Order in the database
+//Get a single Allocate in the database
 router.get("/singleAllocate/:id", singleAllocate)
 
-//updating a single Order
+//updating a single Allocate
 router.put("/updateAllocate/:id", updateAllocate)
 
-//delete a single Order
+//delete a single Allocate
 router.delete("/deleteAllocate/:id", deleteAllocate)
+
+//updating a single Allocate based on RequsitionID
+router.put("/UpdateAllocateBudget/:id", updateAllocateBudget)
+
+//Fetch a single Allocate based on RequsitionID
+router.put("/FetchAllocateBudget/:id", singleAllocateBudget)
 
 module.exports = router;
