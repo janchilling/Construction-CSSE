@@ -63,6 +63,7 @@ const deleteOrder = (req, res) => {
     }
 }
 
+//Exporting the Functions
 module.exports = { 
     createOrder,
     allOrders,

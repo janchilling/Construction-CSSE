@@ -1,3 +1,5 @@
+// Contains the Mongoose model of the requisition
+
 const mongoose = require('mongoose');
 
 const material = require('./material');

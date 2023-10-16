@@ -63,6 +63,7 @@ const deleteInvoice = (req, res) => {
     }
 }
 
+//Exporting the Functions
 module.exports = { 
     createInvoice,
     allInvoices,

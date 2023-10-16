@@ -65,6 +65,7 @@ const deleteRequisition = (req, res) => {
     }
 }
 
+//Exporting the Functions
 module.exports = { 
     createRequisition,
     allRequistions,

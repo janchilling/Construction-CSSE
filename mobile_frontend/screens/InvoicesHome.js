@@ -11,12 +11,14 @@ const InvoicesHome = () => {
     const { user, setUser } = useContext(UserContext);
     const navigation = useNavigation();
 
+    //binding supplier name from user context
     const SupplierName = user.SupplierName;
 
     useEffect(() => {
         getInvoices();
     }, [])
 
+    //calling the view all invoices api
     const getInvoices = async () => {
         const response = await axios.get("http://192.168.8.115:8070/Invoices/allInvoices");
 

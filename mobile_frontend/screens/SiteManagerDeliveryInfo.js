@@ -12,6 +12,7 @@ const SiteManagerDeliveryInfo = () => {
         getNotices();
     }, [])
 
+    //calling the view all delivery notices api
     const getNotices = async () => {
         const response = await axios.get("http://192.168.8.115:8070/Notices/allNotices");
 

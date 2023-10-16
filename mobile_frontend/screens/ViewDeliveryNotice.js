@@ -29,6 +29,7 @@ const ViewDeliveryNotice = () => {
         getNoticeDetails();
     }, [])
 
+    //calling the view single delivery notice api
     const getNoticeDetails = async () => {
 
         let result = await fetch(`http://192.168.8.115:8070/Notices/singleNotice/${noticeId}`);

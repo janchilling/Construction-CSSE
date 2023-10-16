@@ -11,6 +11,7 @@ const RequisitionRequests = () => {
         getRequisitions();
     }, [])
 
+    //calling the view all requisitions api
     const getRequisitions = async () => {
         const response = await axios.get("http://192.168.8.115:8070/requisitions/allRequistions");
 
