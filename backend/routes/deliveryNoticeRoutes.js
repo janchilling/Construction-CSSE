@@ -9,19 +9,19 @@ const {
     deleteNotice
 } = require('../controllers/deliverNoticeController')
 
-//Creating a new Order
+//Creating a new Notices
 router.post("/newNotice", createDeliveryNotice)
 
-//Get all Orders in the database
+//Get all Notices in the database
 router.get("/allNotices", allNotices)
 
-//Get a single Order in the database
+//Get a single Notices in the database
 router.get("/singleNotice/:id", singleNotice)
 
-//updating a single Order
+//updating a single Notices
 router.put("/updateNotice/:id", updateNotice)
 
-//delete a single Order
+//delete a single Notices
 router.delete("/deleteNotice/:id", deleteNotice)
 
 module.exports = router;
