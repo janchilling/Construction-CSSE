@@ -1,0 +1,76 @@
+.MGUpdatePage{
+    background-color: white;
+    height: auto;
+}
+
+.MGUpdateHeading{
+    color: #550C9E;
+    font-size: 45px;
+    font-weight: bold;
+    text-align: center;
+    font-family: 'Secular One', sans-serif;
+    
+}
+
+.MGUpdateFormStatus{
+    margin-top: 20px;
+    background-color: #550C9E;
+    text-align: center;
+    width: 600px;
+    height: auto;
+    border-radius: 50px;
+    margin-left: 420px;
+    border: 5px solid black;
+}
+
+.MGUpdateFormHeading{
+    color: white;
+    font-family: 'Jost', sans-serif;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.MGUpdateFormInput{
+    width: 400px;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 15px;
+}
+
+.MGUpdateTextArea{
+    border-radius: 10px;
+    text-align: center;
+    font-size: 15px;
+}
+
+.MGUpdateSubmit{
+    background-color: #56c411;
+    color: white;
+    border-radius: 10px;
+    width: 150px;
+    height: 50px;
+    transition: 1s;
+    font-weight: bold;
+    font-size: 20px;
+    margin-left: 70px;
+    font-family: 'Secular One', sans-serif;
+}
+
+.MGUpdateSubmit:hover{
+    background-color: #1F1F1F;
+    color: #56c411;
+}
+
+.MGButtonCancel{
+    background-color: #FF3300;
+    border-radius: 10px;
+    color: white;
+    font-weight: bold;
+    font-family: 'Secular One', sans-serif;
+}
+.MGUpdateFormInputMat{
+    text-align: center;
+}
+.MGUpdateFormInputQty{
+    text-align: center;
+}
