@@ -1,60 +1,48 @@
 // Import necessary modules and dependencies
 const Requisition = require('../../models/requisition');
 const requisitionController = require('../../controllers/requisitionController');
-const request = require('supertest');
-const app = require('../../server');
-// Import your MongoDB connection or configuration
-const mongoose = require('mongoose');
-const { connectToDatabase } = require('../../config/database');
 
-// Mock Requisition.find to return data in requisitionController
-jest.mock('../../models/requisition', () => ({
-    find: jest.fn(),
-}));
+// Mock Order.save to return data in orderController
+jest.mock('../../models/requisition');
 
-const dbUri = 'mongodb+srv://kesh:1234@cluster0.wrq1qps.mongodb.net/Construction_Database?retryWrites=true&w=majority';
-beforeAll(async () => {
-    await mongoose.connect(dbUri, {
-        useNewUrlParser: true,
-        useUnifiedTopology: true
-    });
-     // Replace with your MongoDB URI
-});
-
+// Test cases for createOrder function
 describe('requisitionController', () => {
-    describe('allRequistions', () => {
-        it('should get all requisition', async () => {
-            // Mock the behavior of Requisition.find to return data
-            const mockData = [
-                {
-                    SiteManagerID: 'SM001',
-                    Date: '2023-10-1',
-                    SiteName: 'Colombo Site',
-                    Status: 'New',
-                    Materials: [{
-                        MaterialName: 'Material A',
-                        MaterialQuantity: 30
-                    }],
-                    TotalAmount: 75000,
-                    _id: '652aa983108926d2aedf8eee',
-                },
-                // Add more employee data as needed
-            ];
+    describe('createRequisition', () => {
 
-            // Set up the data for Requisition.find
-            Requisition.find.mockResolvedValue(mockData);
+        const request = {
+            body: {
+                "SiteManagerID": "SM001",
+                "Date": "2023-11-15",
+                "SiteName": "Kandy site",
+                "Status": "Pending",
+                "Materials": [
+                  {
+                    "MaterialName": "Material A",
+                    "MaterialQuantity": 5
+                  },
+                  {
+                    "MaterialName": "Material B",
+                    "MaterialQuantity": 3
+                  }
+                ],
+                "TotalAmount": 25000
+              }
+        };
 
-            // Use supertest to make a request to your route
-            const response = await request(app).get('/requisitions/allRequistions');
+        const response = {
+            json: jest.fn((x) => x)
+        };
 
-            // Assertions
-            expect(response.status).toBe(200);
-            expect(response.body).toEqual(mockData);
+        it('should create an Requisition', async () => {
+            const mockSave = jest.fn().mockResolvedValue({});
+            Requisition.mockImplementationOnce(() => ({
+                save: mockSave,
+            }));
+
+            await requisitionController.createRequisition(request, response);
+
+            expect(mockSave).toHaveBeenCalled();
+            expect(response.json).toHaveBeenCalledWith("Requisition Added");
         });
-        
     });
-});
-
-afterAll(async () => {
-    await mongoose.connection.close(); // Close the MongoDB connection
 });

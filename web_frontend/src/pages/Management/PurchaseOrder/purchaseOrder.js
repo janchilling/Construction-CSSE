@@ -248,69 +248,76 @@ export default function PurchaseOrder() {
         <div className="purchase-order-container">
             <h1>Purchase Order Form</h1>
             {dataLoaded ? (
-                <form onSubmit={sendOrderData}>
+                <form onSubmit={sendOrderData} id="purchaseOrder">
                     <div className="form-group">
-                        <label htmlFor="SupplierName">Supplier Name:</label>
+                    <br/>
+                        <label htmlFor="SupplierName">Supplier Name:</label><br/>
                         <input
                             type="text"
-                            id="SupplierName"
+                            id="PurchaseInput"
                             name="SupplierName"
+                            className="PurchaseInput"
                             onChange={(e) => setSupplierName(e.target.value)}
                             required
                         />
-                    </div>
+                    </div><br/>
 
                     <div className="form-group">
-                        <label htmlFor="SiteManagerID">Site Manager ID:</label>
+                        <label htmlFor="SiteManagerID">Site Manager ID:</label><br/>
                         <input
                             type="text"
-                            id="SiteManagerID"
+                            id="PurchaseInput"
                             name="SiteManagerID"
+                            className="PurchaseInput"
                             value={SiteManagerID}
                             onChange={(e) => setSiteManagerID(e.target.value)}
                             required
                         />
-                    </div>
+                    </div><br/>
 
                     <div className="form-group">
-                        <label htmlFor="SiteManagerName">Site Manager Name:</label>
+                        <label htmlFor="SiteManagerName">Site Manager Name:</label><br/>
                         <input
                             type="text"
-                            id="SiteManagerName"
+                            id="PurchaseInput"
                             name="SiteManagerName"
+                            className="PurchaseInput"
                             onChange={(e) => setSiteManagerName(e.target.value)}
                             required
                         />
-                    </div>
+                    </div><br/>
 
                     <div className="form-group">
-                        <label htmlFor="SiteName">Site Name:</label>
+                        <label htmlFor="SiteName">Site Name:</label><br/>
                         <input
                             type="text"
-                            id="SiteName"
+                            id="PurchaseInput"
                             name="SiteName"
+                            className="PurchaseInput"
                             value={SiteName}
                             onChange={(e) => setSiteName(e.target.value)}
                             required
                         />
-                    </div>
+                    </div><br/>
 
                     <div className="form-group">
-                        <label htmlFor="Date">Date:</label>
+                        <label htmlFor="Date">Date:</label><br/>
                         <input
                             type="text"
-                            id="Date"
+                            id="PurchaseInput"
                             name="Date"
+                            className="PurchaseInput"
                             value={Date}
                             onChange={(e) => setDate(e.target.value)}
                             required
                         />
-                    </div>
+                    </div><br/>
 
                     <div className="form-group">
-                        <label htmlFor="Materials">Materials:</label>
+                        <label htmlFor="Materials">Materials:</label><br/>
                         <textarea
-                            id="Materials"
+                            id="PurchaseInput"
+                            className="PurchaseInput"
                             name="Materials"
                             value={Materials.map((material) =>
                                 `${material.MaterialName}, ${material.MaterialQuantity}`
@@ -328,34 +335,37 @@ export default function PurchaseOrder() {
                             }}
                             required
                         />
-                    </div>
+                    </div><br/>
 
                     <div className="form-group">
-                        <label htmlFor="TotalAmount">Total Amount:</label>
+                        <label htmlFor="TotalAmount">Total Amount:</label><br/>
                         <input
                             type="text"
-                            id="TotalAmount"
+                            id="PurchaseInput"
+                            className="PurchaseInput"
                             name="TotalAmount"
                             value={TotalAmount}
                             onChange={(e) => setTotalAmount(e.target.value)}
                             required
                         />
-                    </div>
+                    </div><br/>
 
                     <div className="form-group">
-                        <label htmlFor="ReduceAmount">Reduce Amount:</label>
+                        <label htmlFor="ReduceAmount">Reduce Amount:</label><br/>
                         <input
                             type="number"
-                            id="ReduceAmount"
+                            id="PurchaseInput"
+                            className="PurchaseInput"
                             name="ReduceAmount"
                             onChange={(e) => setReduceAmount(e.target.value)}
                         />
-                    </div>
+                    </div><br/>
 
                     <div className="form-group">
-                        <label htmlFor="cardType">Card Type:</label>
+                        <label htmlFor="cardType">Card Type:</label><br/>
                         <select
-                            id="cardType"
+                            id="PurchaseInput"
+                            className="PurchaseInput"
                             name="cardType"
                             onChange={(e) => {
                                 console.log("Card Type changed:", e.target.value);
@@ -366,20 +376,21 @@ export default function PurchaseOrder() {
                             <option value="credit">Credit</option>
                             <option value="debit">Debit</option>
                         </select>
-                    </div>
+                    </div><br/>
 
                     <div className="form-group">
-                        <label htmlFor="cardNumber">Card Number:</label>
+                        <label htmlFor="cardNumber">Card Number:</label><br/>
                         <input
                             type="number"
-                            id="cardNumber"
+                            className="PurchaseInput"
+                            id="PurchaseInput"
                             name="cardNumber"
                             onChange={(e) => {
                                 console.log("Card Number changed:", e.target.value);
                                 setCardNumber(e.target.value);
                             }}
                         />
-                    </div>
+                    </div><br/>
 
 
                     <div class="button-container">
@@ -389,6 +400,7 @@ export default function PurchaseOrder() {
             ) : (
                 <p>Loading data...</p>
             )}
+            <br/><br/>
             <ToastContainer />
         </div>
     );
