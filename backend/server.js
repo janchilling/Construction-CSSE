@@ -35,6 +35,9 @@ app.use('/Invoices', InvoicesRouter);
 const NoticesRouter = require('./routes/deliveryNoticeRoutes');
 app.use('/Notices', NoticesRouter);
 
+const allocateRouter = require('./routes/allocateBudgetRoutes');
+app.use('/allocate', allocateRouter);
+
 //Server Connection
 app.listen(port, () => {
     console.log(`Server is up and running on port number ${port}`);
