@@ -4,6 +4,7 @@ import axios from "axios";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import '../PurchaseOrder/purchaseOrder.css';
+import '../AllocateBudget/AllocateBudget.css';
 
 export default function PurchaseOrder() {
     const { id } = useParams();
@@ -95,48 +96,49 @@ export default function PurchaseOrder() {
 
     return (
         <div className="purchase-order-container">
-            <h1>Purchase Order Form</h1>
+            <h1>Allocate Budget Form</h1>
             {requisitionData ? (
-                <form onSubmit={sendOrderData}>
+                <form onSubmit={sendOrderData} id="AllocatedBudget">
+                    <br/>
                     <div className="form-group">
-                        <label htmlFor="SiteName">Site Address: {requisitionData.SiteName}</label>
-                    </div>
+                        <label htmlFor="SiteName" id="AllocateBudgetHeading">Site Address : {requisitionData.SiteName}</label><br/>
+                    </div><br/>
                     <div className="form-group">
-                        <label htmlFor="TotalAmount">Total Amount: {requisitionData.TotalAmount}</label>
-                    </div>
+                        <label htmlFor="TotalAmount" id="AllocateBudgetHeading">Total Amount : {requisitionData.TotalAmount}</label><br/>
+                    </div><br/>
 
                     <div className="form-group">
-                        <label htmlFor="AllocateBudget">Allocate Budget:</label>
+                        <label htmlFor="AllocateBudget">Allocate Budget:</label><br/>
                         <input
                             type="number"
-                            id="AllocateBudget"
+                            id="PurchaseInputAllocate"
                             name="AllocateBudget"
                             value={allocateBudget} 
                             onChange={(e) => setAllocateBudget(Number(e.target.value))}
                         />
-                    </div>
+                    </div><br/>
 
                     <div className="form-group">
-                        <label htmlFor="StartDate">Start Date:</label>
+                        <label htmlFor="StartDate">Start Date:</label><br/>
                         <input
                             type="date"
-                            id="StartDate"
+                            id="PurchaseInputAllocate"
                             name="StartDate"
                             value={startDate}
                             onChange={(e) => setStartDate(e.target.value)}
                         />
-                    </div>
+                    </div><br/>
 
                     <div className="form-group">
-                        <label htmlFor="EndDate">End Date:</label>
+                        <label htmlFor="EndDate">End Date:</label><br/>
                         <input
                             type="date"
-                            id="EndDate"
+                            id="PurchaseInputAllocate"
                             name="EndDate"
                             value={endDate}
                             onChange={(e) => setEndDate(e.target.value)}
                         />
-                    </div>
+                    </div><br/>
 
                     <div className="button-container">
                         <button className="submit-button" type="submit">Submit Allocate Budget</button>
@@ -145,6 +147,7 @@ export default function PurchaseOrder() {
             ) : (
                 <p>Loading requisition data...</p>
             )}
+            <br/>
             <ToastContainer />
         </div>
     );
