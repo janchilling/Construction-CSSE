@@ -26,6 +26,7 @@ const UpdateRequisition = () => {
         getRequisitionDetails();
     }, [])
 
+    //calling the view single requisition api
     const getRequisitionDetails = async () => {
 
         let result = await fetch(`http://192.168.8.115:8070/requisitions//singleRequistions/${requisitionId}`);
@@ -39,6 +40,7 @@ const UpdateRequisition = () => {
         setMaterials(result.Materials);
     }
 
+    //calling the update requisition api
     const updateRequisition = async () => {
         try {
             const updatedRequisition = {
@@ -64,6 +66,7 @@ const UpdateRequisition = () => {
         }
     };
 
+    //adding materials and quantity function
     const addMaterial = () => {
         const newMaterial = {
             MaterialName: MaterialName,

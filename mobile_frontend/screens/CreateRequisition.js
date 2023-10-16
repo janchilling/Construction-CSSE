@@ -18,6 +18,7 @@ export default function NewWorkoutPlan() {
 
     const navigation = useNavigation();
 
+    //adding materials and quantity function
     const addMaterial = () => {
         const newMaterial = {
             MaterialName: MaterialName,
@@ -28,6 +29,7 @@ export default function NewWorkoutPlan() {
         setMaterialQuantity('');
     };
 
+    //calling the create new requisition api
     const handleCreateRequisition = () => {
         const newRequisition = {
             SiteManagerID,
@@ -37,7 +39,6 @@ export default function NewWorkoutPlan() {
             Materials: Materials,
             TotalAmount
         }
-        console.log(newRequisition);
         axios.post("http://192.168.8.115:8070/requisitions/newRequisition", newRequisition).then(() => {
             Alert.alert("Requisition Submitted Successfully!")
             navigation.navigate("SiteManagerHome");

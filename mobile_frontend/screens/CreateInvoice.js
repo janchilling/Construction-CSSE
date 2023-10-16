@@ -22,6 +22,7 @@ const CreateInvoice = () => {
 
     const navigation = useNavigation();
 
+    //setting the orderID from params which was passed on
     const route = useRoute();
     useEffect(() => {
         if (route.params?.id) {
@@ -29,6 +30,7 @@ const CreateInvoice = () => {
         }
     }, []);
 
+    //adding materials and quantity function
     const addMaterial = () => {
         const newMaterial = {
             MaterialName: MaterialName,
@@ -39,6 +41,7 @@ const CreateInvoice = () => {
         setMaterialQuantity('');
     };
 
+    //calling the create new Invoice api
     const handleCreateInvoice = () => {
         const newInvoice = {
             SupplierName: SupplierName,
@@ -50,7 +53,6 @@ const CreateInvoice = () => {
             Materials: Materials,
             TotalAmount: TotalAmount
         }
-        console.log(newInvoice);
         axios.post("http://192.168.8.115:8070/Invoices/newInvoice", newInvoice).then(() => {
             Alert.alert("Invoice Submitted Successfully!")
             navigation.navigate("InvoicesHome");
