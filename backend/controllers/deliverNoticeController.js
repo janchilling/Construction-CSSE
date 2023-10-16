@@ -19,7 +19,7 @@ const createDeliveryNotice = async (req, res) => {
 //Getting all Delivery Notice
 const allNotices = async (req, res) => {
 
-    DeliveryNotice.find().then((notices)=>{
+    await DeliveryNotice.find().then((notices)=>{
         res.json(notices)
     }).catch((err)=>{
         console.log(err)
