@@ -54,14 +54,15 @@ const updateAllocate = async (req, res) => {
 }
 
 //Delete a single Order
-const deleteAllocate = (req, res) => {
+const deleteAllocate = async (req, res) => {
     try {
-        AllocateBudget.findByIdAndRemove(req.params.id);
+        await AllocateBudget.findByIdAndRemove(req.params.id);
         res.json({ message: 'Allocate budget deleted' });
     } catch (error) {
         res.status(500).json({ error: 'Failed to delete Allocate budget' });
     }
 }
+
 
 const updateAllocateBudget = async (req, res) => {
     try {

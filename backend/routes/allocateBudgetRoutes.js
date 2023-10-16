@@ -30,6 +30,6 @@ router.delete("/deleteAllocate/:id", deleteAllocate)
 router.put("/UpdateAllocateBudget/:id", updateAllocateBudget)
 
 //Fetch a single Allocate based on RequsitionID
-router.put("/FetchAllocateBudget/:id", singleAllocateBudget)
+router.get("/FetchAllocateBudget/:id", singleAllocateBudget)
 
 module.exports = router;

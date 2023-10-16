@@ -29,7 +29,8 @@ import Orders from './pages/Management/Orders/order';
 import AllocatedBudgets from './pages/Management/AllocatedBudgets/allocatedBudgets';
 import PurchaseOrder from './pages/Management/PurchaseOrder/purchaseOrder';
 import AllocateBudget from './pages/Management/AllocateBudget/AllocateBudget';
-
+import UpdateAllocation from './pages/Management/UpdateAllocateBudget/UpdateAllocateBudget'
+// import DeleteAllocation from ''
 
 function App() {
   // user details pass
@@ -71,9 +72,12 @@ function App() {
             <Route path='/updatePendingStatus/:id' element={<UpdatePendingStatus/>} />
             <Route path='/updateEmployee/:id' element={<UpdateEmployee/>} />
             <Route path='/orders' element={<Orders/>} />
-            <Route path='/allocatedBudgets' element={<AllocatedBudgets/>} />
             <Route path='/purchaseOrder/:id' element={<PurchaseOrder/>} />
+            <Route path='/allocatedBudgets' element={<AllocatedBudgets/>} />           
             <Route path='/allocateBudget/:id' element={<AllocateBudget/>} />
+            <Route path='/updateAllocation/:id' element={<UpdateAllocation/>} />
+            {/* <Route path='/deleteAllocation/:id' element={<DeleteAllocation/>} /> */}
+
             
 
           </Routes>

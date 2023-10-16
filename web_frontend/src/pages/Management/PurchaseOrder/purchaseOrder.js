@@ -171,7 +171,7 @@ export default function PurchaseOrder() {
                     console.error('Error fetching AllocateBudget data:', error);
                 });
 
-            const updateBudget = axios.put(`http://localhost:8070/allocate/FetchAllocateBudget/${id}`)
+            const updateBudget = axios.get(`http://localhost:8070/allocate/FetchAllocateBudget/${id}`)
                 .then(response => {
                     if (response.status === 200) {
                         const allocateBudgetData = response.data;
