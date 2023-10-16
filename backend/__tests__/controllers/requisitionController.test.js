@@ -8,9 +8,14 @@ const mongoose = require('mongoose');
 const { connectToDatabase } = require('../../config/database');
 
 // Mock Requisition.find to return data in requisitionController
+// jest.mock('../../models/requisition', () => ({
+//     find: jest.fn(),
+// }));
+
 jest.mock('../../models/requisition', () => ({
-    find: jest.fn(),
+    find: jest.fn().mockReturnThis(), // Mocking a constructor-like function
 }));
+
 
 const dbUri = 'mongodb+srv://kesh:1234@cluster0.wrq1qps.mongodb.net/Construction_Database?retryWrites=true&w=majority';
 beforeAll(async () => {
@@ -18,7 +23,7 @@ beforeAll(async () => {
         useNewUrlParser: true,
         useUnifiedTopology: true
     });
-     // Replace with your MongoDB URI
+    // Replace with your MongoDB URI
 });
 
 describe('requisitionController', () => {
@@ -51,7 +56,32 @@ describe('requisitionController', () => {
             expect(response.status).toBe(200);
             expect(response.body).toEqual(mockData);
         });
-        
+
+    });
+
+    describe('createRequisition', () => {
+        it('should create a new requisition', async (done) => {
+            const newRequisitionData = {
+                SiteManagerID: 'SM002',
+                Date: '2023-10-20',
+                SiteName: 'Galle Site',
+                Status: 'New',
+                Materials: [{
+                    MaterialName: 'Material D',
+                    MaterialQuantity: 100
+                }],
+                TotalAmount: 95000
+            };
+
+            const response = await request(app).post('/requisitions/newRequisition') // Replace with the actual API endpoint
+                .send(newRequisitionData)
+                .set('Content-Type', 'application/json');
+
+            expect(response.statusCode).toBe(200); // Assuming you return a 200 status on success
+            expect(response.body).toBe('Requisition Added'); // Adjust this expectation as needed
+
+            done();
+        });
     });
 });
 

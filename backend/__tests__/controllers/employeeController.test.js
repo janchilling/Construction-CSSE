@@ -46,7 +46,7 @@ describe('employeeController', () => {
       // Set up the mock for Employee.find
       Employee.find.mockResolvedValue(mockData);
 
-      // Use supertest to make a request to your route (e.g., /employees/allEmployees)
+      // Use supertest to make a request to your route
       const response = await request(app).get('/employees/allEmployees');
 
       // Assertions
