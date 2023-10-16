@@ -20,7 +20,7 @@ const createRequisition = async (req, res) => {
 //Getting all Requisitions
 const allRequistions = async (req, res) => {
 
-    Requisition.find().then((requisitions)=>{
+    await Requisition.find().then((requisitions)=>{
         res.json(requisitions)
     }).catch((err)=>{
         console.log(err)
