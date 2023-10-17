@@ -1,7 +1,6 @@
 import { StyleSheet, Text, View, SafeAreaView, ScrollView, Image, KeyboardAvoidingView, Pressable } from 'react-native';
 import React, { useState, useEffect } from 'react';
 import { useNavigation } from "@react-navigation/native";
-import { Ionicons } from '@expo/vector-icons';
 import axios from "axios";
 
 const SiteManagerDeliveryInfo = () => {
