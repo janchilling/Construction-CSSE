@@ -21,6 +21,7 @@ import CreateDeliveryNotice from '../screens/CreateDeliveryNotice';
 import SupplierDeliveryNotes from '../screens/SupplierDeliveryNotes';
 import UpdateDeliveryNotice from '../screens/UpdateDeliveryNotice';
 import ViewDeliveryNotice from '../screens/ViewDeliveryNotice';
+import ViewOrder from '../screens/ViewOrder';
 
 const StackNavigator = () => {
     const Stack = createNativeStackNavigator();
@@ -46,6 +47,7 @@ const StackNavigator = () => {
                 <Stack.Screen name="SupplierDeliveryNotes" component={SupplierDeliveryNotes} options={{headerShown: false}}/>
                 <Stack.Screen name="UpdateDeliveryNotice" component={UpdateDeliveryNotice} options={{headerShown: false}}/>
                 <Stack.Screen name="ViewDeliveryNotice" component={ViewDeliveryNotice} options={{headerShown: false}}/>
+                <Stack.Screen name="ViewOrder" component={ViewOrder} options={{headerShown: false}}/>
 
             </Stack.Navigator>
         </NavigationContainer>
