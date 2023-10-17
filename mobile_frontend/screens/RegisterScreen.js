@@ -16,6 +16,7 @@ const RegisterScreen = () => {
 
     const navigation = useNavigation();
 
+    //calling the create new supplier api
     const handleRegister = () => {
         const NewSupplier = {
             SupplierName: SupplierName,

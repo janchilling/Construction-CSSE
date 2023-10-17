@@ -1,3 +1,5 @@
+// Contains the Mongoose model of the Delivery Advice Note
+
 const mongoose = require('mongoose');
 const material = require('./material');
 

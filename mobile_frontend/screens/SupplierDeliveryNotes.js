@@ -16,6 +16,7 @@ const SupplierDeliveryNotes = () => {
         getDeliveryNotes();
     }, [])
 
+    //calling the view all delivery notices api
     const getDeliveryNotes = async () => {
         const response = await axios.get("http://192.168.8.115:8070/Notices/allNotices");
 

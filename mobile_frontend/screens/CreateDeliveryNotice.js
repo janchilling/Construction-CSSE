@@ -23,6 +23,7 @@ const CreateDeliveryNotice = () => {
 
     const navigation = useNavigation();
 
+    //setting the invoice id from params
     const route = useRoute();
     useEffect(() => {
         if (route.params?.id) {
@@ -30,6 +31,7 @@ const CreateDeliveryNotice = () => {
         }
     }, []);
 
+    //adding materials and quantity function
     const addMaterial = () => {
         const newMaterial = {
             MaterialName: MaterialName,
@@ -40,6 +42,7 @@ const CreateDeliveryNotice = () => {
         setMaterialQuantity('');
     };
 
+    //calling the create new delivery notice api
     const handleCreateDeliveryNotice = () => {
         const newDeliveryNotice = {
             InvoiceID: InvoiceID,

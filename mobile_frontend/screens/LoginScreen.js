@@ -14,10 +14,12 @@ const LoginScreen = () => {
     const navigation = useNavigation();
     const { user, setUser } = useContext(UserContext)
 
+    //setting the user type
     const handleTypeSelection = (type) => {
         setUserType(type);
     };
 
+    //calling the login api depending on the user type
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (UserType === "site manager") {

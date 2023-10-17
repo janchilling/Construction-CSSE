@@ -17,6 +17,7 @@ const SupplierOrders = () => {
         getOrders();
     }, [])
 
+    //calling view all orders api
     const getOrders = async () => {
         const response = await axios.get("http://192.168.8.115:8070/orders/allOrders");
 
@@ -29,6 +30,11 @@ const SupplierOrders = () => {
     const handleCreateInvoice = (id) => {
         // Navigate to the create invoice screen with the ID
         navigation.navigate('CreateInvoice', { id: id });
+    };
+
+    const handleViewOrder = (id) => {
+        // Navigate to the create delivery notice screen with the ID
+        navigation.navigate('ViewOrder', { id: id });
     };
 
     return (
@@ -49,18 +55,23 @@ const SupplierOrders = () => {
                     </View>
                     <View style={styles.table}>
                         <View style={styles.row}>
-                            <Text style={styles.header}>Supplier</Text>
                             <Text style={styles.header}>Site</Text>
                             <Text style={styles.header}>Amount</Text>
+                            <Text style={styles.header}>Orders</Text>
                             <Text style={styles.header}>Create</Text>
                         </View>
                         {data && data.map((item, index) => {
                             if (item.SupplierName === SupplierName) {
                                 return (
                                     <View style={styles.row} key={index}>
-                                        <Text style={{ marginTop: 15 }}>{item.SupplierName}</Text>
                                         <Text style={{ marginTop: 15 }}>{item.SiteName}</Text>
                                         <Text style={{ marginTop: 15 }}>{item.TotalAmount}</Text>
+                                        <Pressable
+                                            style={styles.button}
+                                            onPress={() => handleViewOrder(item._id)}
+                                        >
+                                            <Text style={styles.buttonText}>View</Text>
+                                        </Pressable>
                                         <View style={styles.buttonContainer}>
                                             <Pressable
                                                 style={styles.button}
