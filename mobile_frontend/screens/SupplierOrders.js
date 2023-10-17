@@ -32,6 +32,11 @@ const SupplierOrders = () => {
         navigation.navigate('CreateInvoice', { id: id });
     };
 
+    const handleViewOrder = (id) => {
+        // Navigate to the create delivery notice screen with the ID
+        navigation.navigate('ViewOrder', { id: id });
+    };
+
     return (
         <SafeAreaView style={{ flex: 1, backgroundColor: "#550C9E", alignItems: "center" }}>
             <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
@@ -50,18 +55,23 @@ const SupplierOrders = () => {
                     </View>
                     <View style={styles.table}>
                         <View style={styles.row}>
-                            <Text style={styles.header}>Supplier</Text>
                             <Text style={styles.header}>Site</Text>
                             <Text style={styles.header}>Amount</Text>
+                            <Text style={styles.header}>Orders</Text>
                             <Text style={styles.header}>Create</Text>
                         </View>
                         {data && data.map((item, index) => {
                             if (item.SupplierName === SupplierName) {
                                 return (
                                     <View style={styles.row} key={index}>
-                                        <Text style={{ marginTop: 15 }}>{item.SupplierName}</Text>
                                         <Text style={{ marginTop: 15 }}>{item.SiteName}</Text>
                                         <Text style={{ marginTop: 15 }}>{item.TotalAmount}</Text>
+                                        <Pressable
+                                            style={styles.button}
+                                            onPress={() => handleViewOrder(item._id)}
+                                        >
+                                            <Text style={styles.buttonText}>View</Text>
+                                        </Pressable>
                                         <View style={styles.buttonContainer}>
                                             <Pressable
                                                 style={styles.button}
