@@ -11,6 +11,7 @@ const SiteManagerOrders = () => {
         getOrders();
     }, [])
 
+    //calling the create new delivery notice api
     const getOrders = async () => {
         const response = await axios.get("http://192.168.8.115:8070/orders/allOrders");
 

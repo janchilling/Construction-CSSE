@@ -1,3 +1,5 @@
+// Contains the Mongoose model of the Allocated Budget
+
 const mongoose = require('mongoose');
 
 const allocateBudgetSchema = new mongoose.Schema({

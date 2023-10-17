@@ -1,7 +1,6 @@
 import { StyleSheet, Text, View, SafeAreaView, ScrollView, Image, KeyboardAvoidingView, Pressable } from 'react-native';
 import React, { useState, useEffect } from 'react';
 import { useNavigation } from "@react-navigation/native";
-import { Ionicons } from '@expo/vector-icons';
 import axios from "axios";
 
 const SiteManagerDeliveryInfo = () => {
@@ -12,6 +11,7 @@ const SiteManagerDeliveryInfo = () => {
         getNotices();
     }, [])
 
+    //calling the view all delivery notices api
     const getNotices = async () => {
         const response = await axios.get("http://192.168.8.115:8070/Notices/allNotices");
 

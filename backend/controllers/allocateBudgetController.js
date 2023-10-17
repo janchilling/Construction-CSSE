@@ -63,7 +63,7 @@ const deleteAllocate = async (req, res) => {
     }
 }
 
-
+//Update allocated budget
 const updateAllocateBudget = async (req, res) => {
     try {
         const updatedAllocate = await AllocateBudget.findOneAndUpdate({ RequisitionID: req.params.id }, req.body, { new: true });
@@ -78,6 +78,7 @@ const updateAllocateBudget = async (req, res) => {
     }
 }
 
+//get a single allocated budget
 const singleAllocateBudget = (req, res) => {
     const AllocateId = req.params.id;
   
@@ -96,7 +97,7 @@ const singleAllocateBudget = (req, res) => {
 
 
 
-
+//Exporting the Functions
 module.exports = {
     AllocateABudget,
     allAllocates,

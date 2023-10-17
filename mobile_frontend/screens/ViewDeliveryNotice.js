@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, TextInput, Pressable, ScrollView, TouchableOpacity, Alert, SafeAreaView, KeyboardAvoidingView, StyleSheet } from 'react-native';
-import axios from 'axios';
+import { View, Text, TextInput, Pressable, ScrollView, SafeAreaView, KeyboardAvoidingView, StyleSheet } from 'react-native';
 import { MaterialIcons } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { Ionicons } from "@expo/vector-icons";
@@ -29,6 +28,7 @@ const ViewDeliveryNotice = () => {
         getNoticeDetails();
     }, [])
 
+    //calling the view single delivery notice api
     const getNoticeDetails = async () => {
 
         let result = await fetch(`http://192.168.8.115:8070/Notices/singleNotice/${noticeId}`);
