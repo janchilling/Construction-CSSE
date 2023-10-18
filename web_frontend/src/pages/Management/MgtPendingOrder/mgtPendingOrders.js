@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react";
 import "../MgtPendingOrder/mgtPendingOrders.css";
 import axios from "axios";
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 export default function ManagementPendingOrders() {

@@ -42,7 +42,7 @@ function Footer() {
             <footer className="FNExactFooter">
                 <div>
 
-                    <img src={FNfootericon} className="FNFooterPic" onClick={HomepagesHandle}/>
+                    <img src={FNfootericon} alt="footericon" className="FNFooterPic" onClick={HomepagesHandle}/>
                 </div>
                 <div className="FNFooterHeading">
                     <p onClick={HomepagesHandle}>MBKT</p>

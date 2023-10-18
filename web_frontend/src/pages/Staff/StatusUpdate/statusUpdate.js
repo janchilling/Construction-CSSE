@@ -122,6 +122,7 @@ export default function UpdateStatus() {
                     <option value="New">{Status}</option>
                     <option value="Approved">Approved</option>
                     <option value="Pending">Pending</option>
+                    <option value="Rejected">Rejected</option>
                 </select>
                 <br /><br /><br /><br /><br />
 

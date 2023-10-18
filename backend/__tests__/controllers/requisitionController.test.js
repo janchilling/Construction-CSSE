@@ -2,10 +2,10 @@
 const Requisition = require('../../models/requisition');
 const requisitionController = require('../../controllers/requisitionController');
 
-// Mock Order.save to return data in orderController
+// Mock Order.save to return data in requisitionController
 jest.mock('../../models/requisition');
 
-// Test cases for createOrder function
+// Test cases for createRequisition function
 describe('requisitionController', () => {
   describe('createRequisition', () => {
 

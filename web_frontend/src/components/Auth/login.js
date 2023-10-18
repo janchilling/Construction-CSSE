@@ -35,10 +35,10 @@ const Login = () => {
 
         localStorage.setItem('user', JSON.stringify(employee))
         localStorage.setItem('token', token)
-    
+
         if (UserType === "Staff") {
           navigate('/staffHome');
-        }else if (UserType === "Manager"){
+        } else if (UserType === "Manager") {
           navigate('/managerHome');
         }
       } else {
@@ -103,7 +103,7 @@ const Login = () => {
             <label for="password" className="loginheading">Password: </label><br />
             <input type="password" className="loginforminput" placeholder="Password" onChange={(e) => {
               setPassword(e.target.value)
-            }} value={password} /><br /><br /><br/>
+            }} value={password} /><br /><br /><br />
 
             <button type="submit" className="loginsubmit">LOGIN</button><br /><br />
           </form>
