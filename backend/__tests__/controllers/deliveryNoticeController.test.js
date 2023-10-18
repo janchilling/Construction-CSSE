@@ -2,10 +2,10 @@
 const DeliveryNotice = require('../../models/deliveryNotice');
 const deliveryNoticeController = require('../../controllers/deliverNoticeController');
 
-// Mock Order.save to return data in orderController
+// Mock Order.save to return data in deliveryNoticeController
 jest.mock('../../models/deliveryNotice');
 
-// Test cases for createOrder function
+// Test cases for createDeliveryNotice function
 describe('deliverNoticeController', () => {
     describe('createdeliverNotice', () => {
 
@@ -16,22 +16,22 @@ describe('deliverNoticeController', () => {
         it('should create a Delivery notice', async () => {
             const request = {
                 body: {
-                    "InvoiceID": "12345",              
-                    "SupplierName": "Supplier ABC",    
-                    "SiteManagerID": "SM001",         
-                    "SiteManagerName": "John Doe",     
-                    "SiteName": "Site XYZ",            
-                    "Date": "2023-10-16",              
-                    "TotalAmount": 1500,               
-                    "Status": "Delivered",             
+                    "InvoiceID": "12345",
+                    "SupplierName": "Supplier ABC",
+                    "SiteManagerID": "SM001",
+                    "SiteManagerName": "John Doe",
+                    "SiteName": "Site XYZ",
+                    "Date": "2023-10-16",
+                    "TotalAmount": 1500,
+                    "Status": "Delivered",
                     "Materials": [
                         {
-                            "MaterialName": "Material A",  
-                            "Quantity": 10                
+                            "MaterialName": "Material A",
+                            "Quantity": 10
                         },
                         {
-                            "MaterialName": "Material B",  
-                            "Quantity": 20                
+                            "MaterialName": "Material B",
+                            "Quantity": 20
                         }
                     ]
                 }
@@ -51,24 +51,52 @@ describe('deliverNoticeController', () => {
         it('should not create a Delivery notice with invalid input', async () => {
             const request = {
                 body: {
-                    "InvoiceID": "",              
-                    "SupplierName": "Supplier ABC",    
-                    "SiteManagerID": "SM001",         
-                    "SiteManagerName": "John Doe",     
-                    "SiteName": "Site XYZ",            
-                    "Date": "2023-10-16",              
-                    "TotalAmount": 1500,               
-                    "Status": "Delivered",             
+                    "InvoiceID": "", // no invoice id added
+                    "SupplierName": "Supplier ABC",
+                    "SiteManagerID": "SM001",
+                    "SiteManagerName": "John Doe",
+                    "SiteName": "Site XYZ",
+                    "Date": "2023-10-16",
+                    "TotalAmount": 1500,
+                    "Status": "Delivered",
                     "Materials": [
                         {
-                            "MaterialName": "Material A",  
-                            "Quantity": 10                
+                            "MaterialName": "Material A",
+                            "Quantity": 10
                         },
                         {
-                            "MaterialName": "Material B",  
-                            "Quantity": 20                
+                            "MaterialName": "Material B",
+                            "Quantity": 20
                         }
                     ]
+                }
+            };
+
+            const mockSave = jest.fn().mockResolvedValue({});
+            DeliveryNotice.mockImplementationOnce(() => ({
+                save: mockSave,
+            }));
+
+            await deliveryNoticeController.createDeliveryNotice(request, response);
+
+            // Assert that the save function is not called
+            expect(mockSave).not.toHaveBeenCalled();
+            // Assert that the response does not contain the expected message
+            expect(response.json).not.toHaveBeenCalledWith("Delivery Notice Added");
+        });
+
+        it('should not create a Delivery notice if no materials are provided', async () => {
+            const request = {
+                body: {
+                    "InvoiceID": "12345",
+                    "SupplierName": "Supplier ABC",
+                    "SiteManagerID": "SM001",
+                    "SiteManagerName": "John Doe",
+                    "SiteName": "Site XYZ",
+                    "Date": "2023-10-16",
+                    "TotalAmount": 1500,
+                    "Status": "Delivered",
+                    "Materials": [] // No materials provided
                 }
             };
 
