@@ -346,7 +346,8 @@ export default function PurchaseOrder() {
                             name="TotalAmount"
                             value={TotalAmount}
                             onChange={(e) => setTotalAmount(e.target.value)}
-                            required
+                            readOnly
+                            disabled
                         />
                     </div><br/>
 

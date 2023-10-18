@@ -49,9 +49,9 @@ describe('orderController', () => {
         it('should not create an order with invalid input', async () => {
             const request = {
                 body: {
-                    "SupplierName": "",
-                    "RequisitionID": "",
-                    "SiteManagerID": "",
+                    "SupplierName": "Sahan",
+                    "RequisitionID": 1234,
+                    "SiteManagerID": "SM001",
                     "SiteManagerName": "Saman",
                     "SiteName": "Kandy site",
                     "Date": "2023-11-15",
@@ -74,8 +74,10 @@ describe('orderController', () => {
 
             await orderController.createOrder(request, response);
 
-            expect(mockSave).toHaveBeenCalled();
-            expect(response.json).toHaveBeenCalledWith("Order Added");
+            // Assert that the save function is not called
+            expect(mockSave).not.toHaveBeenCalled();
+            // Assert that the response does not contain the expected message
+            expect(response.json).not.toHaveBeenCalledWith("Order Added");
         });
     });
 });

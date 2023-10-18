@@ -14,6 +14,28 @@ export default function PurchaseOrder() {
     const [allocateBudget, setAllocateBudget] = useState(0); // Initialize AllocateBudget
     const navigate = useNavigate();
 
+    const currentDate = new Date().toISOString().split('T')[0];
+
+    const handleStartDateChange = (e) => {
+        const selectedDate = e.target.value;
+        if (selectedDate >= currentDate) {
+          setStartDate(selectedDate);
+        } else {
+          // Invalid date, provide feedback to the user
+          alert('Please select a start date on or after today.');
+        }
+      };
+    
+      const handleEndDateChange = (e) => {
+        const selectedDate = e.target.value;
+        if (selectedDate >= startDate && selectedDate >= currentDate) {
+          setEndDate(selectedDate);
+        } else {
+          // Invalid date, provide feedback to the user
+          alert('Please select an end date on or after the start date and today.');
+        }
+      };
+
     useEffect(() => {
         if (id) {
             fetchDataFromRequisitionModel(id);
@@ -125,7 +147,7 @@ export default function PurchaseOrder() {
                             id="PurchaseInputAllocate"
                             name="StartDate"
                             value={startDate}
-                            onChange={(e) => setStartDate(e.target.value)}
+                            onChange={handleStartDateChange}
                         />
                     </div><br/>
 
@@ -136,7 +158,7 @@ export default function PurchaseOrder() {
                             id="PurchaseInputAllocate"
                             name="EndDate"
                             value={endDate}
-                            onChange={(e) => setEndDate(e.target.value)}
+                            onChange={handleEndDateChange}
                         />
                     </div><br/>
 
