@@ -20,7 +20,7 @@ const InvoicesHome = () => {
 
     //calling the view all invoices api
     const getInvoices = async () => {
-        const response = await axios.get("http://192.168.8.115:8070/Invoices/allInvoices");
+        const response = await axios.get("http://192.168.1.4:8070/Invoices/allInvoices");
 
         if (response.status === 200) {
             setData(response.data);

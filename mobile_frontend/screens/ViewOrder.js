@@ -31,7 +31,7 @@ const ViewOrder = () => {
 
     const getOrderDetails = async () => {
 
-        let result = await fetch(`http://192.168.8.115:8070/orders/singleOrder/${orderId}`);
+        let result = await fetch(`http://192.168.1.4:8070/orders/singleOrder/${orderId}`);
         result = await result.json();
 
         setSupplierName(result.SupplierName);

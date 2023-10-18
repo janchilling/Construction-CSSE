@@ -13,7 +13,7 @@ const SiteManagerDeliveryInfo = () => {
 
     //calling the view all delivery notices api
     const getNotices = async () => {
-        const response = await axios.get("http://192.168.8.115:8070/Notices/allNotices");
+        const response = await axios.get("http://192.168.1.4:8070/Notices/allNotices");
 
         if (response.status === 200) {
             setData(response.data);

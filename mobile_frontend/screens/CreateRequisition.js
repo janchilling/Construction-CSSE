@@ -39,7 +39,7 @@ export default function NewWorkoutPlan() {
             Materials: Materials,
             TotalAmount
         }
-        axios.post("http://192.168.8.115:8070/requisitions/newRequisition", newRequisition).then(() => {
+        axios.post("http://192.168.1.4:8070/requisitions/newRequisition", newRequisition).then(() => {
             Alert.alert("Requisition Submitted Successfully!")
             navigation.navigate("SiteManagerHome");
         }).catch((err) => {

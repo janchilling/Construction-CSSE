@@ -13,13 +13,13 @@ describe('invoiceController', () => {
             json: jest.fn((x) => x)
         };
 
-        it('should create an invoice', async () => {
+        it('should create an invoice with response Invoice added', async () => {
             const request = {
                 body: {
                     "SupplierName": "Supplier ABC",
                     "OrderID": "12345",
                     "SiteManagerID": "SM001",
-                    "SiteManagerName": "John Doe",
+                    "SiteManagerName": "Saman",
                     "SiteName": "Site XYZ",
                     "IssuedDate": "2023-10-16",
                     "TotalAmount": 500.75,
@@ -55,7 +55,7 @@ describe('invoiceController', () => {
                     "SupplierName": "Supplier ABC",
                     "OrderID": "",
                     "SiteManagerID": "SM001",
-                    "SiteManagerName": "John Doe",
+                    "SiteManagerName": "Saman",
                     "SiteName": "Site XYZ",
                     "IssuedDate": "2023-10-16",
                     "TotalAmount": 500.75,

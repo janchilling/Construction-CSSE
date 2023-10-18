@@ -52,7 +52,7 @@ const CreateInvoice = () => {
             Materials: Materials,
             TotalAmount: TotalAmount
         }
-        axios.post("http://192.168.8.115:8070/Invoices/newInvoice", newInvoice).then(() => {
+        axios.post("http://192.168.1.4:8070/Invoices/newInvoice", newInvoice).then(() => {
             Alert.alert("Invoice Submitted Successfully!")
             navigation.navigate("InvoicesHome");
         }).catch((err) => {

@@ -19,7 +19,7 @@ const SupplierOrders = () => {
 
     //calling view all orders api
     const getOrders = async () => {
-        const response = await axios.get("http://192.168.8.115:8070/orders/allOrders");
+        const response = await axios.get("http://192.168.1.4:8070/orders/allOrders");
 
         if (response.status === 200) {
             setData(response.data);

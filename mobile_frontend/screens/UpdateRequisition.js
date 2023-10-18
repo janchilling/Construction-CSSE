@@ -29,7 +29,7 @@ const UpdateRequisition = () => {
     //calling the view single requisition api
     const getRequisitionDetails = async () => {
 
-        let result = await fetch(`http://192.168.8.115:8070/requisitions//singleRequistions/${requisitionId}`);
+        let result = await fetch(`http://192.168.1.4:8070/requisitions//singleRequistions/${requisitionId}`);
         result = await result.json();
 
         setSiteManagerID(result.SiteManagerID);
@@ -52,7 +52,7 @@ const UpdateRequisition = () => {
                 Materials: Materials,
             };
 
-            const response = await axios.put(`http://192.168.8.115:8070/requisitions/updateRequisition/${requisitionId}`, updatedRequisition);
+            const response = await axios.put(`http://192.168.1.4:8070/requisitions/updateRequisition/${requisitionId}`, updatedRequisition);
 
             if (response.status === 200) {
                 console.log(updatedRequisition);

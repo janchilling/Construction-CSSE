@@ -24,7 +24,7 @@ const LoginScreen = () => {
         e.preventDefault();
         if (UserType === "site manager") {
             try {
-                const response = await fetch('http://192.168.8.115:8070/auth/loginEmployee', {
+                const response = await fetch('http://192.168.1.4:8070/auth/loginEmployee', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -47,7 +47,7 @@ const LoginScreen = () => {
         }
         else if(UserType === "supplier"){
             try {
-                const response = await fetch('http://192.168.8.115:8070/auth/loginSupplier', {
+                const response = await fetch('http://192.168.1.4:8070/auth/loginSupplier', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

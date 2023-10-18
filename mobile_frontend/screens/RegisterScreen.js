@@ -26,7 +26,7 @@ const RegisterScreen = () => {
             Password: Password
         }
 
-        axios.post("http://192.168.8.115:8070/auth/registerSupplier", NewSupplier).then(() => {
+        axios.post("http://192.168.1.4:8070/auth/registerSupplier", NewSupplier).then(() => {
             Alert.alert("Registration successful!");
 
             setSupplierName("");

@@ -13,7 +13,7 @@ const RequisitionRequests = () => {
 
     //calling the view all requisitions api
     const getRequisitions = async () => {
-        const response = await axios.get("http://192.168.8.115:8070/requisitions/allRequistions");
+        const response = await axios.get("http://192.168.1.4:8070/requisitions/allRequistions");
 
         if (response.status === 200) {
             setData(response.data);

@@ -30,7 +30,7 @@ const UpdateDeliveryNotice = () => {
     //calling the view single delivery notice api
     const getNoticeDetails = async () => {
 
-        let result = await fetch(`http://192.168.8.115:8070/Notices/singleNotice/${noticeId}`);
+        let result = await fetch(`http://192.168.1.4:8070/Notices/singleNotice/${noticeId}`);
         result = await result.json();
 
         setInvoiceID(result.InvoiceID);
@@ -59,7 +59,7 @@ const UpdateDeliveryNotice = () => {
                 Materials: Materials,
             };
 
-            const response = await axios.put(`http://192.168.8.115:8070/Notices/updateNotice/${noticeId}`, updatedNotice);
+            const response = await axios.put(`http://192.168.1.4:8070/Notices/updateNotice/${noticeId}`, updatedNotice);
 
             if (response.status === 200) {
                 Alert.alert('Success', 'Notice updated successfully');

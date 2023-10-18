@@ -55,7 +55,7 @@ const CreateDeliveryNotice = () => {
             Status: Status,
             Materials: Materials,
         }
-        axios.post("http://192.168.8.115:8070/Notices/newNotice", newDeliveryNotice).then(() => {
+        axios.post("http://192.168.1.4:8070/Notices/newNotice", newDeliveryNotice).then(() => {
             Alert.alert("Delivery Notice Submitted Successfully!")
             navigation.navigate("DeliveryHome");
         }).catch((err) => {
