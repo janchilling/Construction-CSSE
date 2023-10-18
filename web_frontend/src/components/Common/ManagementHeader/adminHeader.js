@@ -1,14 +1,12 @@
 import React, { useContext } from 'react';
 import './adminHeader.css';
-import { useLocation, useParams, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import UserContext from "../../ContextComponents/ContextComponents.js";
 
-export default function Header(props) {
+export default function Header() {
 
     const location = useLocation()
     const Navigate = useNavigate();
-    const params = useParams();
-    const id = props.id
 
     const { user, setUser } = useContext(UserContext)
 
@@ -94,7 +92,7 @@ export default function Header(props) {
                                         </button>
 
                                         <ul className="NavigationBarB dropdown-menu dropdown-menu-dark">
-                                            <li><a className="NavigationBarB dropdown-item" href="/login">Log out</a></li>
+                                            <li><a className="NavigationBarB dropdown-item" onClick={logOut}>Log out</a></li>
                                         </ul>
                                     </div>
                                 </li>

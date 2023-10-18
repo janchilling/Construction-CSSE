@@ -12,10 +12,10 @@ export default function Index() {
             <br/>
             <div className="IndexSecondDiv">
                 <div className="IndexPicDiv">
-                    <img src={indexpic2} className="indexpic" />
+                    <img src={indexpic2} alt="index1" className="indexpic" />
                 </div>
                 <div className="IndexPicPara">
-                    <img src={logo} className="logoIndex" />
+                    <img src={logo} alt="logo" className="logoIndex" />
                     <div className="he1">
                         <p>Core Construction Services</p>
                     </div>

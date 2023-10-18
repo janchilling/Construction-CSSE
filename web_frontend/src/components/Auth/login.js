@@ -78,7 +78,7 @@ const Login = () => {
       </div>
       <br /><br />
       <div className="loginDev1">
-        <img src={login_logo} className="loginImg" />
+        <img src={login_logo} alt='loginlogo' className="loginImg" />
         <div className="login_form">
 
           <form action="POST" onSubmit={handleSubmit}>

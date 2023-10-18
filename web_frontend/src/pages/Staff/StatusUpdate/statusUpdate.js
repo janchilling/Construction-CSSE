@@ -17,7 +17,7 @@ export default function UpdateStatus() {
 
     useEffect(() => {
         getRequisitionDetails();
-    }, [])
+    },[])
 
     const getRequisitionDetails = async () => {
         let result = await fetch(`http://localhost:8070/requisitions/singleRequistions/${params.id}`);

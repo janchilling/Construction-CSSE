@@ -62,9 +62,9 @@ export default function AddEmployee() {
         <div className="reg_page">
 
             <div className="loginDev1">
-                <img src={signup_logo} className="signupImg" width="30%" />
-                <img src={signup_logo_1} className="signupImg1" width="30%" />
-                <img src={signup_logo_2} className="signupImg2" width="30%" />
+                <img src={signup_logo} alt="logo1" className="signupImg" width="30%" />
+                <img src={signup_logo_1} alt="logo2" className="signupImg1" width="30%" />
+                <img src={signup_logo_2} alt="logo3" className="signupImg2" width="30%" />
                 <br /><br />
 
                 <div className="reg_form">

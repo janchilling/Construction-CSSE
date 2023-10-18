@@ -20,7 +20,7 @@ export default function ManagementHome() {
 
             <p className="PHPara1">Our motivation is to be the top organization in the construction industry providing excellent service to the people.</p>
 
-            <img src={dashboardpic} className="PHDashBoardPic" />
+            <img src={dashboardpic} alt="mgtdashboard" className="PHDashBoardPic" />
             <br /><br /><br/>
             <p className="PHPara2">We are always committed to providing you with the best services for all your construction needs!</p>
             <p className="PHPara3">Our services are mentioned below</p>
@@ -28,7 +28,7 @@ export default function ManagementHome() {
             <div className="PatientHomePageSecondPart">
                 <br />
                 <div className="PatientDiv1">
-                    <img src={usericon} className="PatientDivIcon" />
+                    <img src={usericon} alt="usericon" className="PatientDivIcon" />
                     <h2 className="PatientDivHeading">Add Employees</h2>
                     <p className="PatientDivPara">All Managers can add new Site manager, Staff and other manager to the system using this button.</p>
                     <button className="PatientHomeButton" onClick={(e) => {
@@ -39,7 +39,7 @@ export default function ManagementHome() {
                 </div>
 
                 <div className="PatientDiv2">
-                    <img src={Empicon} className="PatientDivIcon" />
+                    <img src={Empicon} alt="empicon" className="PatientDivIcon" />
                     <h2 className="PatientDivHeading">Employee Details</h2>
                     <p className="PatientDivPara">All Managers can view, update and delete all employees in their company using this button.</p>
                     <button className="PatientHomeButton" onClick={(e) => {
@@ -50,7 +50,7 @@ export default function ManagementHome() {
                 </div>
 
                 <div className="PatientDiv3">
-                    <img src={ordericon} className="PatientDivIcon" />
+                    <img src={ordericon} alt="ordericon" className="PatientDivIcon" />
                     <h2 className="PatientDivHeading">Orders</h2>
                     <p className="PatientDivPara">All managers can send an order to the supplier to purchase an approved order using this button.</p>
                     <button className="PatientHomeButton" onClick={(e) => {
@@ -61,7 +61,7 @@ export default function ManagementHome() {
                 </div>
 
                 <div className="PatientDiv4">
-                    <img src={moneyicon} className="PatientDivIcon" />
+                    <img src={moneyicon} alt="moneyicon" className="PatientDivIcon" />
                     <h2 className="PatientDivHeading">Allocated Budgets</h2>
                     <p className="PatientDivPara">All Patient can upload their details in this button. Also they can upload their eye picture in this form.</p>
                     <button className="PatientHomeButton" onClick={(e) => {
@@ -74,7 +74,7 @@ export default function ManagementHome() {
             </div>
 
             <div className="PatientHomePageThirdPart">
-                <img src={mgtdown} className="PHDashBoardPic2" />
+                <img src={mgtdown} alt="mgtdown" className="PHDashBoardPic2" />
                 <div className="ph3div">
                     <h2 className="PatientHomeHeading2"> Find Construction at;</h2>
                     <p className="PH3Para"> 🚩123/A, <br /> Sir Manula Gunatilleke Av, <br /> Manugama. <br /></p>
